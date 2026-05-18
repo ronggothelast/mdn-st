@@ -1,12 +1,12 @@
 ---
 // STYLE 09 — SpaceX Cinematic
 import ProfileLayout from '../../layouts/ProfileLayout.astro';
-import { brand, profile, services, team } from '../../data/content';
+import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
 const base = import.meta.env.BASE_URL;
 ---
 <ProfileLayout styleNum={9} styleName="SpaceX Cinematic">
   <div style="background: #000; color: #fff; font-family: 'Inter', sans-serif;">
-    <!-- Full-bleed cinematic hero -->
+    <!-- 0. Hero -->
     <section class="relative h-screen overflow-hidden">
       <img src={base + '/assets/images/forest.png'} alt="" class="absolute inset-0 w-full h-full object-cover scale-110" style="filter: grayscale(100%) brightness(0.4);" />
       <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.95) 100%);"></div>
@@ -21,78 +21,167 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
+    <!-- 1. Who We Are & 2. Who We Serve -->
     <section class="py-32">
       <div class="container-x max-w-4xl text-center">
         <h2 class="text-4xl md:text-6xl uppercase tracking-tight font-light mb-12">
           <span data-lang="en">{profile.whoWeAre.title.en}</span>
           <span data-lang="id">{profile.whoWeAre.title.id}</span>
         </h2>
-        {profile.whoWeAre.body.en.map((p, i) => (
-          <p class="text-xl leading-relaxed mb-6 text-white/80">
-            <span data-lang="en">{p}</span>
-            <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
-          </p>
-        ))}
+        <div class="space-y-6 text-left mb-24">
+          {profile.whoWeAre.body.en.map((p, i) => (
+            <p class="text-2xl leading-relaxed text-white/80">
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+
+        <h2 class="text-3xl uppercase tracking-tight font-light mb-8">
+          <span data-lang="en">{profile.whoWeServe.title.en}</span>
+          <span data-lang="id">{profile.whoWeServe.title.id}</span>
+        </h2>
+        <p class="text-xl leading-relaxed text-white/60 text-left">
+          <span data-lang="en">{profile.whoWeServe.body.en}</span>
+          <span data-lang="id">{profile.whoWeServe.body.id}</span>
+        </p>
       </div>
     </section>
 
-    <!-- Image-rich service sections -->
-    {services.map((svc, i) => {
-      const img = svc.image;
-      return (
-        <section class="relative h-screen overflow-hidden">
-          <img src={img} alt={svc.title.en} class="absolute inset-0 w-full h-full object-cover" style="filter: grayscale(100%) brightness(0.5);" />
-          <div class="absolute inset-0" style={`background: linear-gradient(${i % 2 === 0 ? '90deg' : '270deg'}, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);`}></div>
-          <div class={`relative h-full flex items-center ${i % 2 === 0 ? '' : 'justify-end'}`}>
-            <div class={`container-x ${i % 2 === 0 ? '' : 'text-right'}`}>
-              <div class="text-sm uppercase tracking-[0.4em] text-white/60 mb-4">{svc.num} / Service</div>
-              <h2 class={`text-5xl md:text-7xl uppercase tracking-tight font-light mb-6 max-w-2xl ${i % 2 === 0 ? '' : 'ml-auto'}`}>
-                <span data-lang="en">{svc.title.en}</span>
-                <span data-lang="id">{svc.title.id}</span>
-              </h2>
-              <p class={`text-lg max-w-xl text-white/80 ${i % 2 === 0 ? '' : 'ml-auto'}`}>
-                <span data-lang="en">{svc.short.en}</span>
-                <span data-lang="id">{svc.short.id}</span>
-              </p>
-            </div>
-          </div>
-        </section>
-      );
-    })}
+    <!-- 3. The Gap -->
+    <section class="py-32" style="background: #0a0a0a;">
+      <div class="container-x max-w-4xl">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-6xl uppercase tracking-tight font-light">
+            <span data-lang="en">{profile.theGap.title.en}</span>
+            <span data-lang="id">{profile.theGap.title.id}</span>
+          </h2>
+        </div>
+        <div class="space-y-8">
+          {profile.theGap.body.en.map((p, i) => (
+            <p class="text-2xl leading-relaxed text-white/80">
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.theGap.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+      </div>
+    </section>
 
-    <!-- Team -->
+    <!-- 4. Approach -->
     <section class="py-32">
       <div class="container-x">
-        <h2 class="text-5xl uppercase tracking-tight font-light text-center mb-20">
-          <span data-lang="en">The Crew</span>
-          <span data-lang="id">Awak</span>
+        <h2 class="text-4xl md:text-5xl uppercase tracking-tight font-light text-center mb-24">
+          <span data-lang="en" set:html={kicker.approachTitle.en}></span>
+          <span data-lang="id" set:html={kicker.approachTitle.id}></span>
         </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
-          {team.map(m => (
-            <div>
-              <div class="aspect-square mb-5 flex items-center justify-center font-light text-5xl border border-white/20" style="background: #0a0a0a;">{m.initials}</div>
-              <h3 class="text-xl uppercase tracking-wider font-light">{m.name}</h3>
-              <div class="text-xs uppercase tracking-[0.3em] text-white/60 mt-2 mb-4">
-                <span data-lang="en">{m.role.en}</span>
-                <span data-lang="id">{m.role.id}</span>
-              </div>
-              <p class="text-sm text-white/70 leading-relaxed">
-                <span data-lang="en">{m.bioShort.en}</span>
-                <span data-lang="id">{m.bioShort.id}</span>
-              </p>
+        <div class="grid md:grid-cols-3 gap-12">
+          {stages.map(s => (
+            <div class="border-t border-white/20 pt-8">
+              <div class="text-xl uppercase tracking-widest text-white/40 mb-4">Phase 0{s.num}</div>
+              <h3 class="text-3xl uppercase tracking-tight font-light mb-6"><span data-lang="en">{s.title.en}</span><span data-lang="id">{s.title.id}</span></h3>
+              <p class="text-lg text-white/70 leading-relaxed"><span data-lang="en">{s.body.en}</span><span data-lang="id">{s.body.id}</span></p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="py-32 text-center">
-      <h2 class="text-6xl uppercase tracking-tight font-light mb-8">
-        <span data-lang="en">Mission Control</span>
-        <span data-lang="id">Pusat Kendali</span>
-      </h2>
-      <p class="text-xl uppercase tracking-[0.3em] text-white/60 mb-2">{brand.email}</p>
-      <p class="text-lg text-white/40">{brand.phone}</p>
+    <!-- 5. Services -->
+    {services.map((svc, i) => {
+      const img = svc.image;
+      return (
+        <section class="relative min-h-screen py-32 overflow-hidden flex items-center">
+          <img src={img} alt={svc.title.en} class="absolute inset-0 w-full h-full object-cover" style="filter: grayscale(100%) brightness(0.3);" />
+          <div class="absolute inset-0" style={`background: linear-gradient(${i % 2 === 0 ? '90deg' : '270deg'}, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);`}></div>
+          <div class={`relative w-full ${i % 2 === 0 ? '' : 'flex justify-end'}`}>
+            <div class={`container-x w-full ${i % 2 === 0 ? '' : 'text-right'}`}>
+              <div class={`max-w-2xl ${i % 2 === 0 ? '' : 'ml-auto'}`}>
+                <div class="text-sm uppercase tracking-[0.4em] text-white/60 mb-4">{svc.num} / Service</div>
+                <h2 class="text-5xl md:text-7xl uppercase tracking-tight font-light mb-12">
+                  <span data-lang="en">{svc.title.en}</span>
+                  <span data-lang="id">{svc.title.id}</span>
+                </h2>
+                <div class="space-y-6">
+                  {svc.detail.en.map((p, j) => (
+                    <p class="text-xl leading-relaxed text-white/80">
+                      <span data-lang="en">{p}</span>
+                      <span data-lang="id">{svc.detail.id[j]}</span>
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    })}
+
+    <!-- 6. Impact -->
+    <section class="py-32" style="background: #0a0a0a;">
+      <div class="container-x">
+        <h2 class="text-5xl uppercase tracking-tight font-light text-center mb-20">
+          <span data-lang="en">Telemetry Data</span>
+          <span data-lang="id">Data Telemetri</span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-16">
+          {impactCards.map(c => (
+            <div>
+              <div class="text-sm uppercase tracking-widest text-white/40 mb-3">[{c.tag.en}]</div>
+              <h3 class="text-3xl uppercase tracking-tight font-light mb-4"><span data-lang="en">{c.title.en}</span><span data-lang="id">{c.title.id}</span></h3>
+              <p class="text-xl text-white/60 leading-relaxed"><span data-lang="en">{c.body.en}</span><span data-lang="id">{c.body.id}</span></p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Team -->
+    <section class="py-32">
+      <div class="container-x">
+        <h2 class="text-5xl uppercase tracking-tight font-light text-center mb-24">
+          <span data-lang="en">The Crew</span>
+          <span data-lang="id">Awak</span>
+        </h2>
+        <div class="grid lg:grid-cols-2 gap-16">
+          {team.map(m => (
+            <div class="flex flex-col md:flex-row gap-8 items-start">
+              <div class="aspect-square w-32 shrink-0 flex items-center justify-center font-light text-5xl border border-white/20" style="background: #0a0a0a;">{m.initials}</div>
+              <div>
+                <h3 class="text-3xl uppercase tracking-wider font-light mb-2">{m.name}</h3>
+                <div class="text-sm uppercase tracking-[0.3em] text-white/40 mb-6">
+                  <span data-lang="en">{m.role.en}</span>
+                  <span data-lang="id">{m.role.id}</span>
+                </div>
+                <p class="text-lg text-white/70 leading-relaxed">
+                  <span data-lang="en">{m.bioFull.en}</span>
+                  <span data-lang="id">{m.bioFull.id}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Closing -->
+    <section class="py-40 text-center relative overflow-hidden">
+      <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);"></div>
+      <div class="container-x relative max-w-4xl">
+        <h2 class="text-5xl md:text-7xl uppercase tracking-tight font-light mb-16">
+          <span data-lang="en">{profile.whatComesNext.title.en}</span>
+          <span data-lang="id">{profile.whatComesNext.title.id}</span>
+        </h2>
+        <div class="space-y-6 text-left mb-16">
+          {profile.whatComesNext.body.en.map((p, i) => (
+            <p class="text-2xl text-white/80 leading-relaxed">
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+        <a href={`mailto:${brand.email}`} class="inline-block border border-white/40 px-16 py-6 uppercase tracking-[0.3em] text-lg hover:bg-white hover:text-black transition duration-500">{brand.email}</a>
+      </div>
     </section>
   </div>
 </ProfileLayout>

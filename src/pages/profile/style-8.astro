@@ -1,15 +1,16 @@
 ---
 // STYLE 08 — Sanity Editorial Red
 import ProfileLayout from '../../layouts/ProfileLayout.astro';
-import { brand, profile, services, team } from '../../data/content';
+import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
 const base = import.meta.env.BASE_URL;
 ---
 <ProfileLayout styleNum={8} styleName="Sanity Red">
   <div style="background: #fff; color: #1A1A1A; font-family: 'Fraunces', Georgia, serif;">
+    <!-- 0. Hero -->
     <section class="py-32 border-b border-black">
       <div class="container-x grid lg:grid-cols-[2fr_1fr] gap-16 items-end">
         <div>
-          <div class="text-sm uppercase tracking-widest mb-6 font-sans" style="color: #F03E2F;">— Madani Quarterly · 2026</div>
+          <div class="text-sm uppercase tracking-widest mb-6 font-sans font-bold" style="color: #F03E2F;">— Madani Quarterly · 2026</div>
           <h1 class="text-[clamp(4rem,10vw,9rem)] font-medium leading-[0.95] tracking-tight">{brand.name}</h1>
         </div>
         <div>
@@ -17,76 +18,155 @@ const base = import.meta.env.BASE_URL;
             <span data-lang="en">{brand.tagline.en}</span>
             <span data-lang="id">{brand.tagline.id}</span>
           </p>
-          <div class="mt-8 text-sm font-sans">{brand.email}</div>
+          <div class="mt-8 text-sm font-sans font-bold uppercase tracking-wider">{brand.email}</div>
         </div>
       </div>
     </section>
 
+    <!-- 1. Who We Are -->
     <section class="py-24 border-b border-[#E5E5E5]">
       <div class="container-x grid lg:grid-cols-12 gap-8">
         <div class="lg:col-span-3">
-          <div class="text-xs uppercase tracking-widest font-sans mb-2" style="color: #F03E2F;">Lead Story</div>
+          <div class="text-xs uppercase tracking-widest font-sans font-bold mb-2" style="color: #F03E2F;">Lead Story</div>
           <h2 class="text-3xl">
             <span data-lang="en">{profile.whoWeAre.title.en}</span>
             <span data-lang="id">{profile.whoWeAre.title.id}</span>
           </h2>
         </div>
-        <div class="lg:col-span-9">
-          <p class="dropcap text-lg leading-[1.7]">
-            <span data-lang="en">{profile.whoWeAre.body.en[0]}</span>
-            <span data-lang="id">{profile.whoWeAre.body.id[0]}</span>
-          </p>
-          <p class="text-lg leading-[1.7] mt-6">
-            <span data-lang="en">{profile.whoWeAre.body.en[1]}</span>
-            <span data-lang="id">{profile.whoWeAre.body.id[1]}</span>
-          </p>
+        <div class="lg:col-span-9 space-y-6">
+          {profile.whoWeAre.body.en.map((p, i) => (
+            <p class={`text-xl leading-[1.7] ${i === 0 ? 'dropcap' : ''}`}>
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+            </p>
+          ))}
         </div>
       </div>
     </section>
 
-    <section class="py-24 border-b border-[#E5E5E5]" style="background: #FFF1F0;">
-      <div class="container-x">
-        <div class="text-xs uppercase tracking-widest font-sans mb-3" style="color: #F03E2F;">Three Practices</div>
-        <h2 class="text-4xl mb-16 max-w-3xl">
-          <span data-lang="en">What we do, in detail.</span>
-          <span data-lang="id">Apa yang kami lakukan, secara rinci.</span>
-        </h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          {services.map(svc => (
-            <article class="bg-white p-8 border border-[#E5E5E5]">
-              <div class="text-3xl mb-3" style="color: #F03E2F;">{svc.num}</div>
-              <h3 class="text-2xl mb-4">
-                <span data-lang="en">{svc.title.en}</span>
-                <span data-lang="id">{svc.title.id}</span>
-              </h3>
-              <p class="text-base leading-relaxed">
-                <span data-lang="en">{svc.short.en}</span>
-                <span data-lang="id">{svc.short.id}</span>
+    <!-- 2. Who We Serve & 3. The Gap -->
+    <section class="py-24 border-b border-[#E5E5E5]" style="background: #FAFAFA;">
+      <div class="container-x grid lg:grid-cols-12 gap-16">
+        <div class="lg:col-span-6 border-r border-[#E5E5E5] pr-16">
+          <h2 class="text-3xl mb-8">
+            <span data-lang="en">{profile.whoWeServe.title.en}</span>
+            <span data-lang="id">{profile.whoWeServe.title.id}</span>
+          </h2>
+          <p class="text-xl leading-[1.7]">
+            <span data-lang="en">{profile.whoWeServe.body.en}</span>
+            <span data-lang="id">{profile.whoWeServe.body.id}</span>
+          </p>
+        </div>
+        <div class="lg:col-span-6">
+          <h2 class="text-3xl mb-8">
+            <span data-lang="en">{profile.theGap.title.en}</span>
+            <span data-lang="id">{profile.theGap.title.id}</span>
+          </h2>
+          <div class="space-y-6">
+            {profile.theGap.body.en.map((p, i) => (
+              <p class="text-xl leading-[1.7]">
+                <span data-lang="en">{p}</span>
+                <span data-lang="id">{profile.theGap.body.id[i]}</span>
               </p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Approach -->
+    <section class="py-24 border-b border-[#E5E5E5]">
+      <div class="container-x">
+        <div class="text-center max-w-4xl mx-auto mb-20">
+          <div class="text-xs uppercase tracking-widest font-sans font-bold mb-4" style="color: #F03E2F;">Methodology</div>
+          <h2 class="text-4xl leading-snug">
+            <span data-lang="en" set:html={kicker.approachTitle.en}></span>
+            <span data-lang="id" set:html={kicker.approachTitle.id}></span>
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          {stages.map(s => (
+            <article class="p-8 border border-[#E5E5E5]" style="background: #fff;">
+              <div class="text-sm font-sans font-bold uppercase tracking-widest mb-4" style="color: #F03E2F;">Stage 0{s.num}</div>
+              <h3 class="text-2xl mb-4"><span data-lang="en">{s.title.en}</span><span data-lang="id">{s.title.id}</span></h3>
+              <p class="text-lg leading-relaxed"><span data-lang="en">{s.body.en}</span><span data-lang="id">{s.body.id}</span></p>
             </article>
           ))}
         </div>
       </div>
     </section>
 
+    <!-- 5. Services -->
+    <section class="py-24 border-b border-[#E5E5E5]" style="background: #FFF1F0;">
+      <div class="container-x">
+        <div class="text-xs uppercase tracking-widest font-sans font-bold mb-3" style="color: #F03E2F;">Three Practices</div>
+        <h2 class="text-5xl mb-16 max-w-3xl">
+          <span data-lang="en">What we do, in detail.</span>
+          <span data-lang="id">Apa yang kami lakukan, secara rinci.</span>
+        </h2>
+        <div class="space-y-12">
+          {services.map(svc => (
+            <article class="bg-white p-12 border border-[#E5E5E5] grid lg:grid-cols-[1fr_2fr] gap-12">
+              <div>
+                <div class="text-6xl mb-4" style="color: #F03E2F;">{svc.num}</div>
+                <h3 class="text-3xl leading-snug">
+                  <span data-lang="en">{svc.title.en}</span>
+                  <span data-lang="id">{svc.title.id}</span>
+                </h3>
+              </div>
+              <div class="space-y-6">
+                {svc.detail.en.map((p, j) => (
+                  <p class="text-xl leading-[1.7]">
+                    <span data-lang="en">{p}</span>
+                    <span data-lang="id">{svc.detail.id[j]}</span>
+                  </p>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Impact -->
     <section class="py-24 border-b border-[#E5E5E5]">
       <div class="container-x">
-        <div class="text-xs uppercase tracking-widest font-sans mb-3" style="color: #F03E2F;">Bylines</div>
-        <h2 class="text-4xl mb-16">
+        <div class="text-xs uppercase tracking-widest font-sans font-bold mb-3" style="color: #F03E2F;">Case Studies</div>
+        <h2 class="text-5xl mb-16">
+          <span data-lang="en">Proof of Execution</span>
+          <span data-lang="id">Bukti Eksekusi</span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          {impactCards.map(c => (
+            <div class="border-t-4 pt-6" style="border-color: #F03E2F;">
+              <div class="text-sm font-sans font-bold uppercase tracking-widest mb-2" style="color: #F03E2F;">{c.tag.en}</div>
+              <h3 class="text-2xl mb-4"><span data-lang="en">{c.title.en}</span><span data-lang="id">{c.title.id}</span></h3>
+              <p class="text-lg leading-[1.7]"><span data-lang="en">{c.body.en}</span><span data-lang="id">{c.body.id}</span></p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Team -->
+    <section class="py-24 border-b border-[#E5E5E5]">
+      <div class="container-x">
+        <div class="text-xs uppercase tracking-widest font-sans font-bold mb-3" style="color: #F03E2F;">Bylines</div>
+        <h2 class="text-5xl mb-16">
           <span data-lang="en">The team</span>
           <span data-lang="id">Tim</span>
         </h2>
-        <div class="grid md:grid-cols-2 gap-12">
+        <div class="grid md:grid-cols-2 gap-16">
           {team.map(m => (
-            <div class="border-l-4 pl-6" style="border-color: #F03E2F;">
-              <h3 class="text-2xl mb-2">{m.name}</h3>
-              <div class="text-sm font-sans uppercase tracking-wider mb-4" style="color: #F03E2F;">
+            <div>
+              <h3 class="text-3xl mb-2">{m.name}</h3>
+              <div class="text-sm font-sans font-bold uppercase tracking-wider mb-6" style="color: #F03E2F;">
                 <span data-lang="en">{m.role.en}</span>
                 <span data-lang="id">{m.role.id}</span>
               </div>
-              <p class="text-base leading-[1.7]">
-                <span data-lang="en">{m.bioShort.en}</span>
-                <span data-lang="id">{m.bioShort.id}</span>
+              <p class="text-xl leading-[1.7]">
+                <span data-lang="en">{m.bioFull.en}</span>
+                <span data-lang="id">{m.bioFull.id}</span>
               </p>
             </div>
           ))}
@@ -94,13 +174,22 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
-    <section class="py-24" style="background: #1A1A1A; color: white;">
-      <div class="container-x text-center">
-        <h2 class="text-5xl mb-8">
-          <span data-lang="en">Continue the conversation.</span>
-          <span data-lang="id">Lanjutkan percakapan.</span>
+    <!-- 8. Closing -->
+    <section class="py-32 text-center" style="background: #1A1A1A; color: white;">
+      <div class="container-x max-w-4xl mx-auto">
+        <h2 class="text-5xl md:text-6xl mb-12">
+          <span data-lang="en">{profile.whatComesNext.title.en}</span>
+          <span data-lang="id">{profile.whatComesNext.title.id}</span>
         </h2>
-        <a href={`mailto:${brand.email}`} class="inline-block px-10 py-4 font-sans font-medium" style="background: #F03E2F; color: white;">{brand.email}</a>
+        <div class="space-y-6 mb-12 text-left">
+          {profile.whatComesNext.body.en.map((p, i) => (
+            <p class="text-2xl leading-[1.7]">
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+        <a href={`mailto:${brand.email}`} class="inline-block px-12 py-5 font-sans font-bold uppercase tracking-widest text-sm" style="background: #F03E2F; color: white;">&rarr; {brand.email}</a>
       </div>
     </section>
   </div>

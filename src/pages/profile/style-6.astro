@@ -1,7 +1,7 @@
 ---
 // STYLE 06 — BMW Engineering
 import ProfileLayout from '../../layouts/ProfileLayout.astro';
-import { brand, profile, services, team, stages } from '../../data/content';
+import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
 const base = import.meta.env.BASE_URL;
 ---
 <ProfileLayout styleNum={6} styleName="BMW Engineering">
@@ -13,6 +13,7 @@ const base = import.meta.env.BASE_URL;
       <div class="flex-1" style="background: #d40015;"></div>
     </div>
 
+    <!-- 0. Hero -->
     <section class="py-32 relative overflow-hidden">
       <div class="absolute inset-0 opacity-20">
         <img src={base + '/assets/images/forest.png'} alt="" class="w-full h-full object-cover" />
@@ -28,33 +29,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
-    <section class="py-24 border-t border-white/10">
-      <div class="container-x">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-px" style="background: rgba(255,255,255,0.1);">
-          <div class="p-8" style="background: #000;">
-            <div class="text-xs uppercase tracking-wider text-white/60 mb-2">// 01</div>
-            <div class="text-5xl font-light">20+</div>
-            <div class="text-xs uppercase tracking-wider mt-2"><span data-lang="en">Years</span><span data-lang="id">Tahun</span></div>
-          </div>
-          <div class="p-8" style="background: #000;">
-            <div class="text-xs uppercase tracking-wider text-white/60 mb-2">// 02</div>
-            <div class="text-5xl font-light">3</div>
-            <div class="text-xs uppercase tracking-wider mt-2"><span data-lang="en">Services</span><span data-lang="id">Layanan</span></div>
-          </div>
-          <div class="p-8" style="background: #000;">
-            <div class="text-xs uppercase tracking-wider text-white/60 mb-2">// 03</div>
-            <div class="text-5xl font-light">∞</div>
-            <div class="text-xs uppercase tracking-wider mt-2"><span data-lang="en">Communities</span><span data-lang="id">Komunitas</span></div>
-          </div>
-          <div class="p-8" style="background: #000;">
-            <div class="text-xs uppercase tracking-wider text-white/60 mb-2">// 04</div>
-            <div class="text-5xl font-light">1</div>
-            <div class="text-xs uppercase tracking-wider mt-2"><span data-lang="en">Mission</span><span data-lang="id">Misi</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- 1. Who We Are & 2. Who We Serve -->
     <section class="py-24 border-t border-white/10">
       <div class="container-x grid lg:grid-cols-[1fr_2fr] gap-12">
         <div>
@@ -65,35 +40,69 @@ const base = import.meta.env.BASE_URL;
           </h2>
           <div class="h-1 w-16 mt-6" style="background: linear-gradient(90deg, #1c69d4, #d40015);"></div>
         </div>
+        <div class="space-y-12">
+          <div>
+            {profile.whoWeAre.body.en.map((p, i) => (
+              <p class="text-lg leading-relaxed mb-6 text-white/80">
+                <span data-lang="en">{p}</span>
+                <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+              </p>
+            ))}
+          </div>
+          <div class="p-8 border border-white/10" style="background: rgba(255,255,255,0.05);">
+            <h3 class="text-xl uppercase tracking-wide mb-4 text-[#1c69d4]">
+              <span data-lang="en">{profile.whoWeServe.title.en}</span>
+              <span data-lang="id">{profile.whoWeServe.title.id}</span>
+            </h3>
+            <p class="text-white/80 leading-relaxed">
+              <span data-lang="en">{profile.whoWeServe.body.en}</span>
+              <span data-lang="id">{profile.whoWeServe.body.id}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. The Gap -->
+    <section class="py-24 border-t border-white/10">
+      <div class="container-x grid lg:grid-cols-[1fr_2fr] gap-12">
         <div>
-          {profile.whoWeAre.body.en.map((p, i) => (
+          <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 02</div>
+          <h2 class="text-3xl uppercase tracking-tight">
+            <span data-lang="en">{profile.theGap.title.en}</span>
+            <span data-lang="id">{profile.theGap.title.id}</span>
+          </h2>
+        </div>
+        <div>
+          {profile.theGap.body.en.map((p, i) => (
             <p class="text-lg leading-relaxed mb-6 text-white/80">
               <span data-lang="en">{p}</span>
-              <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+              <span data-lang="id">{profile.theGap.body.id[i]}</span>
             </p>
           ))}
         </div>
       </div>
     </section>
 
+    <!-- 4. Approach -->
     <section class="py-24 border-t border-white/10">
       <div class="container-x">
-        <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 02 · CAPABILITIES</div>
+        <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 03 · METHODOLOGY</div>
         <h2 class="text-4xl uppercase tracking-tight mb-16">
-          <span data-lang="en">Three engineering disciplines</span>
-          <span data-lang="id">Tiga disiplin rekayasa</span>
+          <span data-lang="en" set:html={kicker.approachTitle.en}></span>
+          <span data-lang="id" set:html={kicker.approachTitle.id}></span>
         </h2>
         <div class="grid md:grid-cols-3 gap-px" style="background: rgba(255,255,255,0.1);">
-          {services.map(svc => (
+          {stages.map(s => (
             <div class="p-10" style="background: #0a0a0a;">
-              <div class="text-xs font-mono mb-4" style="color: #1c69d4;">{svc.num} //</div>
+              <div class="text-xs font-mono mb-4 text-[#d40015]">PHASE 0{s.num} //</div>
               <h3 class="text-2xl uppercase tracking-wide mb-4">
-                <span data-lang="en">{svc.title.en}</span>
-                <span data-lang="id">{svc.title.id}</span>
+                <span data-lang="en">{s.title.en}</span>
+                <span data-lang="id">{s.title.id}</span>
               </h3>
               <p class="text-white/70 leading-relaxed">
-                <span data-lang="en">{svc.short.en}</span>
-                <span data-lang="id">{svc.short.id}</span>
+                <span data-lang="en">{s.body.en}</span>
+                <span data-lang="id">{s.body.id}</span>
               </p>
             </div>
           ))}
@@ -101,30 +110,97 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
+    <!-- 5. Services -->
     <section class="py-24 border-t border-white/10">
       <div class="container-x">
-        <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 03 · TEAM</div>
+        <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 04 · CAPABILITIES</div>
+        <h2 class="text-4xl uppercase tracking-tight mb-16">
+          <span data-lang="en">Three engineering disciplines</span>
+          <span data-lang="id">Tiga disiplin rekayasa</span>
+        </h2>
+        <div class="space-y-px" style="background: rgba(255,255,255,0.1);">
+          {services.map(svc => (
+            <div class="p-10 lg:p-16 grid lg:grid-cols-[1fr_2fr] gap-8" style="background: #0a0a0a;">
+              <div>
+                <div class="text-5xl font-light mb-4" style="color: #1c69d4;">{svc.num}</div>
+                <h3 class="text-2xl uppercase tracking-wide">
+                  <span data-lang="en">{svc.title.en}</span>
+                  <span data-lang="id">{svc.title.id}</span>
+                </h3>
+              </div>
+              <div class="space-y-4">
+                {svc.detail.en.map((p, j) => (
+                  <p class="text-white/80 leading-relaxed text-lg">
+                    <span data-lang="en">{p}</span>
+                    <span data-lang="id">{svc.detail.id[j]}</span>
+                  </p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Impact -->
+    <section class="py-24 border-t border-white/10">
+      <div class="container-x">
+        <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 05 · METRICS</div>
+        <div class="grid md:grid-cols-2 gap-8">
+          {impactCards.map(c => (
+            <div class="border border-white/10 p-8">
+              <div class="text-xs font-mono uppercase tracking-wider mb-4" style="color: #d40015;">[{c.tag.en}]</div>
+              <h3 class="text-xl uppercase tracking-wide mb-3"><span data-lang="en">{c.title.en}</span><span data-lang="id">{c.title.id}</span></h3>
+              <p class="text-white/70 leading-relaxed"><span data-lang="en">{c.body.en}</span><span data-lang="id">{c.body.id}</span></p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Team -->
+    <section class="py-24 border-t border-white/10">
+      <div class="container-x">
+        <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 06 · TEAM</div>
         <h2 class="text-4xl uppercase tracking-tight mb-16">
           <span data-lang="en">Engineers behind the work</span>
           <span data-lang="id">Insinyur di balik karya</span>
         </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid md:grid-cols-2 gap-12">
           {team.map(m => (
-            <div class="border border-white/10 p-6">
-              <div class="text-xs font-mono mb-3" style="color: #1c69d4;">// MEMBER</div>
-              <div class="aspect-square mb-4 flex items-center justify-center font-light text-4xl" style="background: linear-gradient(135deg, #1c69d4, #000); color: white;">{m.initials}</div>
-              <h3 class="text-lg uppercase tracking-wide mb-1">{m.name}</h3>
-              <div class="text-xs uppercase tracking-wider mb-3" style="color: #1c69d4;">
+            <div class="border-l-2 border-[#1c69d4] pl-8">
+              <div class="w-16 h-16 mb-6 flex items-center justify-center font-light text-2xl" style="background: linear-gradient(135deg, #1c69d4, #000); color: white;">{m.initials}</div>
+              <h3 class="text-2xl uppercase tracking-wide mb-1">{m.name}</h3>
+              <div class="text-sm font-mono uppercase tracking-wider mb-4" style="color: #1c69d4;">
                 <span data-lang="en">{m.role.en}</span>
                 <span data-lang="id">{m.role.id}</span>
               </div>
-              <p class="text-sm text-white/60 leading-relaxed">
-                <span data-lang="en">{m.bioShort.en}</span>
-                <span data-lang="id">{m.bioShort.id}</span>
+              <p class="text-base text-white/70 leading-relaxed">
+                <span data-lang="en">{m.bioFull.en}</span>
+                <span data-lang="id">{m.bioFull.id}</span>
               </p>
             </div>
           ))}
         </div>
+      </div>
+    </section>
+
+    <!-- 8. Closing -->
+    <section class="py-32 border-t border-white/10 text-center">
+      <div class="container-x max-w-4xl">
+        <h2 class="text-5xl uppercase tracking-tight mb-12">
+          <span data-lang="en">{profile.whatComesNext.title.en}</span>
+          <span data-lang="id">{profile.whatComesNext.title.id}</span>
+        </h2>
+        <div class="space-y-6 mb-12 text-left">
+          {profile.whatComesNext.body.en.map((p, i) => (
+            <p class="text-xl text-white/80 leading-relaxed">
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+        <a href={`mailto:${brand.email}`} class="inline-block px-12 py-4 font-medium tracking-wider uppercase text-sm" style="background: #1c69d4; color: white;">&gt; INITIATE CONTACT</a>
       </div>
     </section>
 
@@ -133,15 +209,5 @@ const base = import.meta.env.BASE_URL;
       <div class="flex-1" style="background: #2D2D2D;"></div>
       <div class="flex-1" style="background: #d40015;"></div>
     </div>
-
-    <section class="py-24 text-center">
-      <div class="container-x">
-        <h2 class="text-5xl uppercase tracking-tight mb-6">
-          <span data-lang="en">Let's engineer the next decision.</span>
-          <span data-lang="id">Mari rekayasa keputusan berikutnya.</span>
-        </h2>
-        <a href={`mailto:${brand.email}`} class="inline-block px-12 py-4 font-medium tracking-wider uppercase text-sm" style="background: #1c69d4; color: white;">{brand.email}</a>
-      </div>
-    </section>
   </div>
 </ProfileLayout>

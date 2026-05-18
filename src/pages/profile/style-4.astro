@@ -1,7 +1,7 @@
 ---
 // STYLE 04 — Notion Warm
 import ProfileLayout from '../../layouts/ProfileLayout.astro';
-import { brand, profile, services, team } from '../../data/content';
+import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
 const base = import.meta.env.BASE_URL;
 ---
 <ProfileLayout styleNum={4} styleName="Notion Warm">
@@ -18,6 +18,7 @@ const base = import.meta.env.BASE_URL;
     </section>
 
     <article class="container-x max-w-3xl pb-32 space-y-16">
+      <!-- 1. Who we are -->
       <section>
         <h2 class="text-4xl font-semibold mb-6">
           <span data-lang="en">{profile.whoWeAre.title.en}</span>
@@ -31,32 +32,23 @@ const base = import.meta.env.BASE_URL;
         ))}
       </section>
 
-      <hr class="border-[#E9E9E7]" />
-
+      <!-- 2. Who we serve -->
       <section>
-        <h2 class="text-4xl font-semibold mb-6">
-          <span data-lang="en">Three Services</span>
-          <span data-lang="id">Tiga Layanan</span>
+        <h2 class="text-3xl font-semibold mb-4">
+          <span data-lang="en">{profile.whoWeServe.title.en}</span>
+          <span data-lang="id">{profile.whoWeServe.title.id}</span>
         </h2>
-        <div class="space-y-8">
-          {services.map(svc => (
-            <div class="border-l-4 pl-6" style="border-color: #FFE9CC;">
-              <div class="text-sm font-sans font-medium text-[#787774] mb-1">— Service {svc.num}</div>
-              <h3 class="text-2xl font-semibold mb-3">
-                <span data-lang="en">{svc.title.en}</span>
-                <span data-lang="id">{svc.title.id}</span>
-              </h3>
-              <p class="text-lg leading-[1.7] text-[#37352F]">
-                <span data-lang="en">{svc.detail.en[0]}</span>
-                <span data-lang="id">{svc.detail.id[0]}</span>
-              </p>
-            </div>
-          ))}
+        <div class="rounded p-5" style="background: #F4F4F3;">
+          <p class="text-lg leading-[1.7]">
+            <span data-lang="en">{profile.whoWeServe.body.en}</span>
+            <span data-lang="id">{profile.whoWeServe.body.id}</span>
+          </p>
         </div>
       </section>
 
       <hr class="border-[#E9E9E7]" />
 
+      <!-- 3. The Gap -->
       <section>
         <h2 class="text-4xl font-semibold mb-6">
           <span data-lang="en">{profile.theGap.title.en}</span>
@@ -77,26 +69,94 @@ const base = import.meta.env.BASE_URL;
         ))}
       </section>
 
+      <!-- 4. Approach -->
+      <section>
+        <h2 class="text-4xl font-semibold mb-6">
+          <span data-lang="en" set:html={kicker.approachTitle.en}></span>
+          <span data-lang="id" set:html={kicker.approachTitle.id}></span>
+        </h2>
+        <div class="space-y-6">
+          {stages.map(s => (
+            <div class="flex gap-4">
+              <div class="text-2xl pt-1">✅</div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2"><span data-lang="en">{s.title.en}</span><span data-lang="id">{s.title.id}</span></h3>
+                <p class="text-lg text-[#787774] leading-[1.6]"><span data-lang="en">{s.body.en}</span><span data-lang="id">{s.body.id}</span></p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <hr class="border-[#E9E9E7]" />
 
+      <!-- 5. Services -->
+      <section>
+        <h2 class="text-4xl font-semibold mb-6">
+          <span data-lang="en">Three Services</span>
+          <span data-lang="id">Tiga Layanan</span>
+        </h2>
+        <div class="space-y-12">
+          {services.map(svc => (
+            <div class="border-l-4 pl-6" style="border-color: #FFE9CC;">
+              <div class="text-sm font-sans font-medium text-[#787774] mb-1">— Service {svc.num}</div>
+              <h3 class="text-2xl font-semibold mb-4">
+                <span data-lang="en">{svc.title.en}</span>
+                <span data-lang="id">{svc.title.id}</span>
+              </h3>
+              <div class="space-y-4">
+                {svc.detail.en.map((p, j) => (
+                  <p class="text-lg leading-[1.7] text-[#37352F]">
+                    <span data-lang="en">{p}</span>
+                    <span data-lang="id">{svc.detail.id[j]}</span>
+                  </p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <hr class="border-[#E9E9E7]" />
+
+      <!-- 6. Proof -->
+      <section>
+        <h2 class="text-4xl font-semibold mb-6">
+          <span data-lang="en">Proof of Execution</span>
+          <span data-lang="id">Bukti Eksekusi</span>
+        </h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {impactCards.map(c => (
+            <div class="border border-[#E9E9E7] p-5 rounded">
+              <div class="font-sans text-xs text-[#787774] mb-2 font-medium bg-[#F4F4F3] inline-block px-2 py-1 rounded">
+                <span data-lang="en">{c.tag.en}</span><span data-lang="id">{c.tag.id}</span>
+              </div>
+              <h3 class="text-lg font-semibold mb-2"><span data-lang="en">{c.title.en}</span><span data-lang="id">{c.title.id}</span></h3>
+              <p class="text-sm text-[#787774] leading-[1.6]"><span data-lang="en">{c.body.en}</span><span data-lang="id">{c.body.id}</span></p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- 7. Team -->
       <section>
         <h2 class="text-4xl font-semibold mb-6">
           <span data-lang="en">Our Team</span>
           <span data-lang="id">Tim Kami</span>
         </h2>
-        <div class="space-y-6">
+        <div class="space-y-8">
           {team.map(m => (
             <div class="flex gap-5 items-start">
               <div class="w-14 h-14 rounded-full flex items-center justify-center font-sans text-lg font-semibold flex-shrink-0" style="background: #FFE9CC; color: #7A6A40;">{m.initials}</div>
               <div>
                 <h3 class="text-xl font-semibold">{m.name}</h3>
-                <div class="text-sm font-sans text-[#787774] mb-2">
+                <div class="text-sm font-sans text-[#787774] mb-3">
                   <span data-lang="en">{m.role.en}</span>
                   <span data-lang="id">{m.role.id}</span>
                 </div>
                 <p class="text-base leading-[1.6]">
-                  <span data-lang="en">{m.bioShort.en}</span>
-                  <span data-lang="id">{m.bioShort.id}</span>
+                  <span data-lang="en">{m.bioFull.en}</span>
+                  <span data-lang="id">{m.bioFull.id}</span>
                 </p>
               </div>
             </div>
@@ -106,6 +166,7 @@ const base = import.meta.env.BASE_URL;
 
       <hr class="border-[#E9E9E7]" />
 
+      <!-- 8. Closing -->
       <section>
         <h2 class="text-4xl font-semibold mb-6">
           <span data-lang="en">{profile.whatComesNext.title.en}</span>
@@ -117,8 +178,9 @@ const base = import.meta.env.BASE_URL;
             <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
           </p>
         ))}
-        <div class="mt-8 font-sans text-sm">
-          📧 {brand.email} · 📞 {brand.phone}
+        <div class="mt-8 font-sans text-sm p-4 bg-[#F4F4F3] rounded inline-block">
+          <div>📧 <a href={`mailto:${brand.email}`} class="underline decoration-[#E9E9E7] underline-offset-4">{brand.email}</a></div>
+          <div class="mt-2">📞 {brand.phone}</div>
         </div>
       </section>
     </article>

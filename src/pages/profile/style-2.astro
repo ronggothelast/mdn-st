@@ -1,70 +1,86 @@
 ---
 // STYLE 02 — Stripe Minimal
 import ProfileLayout from '../../layouts/ProfileLayout.astro';
-import { brand, profile, services, team, stages } from '../../data/content';
+import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
 const base = import.meta.env.BASE_URL;
 ---
 <ProfileLayout styleNum={2} styleName="Stripe Minimal">
-  <div style="background: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 300; color: #1A1F36;">
-    <!-- Hero with gradient -->
-    <section class="relative overflow-hidden pt-40 pb-32" style="background: linear-gradient(135deg, #ffffff 0%, #f6f9fc 50%, #ede4ff 100%);">
-      <div class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-30" style="background: radial-gradient(circle, #635BFF, transparent 70%);"></div>
-      <div class="container-x relative">
-        <div class="max-w-3xl">
-          <div class="text-sm font-medium tracking-wide mb-6" style="color: #635BFF;">
-            <span data-lang="en">Strategic Impact Consultancy</span>
-            <span data-lang="id">Konsultan Dampak Strategis</span>
-          </div>
-          <h1 class="text-7xl font-light leading-[1.05] mb-8 tracking-tight">{brand.name}</h1>
-          <p class="text-3xl font-light leading-tight" style="color: #425466;">
-            <span data-lang="en">{brand.tagline.en}</span>
-            <span data-lang="id">{brand.tagline.id}</span>
-          </p>
-        </div>
+  <div style="background: #F7F9FC; color: #0A2540; font-family: 'Inter', sans-serif;">
+    <section class="py-32 px-6">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-6xl md:text-8xl font-bold tracking-tight mb-8" style="background: linear-gradient(135deg, #0A2540, #635BFF); -webkit-background-clip: text; color: transparent;">{brand.name}</h1>
+        <p class="text-3xl font-light text-[#425466] mb-12">
+          <span data-lang="en">{brand.tagline.en}</span><span data-lang="id">{brand.tagline.id}</span>
+        </p>
       </div>
     </section>
 
-    <!-- Who we are -->
-    <section class="py-32">
-      <div class="container-x grid lg:grid-cols-[1fr_2fr] gap-16">
-        <div>
-          <div class="text-sm font-semibold uppercase tracking-wider mb-3" style="color: #635BFF;">01</div>
-          <h2 class="text-4xl font-medium tracking-tight">
-            <span data-lang="en">{profile.whoWeAre.title.en}</span>
-            <span data-lang="id">{profile.whoWeAre.title.id}</span>
-          </h2>
-        </div>
-        <div>
-          {profile.whoWeAre.body.en.map((para, i) => (
-            <p class="text-xl leading-relaxed mb-6" style="color: #425466;">
-              <span data-lang="en">{para}</span>
-              <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
-            </p>
+    <!-- Who We Are -->
+    <section class="py-24 px-6 bg-white border-y border-[#E6E8EB]">
+      <div class="max-w-4xl mx-auto grid md:grid-cols-[1fr_2fr] gap-12">
+        <h2 class="text-2xl font-bold"><span data-lang="en">{profile.whoWeAre.title.en}</span><span data-lang="id">{profile.whoWeAre.title.id}</span></h2>
+        <div class="space-y-6">
+          {profile.whoWeAre.body.en.map((p, i) => (
+            <p class="text-lg text-[#425466] leading-relaxed"><span data-lang="en">{p}</span><span data-lang="id">{profile.whoWeAre.body.id[i]}</span></p>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Services as 3-col cards -->
-    <section class="py-32 border-t border-[#e3e8ee]">
-      <div class="container-x">
-        <h2 class="text-4xl font-medium mb-16 max-w-2xl tracking-tight">
-          <span data-lang="en">Three services. One integrated approach.</span>
-          <span data-lang="id">Tiga layanan. Satu pendekatan terpadu.</span>
+    <!-- Who We Serve -->
+    <section class="py-24 px-6">
+      <div class="max-w-4xl mx-auto grid md:grid-cols-[1fr_2fr] gap-12">
+        <h2 class="text-2xl font-bold"><span data-lang="en">{profile.whoWeServe.title.en}</span><span data-lang="id">{profile.whoWeServe.title.id}</span></h2>
+        <p class="text-lg text-[#425466] leading-relaxed"><span data-lang="en">{profile.whoWeServe.body.en}</span><span data-lang="id">{profile.whoWeServe.body.id}</span></p>
+      </div>
+    </section>
+
+    <!-- The Gap -->
+    <section class="py-24 px-6 bg-[#0A2540] text-white">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12"><span data-lang="en">{profile.theGap.title.en}</span><span data-lang="id">{profile.theGap.title.id}</span></h2>
+        <div class="space-y-6 max-w-2xl">
+          {profile.theGap.body.en.map((p, i) => (
+            <p class="text-lg text-white/80 leading-relaxed"><span data-lang="en">{p}</span><span data-lang="id">{profile.theGap.body.id[i]}</span></p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="py-24 px-6">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12 text-center">
+          <span data-lang="en" set:html={kicker.approachTitle.en}></span>
+          <span data-lang="id" set:html={kicker.approachTitle.id}></span>
         </h2>
         <div class="grid md:grid-cols-3 gap-8">
+          {stages.map(s => (
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E6E8EB]">
+              <div class="text-[#635BFF] font-mono text-sm mb-4">STEP {s.num}</div>
+              <h3 class="text-xl font-bold mb-3"><span data-lang="en">{s.title.en}</span><span data-lang="id">{s.title.id}</span></h3>
+              <p class="text-[#425466] leading-relaxed"><span data-lang="en">{s.body.en}</span><span data-lang="id">{s.body.id}</span></p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-24 px-6 bg-white border-y border-[#E6E8EB]">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-16"><span data-lang="en">Services</span><span data-lang="id">Layanan</span></h2>
+        <div class="space-y-16">
           {services.map(svc => (
-            <div class="p-1 rounded-2xl" style="background: linear-gradient(135deg, #635BFF, #00D4FF);">
-              <div class="bg-white rounded-2xl p-8 h-full">
-                <div class="text-sm font-semibold mb-2" style="color: #635BFF;">{svc.num}</div>
-                <h3 class="text-2xl font-medium mb-4 tracking-tight">
-                  <span data-lang="en">{svc.title.en}</span>
-                  <span data-lang="id">{svc.title.id}</span>
-                </h3>
-                <p class="text-[#425466] leading-relaxed">
-                  <span data-lang="en">{svc.short.en}</span>
-                  <span data-lang="id">{svc.short.id}</span>
-                </p>
+            <div>
+              <div class="flex items-center gap-4 mb-6">
+                <span class="bg-[#F3F3F5] text-[#0A2540] px-3 py-1 rounded-full text-sm font-bold">{svc.num}</span>
+                <h3 class="text-2xl font-bold"><span data-lang="en">{svc.title.en}</span><span data-lang="id">{svc.title.id}</span></h3>
+              </div>
+              <div class="pl-12 space-y-4 max-w-2xl">
+                {svc.detail.en.map((p, j) => (
+                  <p class="text-[#425466] leading-relaxed"><span data-lang="en">{p}</span><span data-lang="id">{svc.detail.id[j]}</span></p>
+                ))}
               </div>
             </div>
           ))}
@@ -72,57 +88,47 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
-    <!-- Process -->
-    <section class="py-32 border-t border-[#e3e8ee]">
-      <div class="container-x grid lg:grid-cols-3 gap-12">
-        {stages.map(s => (
-          <div>
-            <div class="text-6xl font-light mb-6" style="color: #635BFF;">0{s.num}</div>
-            <h3 class="text-2xl font-medium mb-4 tracking-tight">
-              <span data-lang="en">{s.title.en}</span>
-              <span data-lang="id">{s.title.id}</span>
-            </h3>
-            <p class="text-[#425466] leading-relaxed">
-              <span data-lang="en">{s.body.en}</span>
-              <span data-lang="id">{s.body.id}</span>
-            </p>
-          </div>
-        ))}
+    <!-- Impact Cards -->
+    <section class="py-24 px-6">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12"><span data-lang="en">Proof of Execution</span><span data-lang="id">Bukti Eksekusi</span></h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          {impactCards.map(c => (
+            <div class="bg-white p-6 rounded-xl border border-[#E6E8EB] hover:shadow-md transition">
+              <div class="text-xs font-bold text-[#635BFF] uppercase tracking-wider mb-2"><span data-lang="en">{c.tag.en}</span><span data-lang="id">{c.tag.id}</span></div>
+              <h3 class="text-lg font-bold mb-2"><span data-lang="en">{c.title.en}</span><span data-lang="id">{c.title.id}</span></h3>
+              <p class="text-sm text-[#425466]"><span data-lang="en">{c.body.en}</span><span data-lang="id">{c.body.id}</span></p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
 
     <!-- Team -->
-    <section class="py-32 border-t border-[#e3e8ee]" style="background: #f6f9fc;">
-      <div class="container-x">
-        <h2 class="text-4xl font-medium mb-16 tracking-tight">
-          <span data-lang="en">Our team</span>
-          <span data-lang="id">Tim kami</span>
-        </h2>
-        <div class="grid md:grid-cols-2 gap-x-16 gap-y-12">
+    <section class="py-24 px-6 bg-white border-y border-[#E6E8EB]">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-16"><span data-lang="en">Team</span><span data-lang="id">Tim</span></h2>
+        <div class="grid md:grid-cols-2 gap-12">
           {team.map(m => (
             <div>
-              <h3 class="text-2xl font-medium mb-1">{m.name}</h3>
-              <div class="text-sm font-medium mb-4" style="color: #635BFF;">
-                <span data-lang="en">{m.role.en}</span>
-                <span data-lang="id">{m.role.id}</span>
-              </div>
-              <p class="text-[#425466] leading-relaxed">
-                <span data-lang="en">{m.bioShort.en}</span>
-                <span data-lang="id">{m.bioShort.id}</span>
-              </p>
+              <div class="w-16 h-16 bg-[#F3F3F5] rounded-full flex items-center justify-center font-bold text-[#0A2540] mb-4">{m.initials}</div>
+              <h3 class="text-xl font-bold">{m.name}</h3>
+              <div class="text-sm text-[#635BFF] font-medium mb-3"><span data-lang="en">{m.role.en}</span><span data-lang="id">{m.role.id}</span></div>
+              <p class="text-[#425466] leading-relaxed text-sm"><span data-lang="en">{m.bioFull.en}</span><span data-lang="id">{m.bioFull.id}</span></p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="py-32 text-center">
-      <div class="container-x max-w-2xl">
-        <h2 class="text-5xl font-light mb-6 tracking-tight">
-          <span data-lang="en">Reach out. Let's talk.</span>
-          <span data-lang="id">Hubungi kami. Mari bicara.</span>
-        </h2>
-        <p class="text-xl text-[#425466] mb-10">{brand.email} · {brand.phone}</p>
+    <!-- Closing -->
+    <section class="py-32 px-6 text-center">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-4xl font-bold mb-8"><span data-lang="en">{profile.whatComesNext.title.en}</span><span data-lang="id">{profile.whatComesNext.title.id}</span></h2>
+        {profile.whatComesNext.body.en.map((p, i) => (
+          <p class="text-lg text-[#425466] mb-4"><span data-lang="en">{p}</span><span data-lang="id">{profile.whatComesNext.body.id[i]}</span></p>
+        ))}
+        <a href={`mailto:${brand.email}`} class="inline-block mt-8 bg-[#635BFF] text-white px-8 py-3 rounded-full font-bold hover:bg-[#0A2540] transition">{brand.email}</a>
       </div>
     </section>
   </div>

@@ -1,58 +1,88 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { services } from '../data/content';
+import { services, servicesIntro, finalCta, brand } from '../data/content';
 const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="Services">
-  <section class="py-24 text-center" style="background: linear-gradient(180deg, #E8F2F1, #FDFCF8);">
-    <div class="container-x">
-      <span class="eyebrow"><span data-lang="en">Services</span><span data-lang="id">Layanan</span></span>
-      <h1 class="text-5xl mb-5">
-        <span data-lang="en">Three interconnected practices.</span>
-        <span data-lang="id">Tiga praktik yang saling terhubung.</span>
+  <!-- INTRO -->
+  <section class="py-24" style="background: linear-gradient(180deg, #FAF6EC, #ffffff);">
+    <div class="container-x max-w-4xl text-center">
+      <span class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #3D8F8A;">
+        <span data-lang="en">{servicesIntro.tag.en}</span><span data-lang="id">{servicesIntro.tag.id}</span>
+      </span>
+      <h1 class="text-5xl md:text-6xl mt-4 mb-6 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+        <span data-lang="en">{servicesIntro.headline.en}</span>
+        <span data-lang="id">{servicesIntro.headline.id}</span>
       </h1>
-      <p class="text-[#5C6B7E] text-lg max-w-2xl mx-auto">
-        <span data-lang="en">We do not offer generic sustainability frameworks or checkbox compliance. We start with the specific decisions your business needs to make.</span>
-        <span data-lang="id">Kami tidak menawarkan kerangka kerja keberlanjutan generik atau kepatuhan checkbox. Kami mulai dari keputusan spesifik yang perlu diambil bisnis Anda.</span>
+      <p class="text-lg leading-[1.7] max-w-2xl mx-auto" style="color: #4A5568;">
+        <span data-lang="en">{servicesIntro.body.en}</span>
+        <span data-lang="id">{servicesIntro.body.id}</span>
       </p>
     </div>
   </section>
 
-  <section class="py-20">
-    <div class="container-x space-y-24">
-      {services.map((svc, i) => (
-        <div class={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${i % 2 === 1 ? 'lg:[&>div:first-child]:order-2' : ''}`}>
-          <div class="rounded-3xl overflow-hidden aspect-[4/3] shadow-xl">
-            <img src={svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
-          </div>
-          <div>
-            <div class="font-serif text-base text-[#3D8F8A] font-semibold mb-2">
-              {svc.num} —{' '}
-              <span data-lang="en">{svc.title.en}</span><span data-lang="id">{svc.title.id}</span>
+  <!-- SERVICES -->
+  {services.map((svc, i) => (
+    <section class={`py-24 ${i % 2 === 1 ? 'bg-[#FAF6EC]' : ''}`}>
+      <div class="container-x max-w-6xl">
+        <div class={`grid lg:grid-cols-12 gap-12 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+          <div class={`lg:col-span-5 ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+            <div class="aspect-[4/5] overflow-hidden rounded-3xl">
+              <img src={base + svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
             </div>
-            <h2 class="text-3xl mb-5">
-              <span data-lang="en">{svc.title.en}</span><span data-lang="id">{svc.title.id}</span>
+          </div>
+          <div class={`lg:col-span-7 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+            <div class="text-xs font-sans uppercase tracking-[0.3em] mb-3" style="color: #C9A876;">Service {svc.num}</div>
+            <h2 class="text-4xl md:text-5xl mb-4 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+              <span data-lang="en">{svc.title.en}</span>
+              <span data-lang="id">{svc.title.id}</span>
             </h2>
-            {svc.detail.en.map((para, j) => (
-              <p class="text-[#5C6B7E] mb-5 text-base leading-relaxed">
-                <span data-lang="en">{para}</span><span data-lang="id">{svc.detail.id[j]}</span>
-              </p>
-            ))}
+            <p class="text-xl italic mb-8" style="color: #3D8F8A; font-family: 'Fraunces', Georgia, serif;">
+              <span data-lang="en">{svc.tagline.en}</span>
+              <span data-lang="id">{svc.tagline.id}</span>
+            </p>
+            <p class="text-lg leading-[1.7] mb-8" style="color: #4A5568;">
+              <span data-lang="en">{svc.body.en}</span>
+              <span data-lang="id">{svc.body.id}</span>
+            </p>
+            <div class="mb-6">
+              <div class="text-xs font-sans uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">
+                <span data-lang="en">Expertise Areas</span><span data-lang="id">Area Keahlian</span>
+              </div>
+              <ul class="space-y-2">
+                {svc.expertise.map(e => (
+                  <li class="flex gap-3 leading-[1.6]" style="color: #4A5568;">
+                    <span style="color: #C9A876;">→</span>
+                    <span><span data-lang="en">{e.en}</span><span data-lang="id">{e.id}</span></span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {svc.tags.en.map((t, j) => (
+                <span class="px-3 py-1.5 text-xs rounded-full border" style="border-color: rgba(26,46,74,0.15); color: #1A2E4A;">
+                  <span data-lang="en">{t}</span><span data-lang="id">{svc.tags.id[j]}</span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-      ))}
-    </div>
-  </section>
+      </div>
+    </section>
+  ))}
 
-  <section class="py-20 text-center" style="background: var(--color-navy); color: white;">
-    <div class="container-x">
-      <h2 class="text-3xl text-white mb-4">
-        <span data-lang="en">Need help thinking through a decision?</span>
-        <span data-lang="id">Butuh bantuan memikirkan sebuah keputusan?</span>
+  <!-- FINAL CTA -->
+  <section class="py-24" style="background: #1A2E4A; color: #FAF6EC;">
+    <div class="container-x max-w-4xl text-center">
+      <span class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #C9A876;">
+        <span data-lang="en">{finalCta.tag.en}</span><span data-lang="id">{finalCta.tag.id}</span>
+      </span>
+      <h2 class="text-4xl md:text-5xl mt-4 mb-6 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+        <span data-lang="en">{finalCta.headline.en}</span>
+        <span data-lang="id">{finalCta.headline.id}</span>
       </h2>
-      <a href={base + '/contact'} class="btn-teal mt-4">
-        <span data-lang="en">Get in touch</span><span data-lang="id">Hubungi kami</span>
-        <span>→</span>
+      <a href={base + '/contact'} class="inline-block mt-4 px-8 py-3 rounded-full font-medium text-sm" style="background: #C9A876; color: #1A2E4A;">
+        <span data-lang="en">{finalCta.ctaPrimary.en}</span><span data-lang="id">{finalCta.ctaPrimary.id}</span>
       </a>
     </div>
   </section>

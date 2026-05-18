@@ -31,21 +31,11 @@ const isActive = (p: string) => {
     </button>
 
     <div id="nav-links" class="hidden md:flex items-center gap-9 absolute md:static top-full left-0 right-0 md:bg-transparent bg-white md:flex-row flex-col md:items-center items-start md:p-0 px-6 py-6 md:border-0 border-t border-[#E2E6EC]">
-      <a href={base + '/'} class={`text-[0.92rem] font-medium transition-opacity ${isActive('/') ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
-        <span data-lang="en">{nav.home.en}</span><span data-lang="id">{nav.home.id}</span>
-      </a>
-      <a href={base + '/services'} class={`text-[0.92rem] font-medium transition-opacity ${isActive('/services') ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
-        <span data-lang="en">{nav.services.en}</span><span data-lang="id">{nav.services.id}</span>
-      </a>
-      <a href={base + '/impact'} class={`text-[0.92rem] font-medium transition-opacity ${isActive('/impact') ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
-        <span data-lang="en">{nav.impact.en}</span><span data-lang="id">{nav.impact.id}</span>
-      </a>
-      <a href={base + '/about'} class={`text-[0.92rem] font-medium transition-opacity ${isActive('/about') ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
-        <span data-lang="en">{nav.about.en}</span><span data-lang="id">{nav.about.id}</span>
-      </a>
-      <a href={base + '/profile'} class={`text-[0.92rem] font-medium transition-opacity ${isActive('/profile') ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
-        <span data-lang="en">{nav.profile.en}</span><span data-lang="id">{nav.profile.id}</span>
-      </a>
+      {nav.map(item => (
+        <a href={base.replace(/\/$/, '') + item.href} class={`text-[0.92rem] font-medium transition-opacity ${isActive(item.href) ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
+          <span data-lang="en">{item.label.en}</span><span data-lang="id">{item.label.id}</span>
+        </a>
+      ))}
 
       <div class="flex items-center gap-0 border border-[#E2E6EC] rounded-full p-[3px] bg-white">
         <button data-lang-set="en" class="lang-btn px-3.5 py-1.5 rounded-full text-[0.78rem] font-semibold text-[#5C6B7E]">EN</button>
@@ -53,7 +43,7 @@ const isActive = (p: string) => {
       </div>
 
       <a href={base + '/contact'} class="bg-[#1A2E4A] hover:bg-[#0F1E33] text-white px-5 py-2.5 rounded-full text-[0.88rem] font-medium transition-colors">
-        <span data-lang="en">{nav.contact.en}</span><span data-lang="id">{nav.contact.id}</span>
+        <span data-lang="en">Get in Touch</span><span data-lang="id">Hubungi Kami</span>
       </a>
     </div>
   </div>

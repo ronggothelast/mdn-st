@@ -1,76 +1,193 @@
 // Central content store — bilingual EN/ID
-// Sourced verbatim from MaGies_Company_Profile_Draft_v1 + MaGies_Website_Copywriting_v1
+// SOURCED VERBATIM from:
+// - MaGies_Website_Copywriting_v1.docx (Bilingual Draft v1.0, May 2026)
+// - MaGies_Company_Profile_Draft_v1.md.docx
+// DO NOT paraphrase. Copy is approved by client.
 
 export type Lang = 'en' | 'id';
 
+// ────────────── BRAND ──────────────
 export const brand = {
   name: 'Madani Strategies',
+  shortName: 'MaGies',
+  affiliation: {
+    en: 'Affiliated with Yayasan Madani Berkelanjutan',
+    id: 'Berafiliasi dengan Yayasan Madani Berkelanjutan',
+  },
   tagline: {
     en: 'Connecting Growth to Community Impact',
     id: 'Menghubungkan Pertumbuhan ke Dampak Komunitas',
   },
+  taglineLong: {
+    en: 'Strategic impact consultancy connecting corporate growth to verifiable community outcomes.',
+    id: 'Konsultansi dampak strategis yang menghubungkan pertumbuhan korporat dengan dampak komunitas yang terverifikasi.',
+  },
   email: 'hello@madanistrategies.com',
-  phone: '+62 813 143 44485',
-  web: 'madanistrategies.com',
+  phone: '+62 813-1434-4485',
+  web: 'www.madanistrategies.com',
+  address: {
+    en: 'Jl. Mesjid Al Hidayah No.14A, Pasar Minggu, South Jakarta 12520',
+    id: 'Jl. Mesjid Al Hidayah No.14A, Pasar Minggu, Jakarta Selatan 12520',
+  },
+  legal: {
+    en: '© 2026 Madani Strategies. Affiliated with Yayasan Madani Berkelanjutan. All rights reserved.',
+    id: '© 2026 Madani Strategies. Berafiliasi dengan Yayasan Madani Berkelanjutan. Hak cipta dilindungi.',
+  },
 };
 
-export const nav = {
-  home:    { en: 'Home',            id: 'Beranda' },
-  services:{ en: 'Services',        id: 'Layanan' },
-  impact:  { en: 'Impact',          id: 'Dampak' },
-  about:   { en: 'About',           id: 'Tentang' },
-  profile: { en: 'Company Profile', id: 'Profil Perusahaan' },
-  contact: { en: 'Get in Touch',    id: 'Hubungi Kami' },
-};
+export const nav = [
+  { href: '/',         label: { en: 'Home',            id: 'Beranda' } },
+  { href: '/services', label: { en: 'Services',        id: 'Layanan' } },
+  { href: '/impact',   label: { en: 'Impact',          id: 'Dampak' } },
+  { href: '/about',    label: { en: 'About',           id: 'Tentang' } },
+  { href: '/profile',  label: { en: 'Company Profile', id: 'Profil Perusahaan' } },
+];
 
+// ────────────── HOME · HERO ──────────────
 export const hero = {
-  eyebrow: { en: 'Strategic Impact Consultancy', id: 'Konsultan Dampak Strategis' },
-  title: {
-    en: 'Strategy that <em>holds</em> in the real world.',
-    id: 'Strategi yang <em>bertahan</em> di dunia nyata.',
+  eyebrow: { en: 'Strategic Impact Consultancy', id: 'Konsultansi Dampak Strategis' },
+  headline: {
+    en: 'Transforming Social Risk Into Strategic Advantage.',
+    id: 'Transformasi Risiko Sosial untuk Menjadi Aset Strategis.',
   },
-  lead: {
-    en: 'We help organizations navigate the intersection of social risk, regulatory complexity, and sustainable growth. We don\'t deliver reports. We design and test interventions that actually work in context.',
-    id: 'Kami membantu organisasi menavigasi persimpangan risiko sosial, kompleksitas regulasi, dan pertumbuhan berkelanjutan. Kami tidak hanya menyerahkan laporan. Kami merancang dan menguji intervensi yang benar-benar bekerja sesuai konteks.',
+  subheadline: {
+    en: 'Madani Strategies helps organizations that relate with natural resources navigate their social complexity, regulatory pressure, and community dynamics. So decisions are grounded in field reality, not assumptions.',
+    id: 'Madani Strategies membantu organisasi yang bekerja dengan sumber daya alam untuk menavigasi kompleksitas sosial, tekanan regulasi, dan dinamika komunitas. Sehingga keputusan berpijak pada realitas lapangan, bukan asumsi.',
   },
-  ctaPrimary:   { en: 'Explore our services', id: 'Jelajahi layanan kami' },
-  ctaSecondary: { en: 'Read company profile', id: 'Baca profil perusahaan' },
+  ctaPrimary:   { en: 'Discuss Your Challenge', id: 'Diskusikan Tantangan Anda' },
+  ctaSecondary: { en: 'Our Approach',           id: 'Pendekatan Kami' },
 };
 
 export const stats = [
-  { num: '20+', en: 'Years combined experience',  id: 'Tahun pengalaman gabungan' },
-  { num: '3',   en: 'Core service lines',          id: 'Layanan utama' },
-  { num: '∞',   en: 'Communities served',          id: 'Komunitas yang dilayani' },
-  { num: '1',   en: 'Mission: real impact',        id: 'Misi: dampak nyata' },
+  { num: '20+',  label: { en: 'Years field experience',     id: 'Tahun pengalaman lapangan' } },
+  { num: '400+', label: { en: 'Smallholder farmers engaged', id: 'Petani kecil yang terlibat' } },
+  { num: '100K', label: { en: 'Community beneficiaries',     id: 'Penerima manfaat komunitas' } },
 ];
+
+export const heroQuote = {
+  en: 'Fifteen years working with farmers, in government offices, in communities that push back. We learn what actually moves people. We learn the difference between real pressure and noise. That matters more than knowing the latest regulation, because regulations change.',
+  id: 'Lima belas tahun bekerja bersama petani, di kantor-kantor pemerintah, di komunitas yang menolak. Kami belajar apa yang sebenarnya menggerakkan orang. Kami belajar membedakan tekanan nyata dan keributan. Itu lebih penting daripada mengetahui regulasi terbaru, karena regulasi selalu berubah.',
+};
+
+// ────────────── HOME · WHY MAGIES ──────────────
+export const valueProp = {
+  tag:      { en: 'Why MaGies', id: 'Mengapa MaGies' },
+  headline: {
+    en: 'Consulting that starts in the field, not the boardroom.',
+    id: 'Konsultansi yang dimulai dari lapangan, bukan ruang rapat.',
+  },
+  body: {
+    en: 'Most sustainability consultancies build frameworks first and visit communities second. We do the opposite. Our analysis comes from years of direct engagement with smallholder farmers, local governments, and forest communities. That grounding is what makes our recommendations actionable.',
+    id: 'Sebagian besar konsultansi keberlanjutan membangun kerangka kerja terlebih dahulu, baru mengunjungi komunitas. Kami melakukan sebaliknya. Analisis kami lahir dari keterlibatan langsung bertahun-tahun bersama petani kecil, pemerintah daerah, dan komunitas masyarakat di dalam dan sekitar hutan. Itulah yang membuat rekomendasi kami bisa dijalankan, bukan sekadar dokumen.',
+  },
+};
+
+export const valueCards = [
+  {
+    title: { en: 'Translator in the Middle', id: 'Memahami Risiko Strategis' },
+    body: {
+      en: 'We turn community dynamics and power relations into the language of business risk and strategic implication so your management can understand and act on it.',
+      id: 'Kami mengubah dinamika komunitas dan relasi kuasa menjadi bahasa risiko bisnis dan implikasi strategis agar manajemen Anda bisa memahami lalu kemudian bertindak.',
+    },
+  },
+  {
+    title: { en: 'Analysis Paired with Intervention', id: 'Analisis yang Disertai Intervensi' },
+    body: {
+      en: 'Our recommendations are designed to be tested through real, small-scale interventions before wide implementation. You validate before you commit.',
+      id: 'Rekomendasi kami dirancang untuk diuji melalui intervensi nyata berskala kecil sebelum diterapkan secara luas. Anda validasi sebelum berkomitmen.',
+    },
+  },
+  {
+    title: { en: 'Grounded in Real Work', id: 'Berakar pada Kerja Nyata' },
+    body: {
+      en: "We don't arrive with new theories, instead our team bring 20+ years of on-ground work in advocacy, policy, and community programs across Indonesia.",
+      id: 'Kami tidak datang dengan teori baru, namun tim kami membawa 20+ tahun kerja lapangan dalam advokasi, kebijakan, dan program komunitas di seluruh Indonesia.',
+    },
+  },
+];
+
+// ────────────── SERVICES PAGE ──────────────
+export const servicesIntro = {
+  tag: { en: 'What We Do', id: 'Layanan Kami' },
+  headline: {
+    en: 'Three integrated services. One coherent strategy.',
+    id: 'Tiga layanan terintegrasi. Satu strategi yang koheren.',
+  },
+  body: {
+    en: 'Each service builds on the others. Our work is not about isolated reports, we deliver connected interventions designed to move from insight to impact.',
+    id: 'Setiap layanan saling menguatkan. Kerja kami bukan soal menyusun laporan, kami menghadirkan intervensi yang terhubung, dari wawasan hingga dampak nyata.',
+  },
+};
 
 export const services = [
   {
     num: '01',
-    image: '/mdn-st/assets/images/service-consulting.png',
-    title: { en: 'Strategic Impact Consulting', id: 'Konsultasi Dampak Strategis' },
+    image: '/assets/images/service-consulting.png',
+    title: {
+      en: 'Strategic Impact Consulting',
+      id: 'Konsultansi Dampak Strategis',
+    },
+    tagline: {
+      en: 'Identify social risk before it becomes operational cost.',
+      id: 'Identifikasi risiko sosial sebelum menjadi biaya operasional.',
+    },
+    body: {
+      en: 'From sustainable supply-chain readiness to conservation compliance strategy, we map what regulators and communities will demand and help you get there. Our analysis translates field complexity into decisions your management team can act on.',
+      id: 'Dari kesiapan keberlanjutan rantai pasok hingga strategi konservasi ekosistem, kami memetakan apa yang dibutuhkan pasar, regulator maupun komunitas. Kami membantu Anda untuk mencapainya. Analisis kami mengubah kompleksitas lapangan menjadi keputusan yang bisa dijalankan tim manajemen Anda.',
+    },
     short: {
       en: 'Manage social and environmental risks that affect your license to operate. Navigate regulatory complexity and align profit with social responsibility.',
-      id: 'Kelola risiko sosial dan lingkungan yang memengaruhi izin operasi Anda. Navigasi kompleksitas regulasi dan selaraskan profit dengan tanggung jawab sosial.',
+      id: 'Mengelola risiko sosial dan lingkungan yang memengaruhi izin operasi Anda. Menavigasi kompleksitas regulasi dan menyelaraskan profit dengan tanggung jawab sosial.',
+    },
+    expertise: [
+      { en: 'Sustainable supply-chain system',                       id: 'Sistem rantai pasok yang berkelanjutan' },
+      { en: 'Biodiversity & conservation strategy',                  id: 'Strategi konservasi dan keanekaragaman hayati' },
+      { en: 'Social risk mapping & community conflict assessment',   id: 'Pemetaan risiko sosial & asesmen konflik komunitas' },
+      { en: 'ESG framework development grounded in local context',   id: 'Pengembangan kerangka ESG berbasis konteks lokal' },
+    ],
+    tags: {
+      en: ['Sustainability', 'Biodiversity', 'Social Risk', 'ESG', 'Supply Chain'],
+      id: ['Keberlanjutan', 'Konservasi', 'Risiko Sosial', 'ESG', 'Rantai Pasok'],
     },
     detail: {
       en: [
-        'We help organizations manage social and environmental risks. This includes navigating regulatory complexity (changing environmental laws, trade requirements, governance standards), understanding community concerns and their business implications, and designing strategies that align profit with social responsibility.',
+        'We help organizations manage social and environmental risks that affect their license to operate. This includes navigating regulatory complexity (changing environmental laws, trade requirements, governance standards), understanding community concerns and their business implications, and designing strategies that align profit with social responsibility.',
         'We have worked with businesses facing major regulatory shifts, helping them understand the implications for their supply chains and operations. We have supported organizations managing community relationships in sensitive contexts, translating community concerns into business language and designing interventions that address legitimate grievances while protecting operational continuity.',
       ],
       id: [
-        'Kami membantu organisasi mengelola risiko sosial dan lingkungan. Ini meliputi navigasi kompleksitas regulasi (perubahan hukum lingkungan, persyaratan perdagangan, standar tata kelola), memahami keprihatinan komunitas dan implikasinya pada bisnis, dan merancang strategi yang menyelaraskan profit dengan tanggung jawab sosial.',
-        'Kami telah bekerja dengan bisnis yang menghadapi pergeseran regulasi besar, membantu mereka memahami implikasinya pada rantai pasok dan operasi. Kami telah mendampingi organisasi mengelola hubungan komunitas dalam konteks sensitif, menerjemahkan keprihatinan komunitas ke dalam bahasa bisnis, dan merancang intervensi yang menjawab keluhan sah sembari menjaga keberlanjutan operasi.',
+        'Kami membantu organisasi mengelola risiko sosial dan lingkungan yang memengaruhi izin operasinya. Ini meliputi menavigasi kompleksitas regulasi (perubahan hukum lingkungan, persyaratan perdagangan, standar tata kelola), memahami kekhawatiran komunitas dan implikasi bisnisnya, serta merancang strategi yang menyelaraskan profit dengan tanggung jawab sosial.',
+        'Kami telah bekerja dengan perusahaan yang menghadapi perubahan regulasi besar, membantu mereka memahami implikasi pada rantai pasok dan operasi. Kami juga mendampingi organisasi mengelola hubungan komunitas dalam konteks sensitif, menerjemahkan kekhawatiran komunitas ke dalam bahasa bisnis dan merancang intervensi yang menjawab keluhan sah sekaligus menjaga kelangsungan operasi.',
       ],
     },
   },
   {
     num: '02',
-    image: '/mdn-st/assets/images/service-trade.png',
-    title: { en: 'Enabling Trade & Market Access', id: 'Memungkinkan Perdagangan & Akses Pasar' },
+    image: '/assets/images/service-trade.png',
+    title: {
+      en: 'Enabling Trade & Market Access',
+      id: 'Penguatan Perniagaan & Akses Pasar',
+    },
+    tagline: {
+      en: 'Unlocking Broader Market Access for Community-Based Commodities.',
+      id: 'Membuka pintu akses pasar yang lebih besar bagi komoditas berbasis komunitas.',
+    },
+    body: {
+      en: 'We build the market linkages that create real economic independence for local producers. From scoping to deal structure to ongoing relationship management, we handle the bridge between local production and broader market.',
+      id: 'Kami membangun koneksi pasar yang menciptakan kemandirian ekonomi nyata bagi produsen lokal. Dari pemetaan peluang hingga struktur kesepakatan dan manajemen hubungan berkelanjutan. Kami membangun keterhubungan antara produksi lokal dan pasar yang lebih luas.',
+    },
     short: {
       en: 'Connect community producers to broader markets. Build supply chain partnerships that reward both buyers and producers fairly.',
-      id: 'Hubungkan produsen komunitas ke pasar yang lebih luas. Bangun kemitraan rantai pasok yang adil bagi pembeli maupun produsen.',
+      id: 'Menghubungkan produsen komunitas ke pasar yang lebih luas. Membangun kemitraan rantai pasok yang adil bagi pembeli dan produsen.',
+    },
+    expertise: [
+      { en: 'Market linkage design for community-managed commodities', id: 'Desain koneksi pasar untuk komoditas kelola masyarakat' },
+      { en: 'Fair and sustainable trade model development',            id: 'Pengembangan model perdagangan yang adil dan berkelanjutan' },
+      { en: 'CSR-to-impact platform (Platform PADI: padisolutions.com)', id: 'Platform CSR-ke-dampak (Platform PADI: padisolutions.com)' },
+      { en: 'Local commodity value chain development',                  id: 'Pengembangan rantai nilai komoditas lokal' },
+    ],
+    tags: {
+      en: ['Market Linkage', 'Local Commodities', 'PADI', 'Fair Trade'],
+      id: ['Koneksi Pasar', 'Komoditas Lokal', 'PADI', 'Fair Trade'],
     },
     detail: {
       en: [
@@ -78,18 +195,39 @@ export const services = [
         'We have built market systems for community-led enterprises, working with smallholder producers and traders to move from subsistence production to market engagement. We have designed supply chain partnerships that benefit both corporate buyers and local producers, creating shared value where both parties gain.',
       ],
       id: [
-        'Kami membantu komunitas dan wirausaha sosial mengakses pasar yang lebih luas dan membangun penghidupan berkelanjutan. Ini berarti menghubungkan produsen ke pembeli, memperkuat kualitas dan keandalan, serta merancang hubungan perdagangan yang adil bagi kedua pihak.',
-        'Kami telah membangun sistem pasar untuk wirausaha berbasis komunitas, bekerja dengan produsen dan pedagang petani kecil untuk beralih dari produksi subsistensi ke keterlibatan pasar. Kami telah merancang kemitraan rantai pasok yang menguntungkan pembeli korporat maupun produsen lokal, menciptakan nilai bersama di mana kedua pihak diuntungkan.',
+        'Kami membantu komunitas dan kewirausahaan sosial mengakses pasar yang lebih luas serta membangun penghidupan berkelanjutan. Ini berarti menghubungkan produsen dengan pembeli, memperkuat kualitas dan keandalan, serta merancang relasi perdagangan yang adil bagi kedua pihak.',
+        'Kami telah membangun sistem pasar untuk usaha berbasis komunitas, bekerja dengan petani kecil dan pedagang untuk berpindah dari produksi subsisten ke keterlibatan pasar. Kami merancang kemitraan rantai pasok yang menguntungkan baik pembeli korporat maupun produsen lokal, menciptakan nilai bersama di mana kedua pihak diuntungkan.',
       ],
     },
   },
   {
     num: '03',
-    image: '/mdn-st/assets/images/service-capacity.png',
-    title: { en: 'Capacity Building & Literacy', id: 'Pengembangan Kapasitas & Literasi' },
+    image: '/assets/images/service-capacity.png',
+    title: {
+      en: 'Capacity Building & Literacy',
+      id: 'Penguatan Kapasitas & Literasi',
+    },
+    tagline: {
+      en: 'Education programs designed for independence, not dependency.',
+      id: 'Program edukasi yang dirancang untuk kemandirian, bukan ketergantungan.',
+    },
+    body: {
+      en: 'We design and run education and community strengthening programs that carry real environmental content. Our programs are built to run without us. As an example, our MaGies Literacy Unit program has operated independently for two consecutive years, demonstrating our commitment to long-term community self-sufficiency.',
+      id: 'Kami merancang dan menjalankan program edukasi dan penguatan komunitas bermuatan lingkungan nyata. Program kami dibangun untuk berjalan tanpa kami. Sebagai bukti, program Unit Literasi MaGies kami telah berjalan mandiri selama dua tahun berturut-turut, membuktikan komitmen kami pada kemandirian jangka panjang komunitas.',
+    },
     short: {
       en: 'Sustained education programs that measurably improve knowledge, capabilities, and economic outcomes for communities.',
-      id: 'Program pendidikan berkelanjutan yang secara terukur meningkatkan pengetahuan, kapabilitas, dan hasil ekonomi komunitas.',
+      id: 'Program edukasi berkelanjutan yang meningkatkan pengetahuan, kapabilitas, dan hasil ekonomi komunitas secara terukur.',
+    },
+    expertise: [
+      { en: 'Literacy module design with environmental content integration', id: 'Desain modul literasi dengan konten lingkungan terintegrasi' },
+      { en: 'Community capacity strengthening programs',                     id: 'Program penguatan kapasitas komunitas' },
+      { en: 'Social impact component design for corporate CSR',              id: 'Desain komponen dampak sosial untuk CSR korporat' },
+      { en: 'Facilitator training and program handover',                     id: 'Pelatihan fasilitator dan serah terima program' },
+    ],
+    tags: {
+      en: ['Education Design', 'Community Programs', 'CSR', 'Literacy'],
+      id: ['Desain Edukasi', 'Program Komunitas', 'CSR', 'Literasi'],
     },
     detail: {
       en: [
@@ -97,20 +235,21 @@ export const services = [
         'We have designed literacy and vocational training programs that integrate environmental stewardship with economic opportunity. We have worked with communities to build local institutions that deliver training, manage resources, and sustain impact long after external support ends.',
       ],
       id: [
-        'Kami merancang dan menyelenggarakan program pendidikan dan pengembangan kapasitas yang memperkuat komunitas dan membangun keterampilan untuk penghidupan berkelanjutan. Ini bukan pelatihan sekali jalan. Ini intervensi berkelanjutan yang secara terukur meningkatkan pengetahuan, kapabilitas, dan hasil ekonomi.',
-        'Kami telah merancang program literasi dan pelatihan vokasi yang mengintegrasikan kepedulian lingkungan dengan peluang ekonomi. Kami telah bekerja dengan komunitas untuk membangun institusi lokal yang menyelenggarakan pelatihan, mengelola sumber daya, dan mempertahankan dampak lama setelah dukungan eksternal berakhir.',
+        'Kami merancang dan menyampaikan program edukasi dan pengembangan kapasitas yang memperkuat komunitas serta membangun keterampilan untuk penghidupan berkelanjutan. Ini bukan pelatihan satu kali. Ini adalah intervensi berkelanjutan yang meningkatkan pengetahuan, kapabilitas, dan hasil ekonomi secara terukur.',
+        'Kami telah merancang program literasi dan pelatihan vokasi yang mengintegrasikan kepedulian lingkungan dengan peluang ekonomi. Kami bekerja dengan komunitas untuk membangun lembaga lokal yang menyelenggarakan pelatihan, mengelola sumber daya, dan menjaga dampak setelah dukungan eksternal berakhir.',
       ],
     },
   },
 ];
 
+// ────────────── APPROACH (3 stages) ──────────────
 export const stages = [
   {
     num: 1,
     title: { en: 'Assessment', id: 'Asesmen' },
     body: {
-      en: 'We map stakeholder interests, regulatory landscapes, community dynamics, and supply chain vulnerabilities. We do not start with frameworks. We start with questions that matter to your business.',
-      id: 'Kami memetakan kepentingan pemangku kepentingan, lanskap regulasi, dinamika komunitas, dan kerentanan rantai pasok. Kami tidak mulai dari kerangka kerja. Kami mulai dari pertanyaan yang penting bagi bisnis Anda.',
+      en: 'We analyze your specific situation. We map stakeholder interests, regulatory landscapes, community dynamics, and supply chain vulnerabilities. We do not start with frameworks. We start with questions that matter to your business.',
+      id: 'Kami menganalisis situasi spesifik Anda. Kami memetakan kepentingan pemangku kepentingan, lanskap regulasi, dinamika komunitas, dan kerentanan rantai pasok. Kami tidak mulai dari kerangka kerja. Kami mulai dari pertanyaan yang penting bagi bisnis Anda.',
     },
   },
   {
@@ -118,7 +257,7 @@ export const stages = [
     title: { en: 'Design & Testing', id: 'Desain & Pengujian' },
     body: {
       en: 'We develop recommendations based on evidence. But we do not stop at recommendations. We design pilots. We test assumptions at small scale before full rollout. This reduces risk and ensures interventions actually work in your operating context.',
-      id: 'Kami mengembangkan rekomendasi berbasis bukti. Tapi kami tidak berhenti di rekomendasi. Kami merancang pilot. Kami menguji asumsi dalam skala kecil sebelum peluncuran penuh. Ini mengurangi risiko dan memastikan intervensi benar-benar bekerja dalam konteks operasi Anda.',
+      id: 'Kami menyusun rekomendasi berbasis bukti. Tapi kami tidak berhenti di rekomendasi. Kami merancang uji coba. Kami menguji asumsi pada skala kecil sebelum penerapan penuh. Ini mengurangi risiko dan memastikan intervensi benar-benar berfungsi dalam konteks operasi Anda.',
     },
   },
   {
@@ -126,101 +265,189 @@ export const stages = [
     title: { en: 'Implementation & Learning', id: 'Implementasi & Pembelajaran' },
     body: {
       en: 'We help you implement at scale, measure impact, and adjust based on real results. We measure what matters. We stay grounded in outcomes, not outputs.',
-      id: 'Kami membantu Anda mengimplementasikan dalam skala besar, mengukur dampak, dan menyesuaikan berdasarkan hasil nyata. Kami mengukur yang penting. Kami tetap berpijak pada hasil, bukan keluaran.',
+      id: 'Kami membantu Anda menerapkan dalam skala besar, mengukur dampak, dan menyesuaikan berdasarkan hasil nyata. Kami mengukur apa yang penting. Kami tetap berpijak pada hasil, bukan output.',
     },
   },
 ];
+
+// ────────────── IMPACT — 4 REAL CASE STUDIES ──────────────
+export const impactIntro = {
+  tag: { en: 'Proof of Impact', id: 'Bukti Dampak' },
+  headline: {
+    en: 'We prove credibility through action, not reports.',
+    id: 'Kredibilitas kami terbukti melalui aksi, bukan laporan.',
+  },
+  body: {
+    en: 'Every project listed here reflects a real intervention with real stakeholders, constraints, and measurable outcomes. These are proof of execution.',
+    id: 'Setiap proyek di sini mencerminkan intervensi nyata dengan pemangku kepentingan nyata, termasuk tantanganya, dan hasil yang terukur. Ini menjadi bukti eksekusi dan cara kerja kami.',
+  },
+};
 
 export const impactCards = [
   {
-    tag: { en: 'Policy Research', id: 'Riset Kebijakan' },
-    title: { en: 'Translating policy into business strategy', id: 'Menerjemahkan kebijakan menjadi strategi bisnis' },
+    title: { en: 'EUDR & IBSAP Research', id: 'Riset EUDR & IBSAP' },
+    tag:   { en: 'Policy Research',       id: 'Riset Kebijakan' },
     body: {
-      en: 'We have conducted deep research on emerging policy landscapes, helping organizations understand what regulatory change means for their business model and supply chains. This work required translating complex policy into business implications and identifying strategic response options.',
-      id: 'Kami telah melakukan riset mendalam tentang lanskap kebijakan yang berkembang, membantu organisasi memahami arti perubahan regulasi bagi model bisnis dan rantai pasok mereka. Pekerjaan ini menuntut penerjemahan kebijakan kompleks menjadi implikasi bisnis dan identifikasi opsi respons strategis.',
+      en: 'We produced the first practical guidance for Indonesian businesses facing EU Deforestation Regulation. Covering supply-chain traceability, legal exposure, and compliance sequencing.',
+      id: 'Kami menyusun panduan praktis pertama bagi pelaku usaha Indonesia dalam menghadapi Regulasi Deforestasi UE. Mencakup keterlacakan rantai pasok, eksposur hukum, dan urutan kepatuhan.',
     },
   },
   {
-    tag: { en: 'Stakeholder Engagement', id: 'Pelibatan Pemangku Kepentingan' },
-    title: { en: 'Building trust in high-stakes contexts', id: 'Membangun kepercayaan dalam konteks bertaruh tinggi' },
+    title: { en: 'Platform PADI', id: 'Platform PADI' },
+    tag:   { en: 'CSR-to-Impact Platform', id: 'Platform CSR-ke-Dampak' },
     body: {
-      en: 'We have worked with partners to manage social and environmental risks in high-stakes contexts. We have designed community engagement strategies, facilitated stakeholder dialogue, and built trust through transparent communication and genuine commitment to address legitimate concerns.',
-      id: 'Kami telah bekerja dengan mitra untuk mengelola risiko sosial dan lingkungan dalam konteks bertaruh tinggi. Kami telah merancang strategi pelibatan komunitas, memfasilitasi dialog pemangku kepentingan, dan membangun kepercayaan melalui komunikasi transparan dan komitmen sejati untuk menjawab keprihatinan yang sah.',
+      en: 'Built and deployed a platform that connects corporate CSR spending directly to verified community needs. Moving CSR from compliance exercise to strategic investment.',
+      id: 'Membangun dan meluncurkan platform yang menghubungkan pengeluaran CSR perusahaan ke kebutuhan komunitas terverifikasi. Mengubah CSR dari kewajiban menjadi investasi strategis.',
     },
   },
   {
-    tag: { en: 'Market Linkages', id: 'Penghubungan Pasar' },
-    title: { en: 'From transaction to relationship', id: 'Dari transaksi ke relasi' },
+    title: { en: 'Jamur Kuping (Wood-Ear Mushroom)', id: 'Jamur Kuping' },
+    tag:   { en: 'Trade Enablement', id: 'Penguatan Perniagaan' },
     body: {
-      en: 'We have built market linkages between local producers and larger buyers, moving from transaction to relationship. This required understanding both producer constraints and buyer requirements, then designing systems that work for both.',
-      id: 'Kami telah membangun jalur pasar antara produsen lokal dan pembeli yang lebih besar, beralih dari transaksi ke relasi. Ini menuntut pemahaman batasan produsen maupun kebutuhan pembeli, lalu merancang sistem yang berhasil bagi keduanya.',
+      en: 'Took a local commodity from production to professional market access. Demonstrating end-to-end trade enablement with smallholder farmers as direct economic beneficiaries.',
+      id: 'Membawa komoditas lokal dari produksi ke akses pasar profesional. Membuktikan model penguatan perniagaan dari hulu ke hilir, dengan petani kecil sebagai penerima manfaat ekonomi langsung.',
     },
   },
   {
-    tag: { en: 'Community Education', id: 'Pendidikan Komunitas' },
-    title: { en: 'Programs that sustain themselves', id: 'Program yang menopang dirinya sendiri' },
+    title: { en: 'MaGies Literacy Unit', id: 'Unit Literasi MaGies' },
+    tag:   { en: 'Capacity Building', id: 'Penguatan Kapasitas' },
     body: {
-      en: 'We have designed and implemented education and capacity-building programs that serve both individual learning and broader community development goals. These programs operate independently, sustaining themselves through community commitment and local partnerships.',
-      id: 'Kami telah merancang dan mengimplementasikan program pendidikan dan pengembangan kapasitas yang melayani pembelajaran individu maupun tujuan pembangunan komunitas yang lebih luas. Program-program ini beroperasi secara mandiri, terus berlanjut melalui komitmen komunitas dan kemitraan lokal.',
+      en: 'A community literacy program integrating essential ecosystem content, now self-sustaining for two consecutive years. Proof that our capacity-building is designed for independence, not dependency.',
+      id: 'Program literasi komunitas yang mengintegrasikan konten ekosistem esensial, kini mandiri dua tahun berturut-turut. Bukti bahwa penguatan kapasitas kami dirancang untuk kemandirian, bukan ketergantungan.',
     },
   },
 ];
 
+// ────────────── ABOUT PAGE ──────────────
+export const about = {
+  tag: { en: 'About Us', id: 'Tentang Kami' },
+  headline: {
+    en: 'Experience that runs deep before it runs wide.',
+    id: 'Pengalaman yang mengakar sebelum meluas.',
+  },
+  body: {
+    en: [
+      "Madani Strategies is built on the legacy of field work from Yayasan Madani Berkelanjutan, Indonesia's leading sustainability NGO. We carry 20+ years of policy, community, and field program experience into every client engagement.",
+      'We are a team of specialists focused on contextual solutions, not generalists. We are policy specialists, community organizers, ESG practitioners, and educators who have actually done the work in the forest, with the farmers, at the regulatory table.',
+    ],
+    id: [
+      'Madani Strategies lahir dari warisan kerja lapangan Yayasan Madani Berkelanjutan, organisasi NGO keberlanjutan terkemuka di Indonesia. Kami membawa 20+ tahun pengalaman kebijakan, komunitas, dan program lapangan ke setiap keterlibatan klien.',
+      'Kami adalah tim spesialis yang fokus pada solusi kontekstual, bukan generalis. Kami adalah spesialis kebijakan, penggerak komunitas, praktisi ESG, dan pendidik yang telah benar-benar bekerja di hutan, bersama petani, di meja regulasi.',
+    ],
+  },
+};
+
+// ────────────── TEAM (CORE) ──────────────
 export const team = [
   {
-    initials: 'GBI',
     name: 'Giorgio Budi Indrarto',
-    role: { en: 'Strategic Director', id: 'Direktur Strategis' },
+    initials: 'GI',
+    role: { en: 'Chief Executive Officer', id: 'Chief Executive Officer' },
     bioShort: {
-      en: '20+ years in environmental law, forestry, and climate policy. Architect of Indonesia\'s REDD+ National Strategy.',
-      id: '20+ tahun di bidang hukum lingkungan, kehutanan, dan kebijakan iklim. Arsitek Strategi Nasional REDD+ Indonesia.',
+      en: "20+ years in environmental law, forestry, and climate policy. Architect of Indonesia's REDD+ National Strategy.",
+      id: '20+ tahun di hukum lingkungan, kehutanan, dan kebijakan iklim. Arsitek Strategi Nasional REDD+ Indonesia.',
     },
     bioFull: {
-      en: 'Giorgio leads our strategic direction. He brings two decades of experience in environmental law, forestry policy, and climate change. His work has shaped policy reforms in Indonesia, including national strategies for forest protection and climate action. He excels at translating complex environmental challenges into actionable solutions and at building collaboration across government, civil society, and private sector stakeholders.',
-      id: 'Giorgio memimpin arah strategis kami. Ia membawa dua dekade pengalaman dalam hukum lingkungan, kebijakan kehutanan, dan perubahan iklim. Karyanya telah membentuk reformasi kebijakan di Indonesia, termasuk strategi nasional perlindungan hutan dan aksi iklim. Ia unggul dalam menerjemahkan tantangan lingkungan yang kompleks menjadi solusi yang dapat dilaksanakan dan dalam membangun kolaborasi antara pemerintah, masyarakat sipil, dan pemangku kepentingan sektor swasta.',
+      en: "20+ years in environmental law, forestry, and climate policy. Architect of Indonesia's REDD+ National Strategy. He brings two decades of experience in environmental law, forestry policy, and climate change. His work has shaped policy reforms in Indonesia, including national strategies for forest protection and climate action. He excels at translating complex environmental challenges into actionable solutions and at building collaboration across government, civil society, and private sector stakeholders.",
+      id: 'Lebih dari 20 tahun di hukum lingkungan, kehutanan, dan kebijakan iklim. Arsitek Strategi Nasional REDD+ Indonesia. Ia membawa dua dekade pengalaman dalam hukum lingkungan, kebijakan kehutanan, dan perubahan iklim. Karyanya membentuk reformasi kebijakan di Indonesia, termasuk strategi nasional perlindungan hutan dan aksi iklim. Ia ahli menerjemahkan tantangan lingkungan kompleks menjadi solusi yang bisa dijalankan, serta membangun kolaborasi lintas pemerintah, masyarakat sipil, dan sektor swasta.',
     },
   },
   {
-    initials: 'RA',
     name: 'Riyadh Assegaf',
-    role: { en: 'Strategic Impact Lead', id: 'Pemimpin Dampak Strategis' },
+    initials: 'RA',
+    role: { en: 'Strategic Impact Lead', id: 'Strategic Impact Lead' },
     bioShort: {
-      en: 'Translates field-level insights into measurable corporate strategy. Specializes in ESG frameworks and market access for sustainable commodities.',
-      id: 'Menerjemahkan wawasan lapangan menjadi strategi korporat terukur. Spesialisasi dalam kerangka ESG dan akses pasar komoditas berkelanjutan.',
+      en: 'Translates field-level insights into measurable corporate strategy and impact pathways.',
+      id: 'Menerjemahkan wawasan lapangan menjadi strategi korporat terukur dan jalur dampak.',
     },
     bioFull: {
       en: 'Riyadh translates field-level insights into measurable corporate strategy and impact pathways. He specializes in designing ESG frameworks and driving market access for sustainable community-based commodities.',
-      id: 'Riyadh menerjemahkan wawasan tingkat lapangan menjadi strategi korporat dan jalur dampak yang terukur. Ia mengkhususkan diri dalam merancang kerangka ESG dan mendorong akses pasar bagi komoditas berkelanjutan berbasis komunitas.',
+      id: 'Riyadh menerjemahkan wawasan di tingkat lapangan menjadi strategi korporat yang terukur dan jalur dampak. Dia berspesialisasi dalam merancang kerangka ESG dan mendorong akses pasar untuk komoditas berbasis komunitas yang berkelanjutan.',
     },
   },
   {
-    initials: 'FS',
     name: 'Firly Savitri',
-    role: { en: 'Capacity Building Lead', id: 'Pemimpin Pengembangan Kapasitas' },
+    initials: 'FS',
+    role: { en: 'Literacy Advisor', id: 'Literacy Advisor' },
     bioShort: {
-      en: 'Designs learning experiences for thousands. Background in STEM education, social entrepreneurship, and talent development.',
-      id: 'Merancang pengalaman pembelajaran bagi ribuan orang. Berlatar belakang pendidikan STEM, kewirausahaan sosial, dan pengembangan talenta.',
+      en: 'MBA ITB. Co-founder of Ilmuwan Muda Indonesia. Expert in experiential learning design and community empowerment.',
+      id: 'MBA ITB. Co-founder Ilmuwan Muda Indonesia. Ahli desain experiential learning dan pemberdayaan komunitas.',
     },
     bioFull: {
-      en: 'Firly leads our capacity-building and literacy work. She has designed learning experiences for thousands of people and built educational institutions that serve communities sustainably. Her background spans STEM education, social entrepreneurship, and talent development. She excels at making complex ideas accessible and at designing programs that actually stick.',
-      id: 'Firly memimpin kerja pengembangan kapasitas dan literasi kami. Ia telah merancang pengalaman pembelajaran bagi ribuan orang dan membangun institusi pendidikan yang melayani komunitas secara berkelanjutan. Latar belakangnya mencakup pendidikan STEM, kewirausahaan sosial, dan pengembangan talenta. Ia unggul dalam membuat ide kompleks menjadi mudah dipahami dan dalam merancang program yang benar-benar bertahan.',
+      en: 'MBA ITB. Co-founder of Ilmuwan Muda Indonesia. Expert in experiential learning design and community empowerment. She has designed learning experiences for thousands of people and built educational institutions that serve communities sustainably. Her background spans STEM education, social entrepreneurship, and talent development. She excels at making complex ideas accessible and at designing programs that actually stick.',
+      id: 'MBA ITB. Co-founder Ilmuwan Muda Indonesia. Ahli desain experiential learning dan pemberdayaan komunitas. Ia telah merancang pengalaman belajar untuk ribuan orang dan membangun lembaga pendidikan yang melayani komunitas secara berkelanjutan. Latar belakangnya mencakup pendidikan STEM, kewirausahaan sosial, dan pengembangan talenta. Ia ahli membuat ide kompleks mudah diakses dan merancang program yang benar-benar membekas.',
     },
   },
   {
-    initials: 'ZT',
     name: 'Zulkifli Tegar',
-    role: { en: 'Implementation Lead', id: 'Pemimpin Implementasi' },
+    initials: 'ZT',
+    role: { en: 'Community Specialist', id: 'Community Specialist' },
     bioShort: {
-      en: 'Manages social enterprises and community programs. Track record of designing programs that reach thousands and mobilize resources.',
-      id: 'Mengelola wirausaha sosial dan program komunitas. Rekam jejak merancang program yang menjangkau ribuan dan memobilisasi sumber daya.',
+      en: 'CSR specialist with programs reaching 100,000 beneficiaries. Raised 1B+ IDR for community and social initiatives.',
+      id: 'Spesialis CSR dengan program menjangkau 100.000 penerima manfaat. Menggalang 1M+ IDR untuk inisiatif komunitas dan sosial.',
     },
     bioFull: {
-      en: 'Zulkifli leads our implementation and community partnerships. He brings deep experience managing social enterprises, community programs, and partnerships with government and corporate stakeholders. His track record includes designing programs that reach thousands, mobilizing resources, and ensuring outcomes align with both community needs and partner goals.',
-      id: 'Zulkifli memimpin implementasi dan kemitraan komunitas kami. Ia membawa pengalaman mendalam dalam mengelola wirausaha sosial, program komunitas, dan kemitraan dengan pemangku kepentingan pemerintah dan korporat. Rekam jejaknya meliputi merancang program yang menjangkau ribuan orang, memobilisasi sumber daya, dan memastikan hasil selaras dengan kebutuhan komunitas dan tujuan mitra.',
+      en: 'CSR specialist with programs reaching 100,000 beneficiaries. Raised 1B+ IDR for community and social initiatives. He brings deep experience managing social enterprises, community programs, and partnerships with government and corporate stakeholders. His track record includes designing programs that reach thousands, mobilizing resources, and ensuring outcomes align with both community needs and partner goals.',
+      id: 'Spesialis CSR dengan program menjangkau 100.000 penerima manfaat. Menggalang 1M+ IDR untuk inisiatif komunitas dan sosial. Ia membawa pengalaman mendalam dalam mengelola usaha sosial, program komunitas, dan kemitraan dengan pemangku kepentingan pemerintah dan korporat. Rekam jejaknya mencakup merancang program yang menjangkau ribuan orang, memobilisasi sumber daya, dan memastikan hasil selaras dengan kebutuhan komunitas dan tujuan mitra.',
     },
   },
 ];
 
+// ────────────── AFFILIATED EXPERTS ──────────────
+export const expertsIntro = {
+  en: 'Selected Experts from the MaGies Network. Full list available upon request.',
+  id: 'Pakar Terpilih dari Jaringan MaGies. Daftar lengkap tersedia berdasarkan permintaan.',
+};
+
+export const experts = [
+  {
+    name: 'Bernadinus Steny',
+    initials: 'BS',
+    role: { en: 'Senior Policy Advisor', id: 'Senior Policy Advisor' },
+    bio: {
+      en: 'Expert in land-use governance and political economy analysis across Indonesia. Provides strategic counsel on regulatory compliance and conflict resolution.',
+      id: 'Pakar tata kelola lahan dan analisis ekonomi politik di Indonesia. Memberikan nasihat strategis mengenai kepatuhan regulasi dan resolusi konflik.',
+    },
+  },
+  {
+    name: 'Teguh Surya',
+    initials: 'TS',
+    role: { en: 'Climate & Energy Specialist', id: 'Climate & Energy Specialist' },
+    bio: {
+      en: 'Leading voice in climate change mitigation and energy policy advocacy. Focuses on bridging global climate commitments with local implementation challenges.',
+      id: 'Tokoh terkemuka dalam mitigasi perubahan iklim dan advokasi kebijakan energi. Berfokus pada menjembatani komitmen iklim global dengan tantangan implementasi lokal.',
+    },
+  },
+  {
+    name: 'Tejo Wahyu Jatmiko',
+    initials: 'TJ',
+    role: { en: 'Social Forestry Expert', id: 'Social Forestry Expert' },
+    bio: {
+      en: 'Deep experience in developing sustainable livelihood models for forest-dependent communities. Specializes in capacity building for social forestry programs.',
+      id: 'Pengalaman mendalam dalam pengembangan model penghidupan berkelanjutan bagi komunitas yang bergantung pada hutan. Berspesialisasi dalam penguatan kapasitas untuk program perhutanan sosial.',
+    },
+  },
+  {
+    name: 'Josi Khatarina',
+    initials: 'JK',
+    role: { en: 'Legal & Human Rights Counsel', id: 'Legal & Human Rights Counsel' },
+    bio: {
+      en: 'Specialized in environmental and human rights law within the natural resource sector. Advises on legal risk assessment and corporate accountability.',
+      id: 'Berspesialisasi dalam hukum lingkungan dan hak asasi manusia di sektor sumber daya alam. Memberikan saran tentang asesmen risiko hukum dan akuntabilitas korporat.',
+    },
+  },
+  {
+    name: 'Yuyun Indradi',
+    initials: 'YI',
+    role: { en: 'Indigenous Rights Advocate', id: 'Indigenous Rights Advocate' },
+    bio: {
+      en: 'Leading expert on indigenous rights and community land tenure issues. Provides counsel on culturally sensitive and rights-based engagement strategies.',
+      id: 'Pakar terkemuka dalam isu hak-hak masyarakat adat dan tenurial lahan. Memberikan saran mengenai strategi keterlibatan yang sensitif budaya dan berbasis hak.',
+    },
+  },
+];
+
+// ────────────── COMPANY PROFILE — long-form sections ──────────────
 export const profile = {
   whoWeAre: {
     title: { en: 'Who We Are', id: 'Siapa Kami' },
@@ -230,8 +457,8 @@ export const profile = {
         'We do not offer generic sustainability frameworks or checkbox compliance. We start with the specific decisions your business needs to make. We analyze the social, environmental, and regulatory landscape that shapes those decisions. Then we design and test interventions that work in context.',
       ],
       id: [
-        'Madani Strategies adalah konsultan dampak strategis. Kami membantu bisnis menavigasi persimpangan risiko sosial, kompleksitas regulasi, dan pertumbuhan berkelanjutan. Kami bekerja dengan organisasi yang bergantung pada sumber daya alam dan hubungan komunitas, membantu mereka mengambil keputusan yang memperkuat operasi sekaligus legitimasi mereka.',
-        'Kami tidak menawarkan kerangka kerja keberlanjutan generik atau kepatuhan checkbox. Kami mulai dari keputusan spesifik yang perlu diambil bisnis Anda. Kami menganalisis lanskap sosial, lingkungan, dan regulasi yang membentuk keputusan tersebut. Lalu kami merancang dan menguji intervensi yang bekerja sesuai konteks.',
+        'Madani Strategies adalah konsultansi dampak strategis. Kami membantu bisnis menavigasi titik temu risiko sosial, kompleksitas regulasi, dan pertumbuhan berkelanjutan. Kami bekerja dengan organisasi yang bergantung pada sumber daya alam dan hubungan komunitas, membantu mereka membuat keputusan yang memperkuat baik operasi maupun legitimasi mereka.',
+        'Kami tidak menawarkan kerangka keberlanjutan generik atau kepatuhan checkbox. Kami mulai dari keputusan spesifik yang perlu diambil bisnis Anda. Kami menganalisis lanskap sosial, lingkungan, dan regulasi yang membentuk keputusan tersebut. Lalu kami merancang dan menguji intervensi yang berfungsi dalam konteks Anda.',
       ],
     },
   },
@@ -239,11 +466,11 @@ export const profile = {
     title: { en: 'Who We Serve', id: 'Siapa yang Kami Layani' },
     body: {
       en: 'We work with corporate organizations and social enterprises that operate in contexts where community relationships, regulatory change, and resource management directly affect business viability. This includes companies in extractive industries, agriculture, forestry, and trade. We also partner with organizations seeking to build sustainable market systems and community-led enterprises.',
-      id: 'Kami bekerja dengan organisasi korporat dan wirausaha sosial yang beroperasi dalam konteks di mana hubungan komunitas, perubahan regulasi, dan pengelolaan sumber daya secara langsung memengaruhi viabilitas bisnis. Ini termasuk perusahaan di industri ekstraktif, pertanian, kehutanan, dan perdagangan. Kami juga bermitra dengan organisasi yang ingin membangun sistem pasar berkelanjutan dan wirausaha berbasis komunitas.',
+      id: 'Kami bekerja dengan organisasi korporat dan kewirausahaan sosial yang beroperasi dalam konteks di mana hubungan komunitas, perubahan regulasi, dan pengelolaan sumber daya secara langsung memengaruhi viabilitas bisnis. Ini meliputi perusahaan di industri ekstraktif, agrikultur, kehutanan, dan perdagangan. Kami juga bermitra dengan organisasi yang ingin membangun sistem pasar berkelanjutan dan usaha berbasis komunitas.',
     },
   },
   theGap: {
-    title: { en: 'The Gap', id: 'Celahnya' },
+    title: { en: 'The Gap', id: 'Celah yang Kami Tangani' },
     body: {
       en: [
         'Conventional sustainability consulting often fails in practice for one reason. It separates analysis from execution. Consultants deliver reports. Executives read them. Implementation stalls because the recommendations were never tested against ground reality.',
@@ -251,34 +478,61 @@ export const profile = {
         'The gap is in relevance. Most sustainability work treats social and environmental issues as compliance problems. It misses what they actually are. They are business decisions. And business decisions must be made with evidence.',
       ],
       id: [
-        'Konsultasi keberlanjutan konvensional sering gagal di praktik karena satu alasan. Ia memisahkan analisis dari eksekusi. Konsultan menyerahkan laporan. Eksekutif membacanya. Implementasi tersendat karena rekomendasinya tidak pernah diuji terhadap realitas lapangan.',
-        'Kami telah bekerja dengan mitra menavigasi lingkungan kebijakan kompleks, pergeseran regulasi, ekspektasi komunitas, dan kerentanan rantai pasok. Hanya untuk menemukan strategi keberlanjutan mereka terputus dari cara keputusan benar-benar dibuat. Rekomendasi datang sebagai dokumen jadi, bukan sebagai wawasan yang dapat dilaksanakan dan berakar pada kendala dan peluang dari konteks spesifik.',
-        'Celahnya ada di relevansi. Sebagian besar pekerjaan keberlanjutan memperlakukan isu sosial dan lingkungan sebagai masalah kepatuhan. Ia melewatkan apa sebenarnya isu itu. Itu adalah keputusan bisnis. Dan keputusan bisnis harus dibuat dengan bukti.',
+        'Konsultansi keberlanjutan konvensional sering gagal dalam praktik karena satu alasan. Mereka memisahkan analisis dari eksekusi. Konsultan menyampaikan laporan. Eksekutif membacanya. Implementasi mandek karena rekomendasi tidak pernah diuji terhadap realitas lapangan.',
+        'Kami telah bekerja dengan mitra untuk menavigasi lingkungan kebijakan kompleks, perubahan regulasi, ekspektasi komunitas, dan kerentanan rantai pasok. Hanya untuk menemukan strategi keberlanjutan mereka terputus dari bagaimana keputusan sebenarnya dibuat. Rekomendasi datang sebagai dokumen jadi, bukan wawasan yang bisa dijalankan dan berakar pada kendala dan peluang konteks spesifik.',
+        'Celahnya ada di relevansi. Sebagian besar pekerjaan keberlanjutan memperlakukan isu sosial dan lingkungan sebagai masalah kepatuhan. Itu meleset dari apa yang sebenarnya. Itu adalah keputusan bisnis. Dan keputusan bisnis harus diambil berdasarkan bukti.',
       ],
     },
   },
+  approachKicker: {
+    en: 'Strategy without execution is theory.<br />Execution without measurement is guesswork.',
+    id: 'Strategi tanpa eksekusi hanya teori.<br />Eksekusi tanpa pengukuran hanya tebakan.',
+  },
   whatComesNext: {
-    title: { en: 'What Comes Next', id: 'Apa Selanjutnya' },
+    title: { en: 'What Comes Next', id: 'Apa yang Akan Datang' },
     body: {
       en: [
         'If your organization faces decisions at the intersection of social risk, regulatory change, and sustainable growth, let us help you think through them.',
         'We start with conversation. We listen to your specific challenges. We ask questions that clarify what actually matters. We do not sell solutions. We diagnose situations.',
         'If we are the right partner, we will say so. If we are not, we will tell you that too.',
-        'Reach out. Let\'s talk.',
+        "Reach out. Let's talk.",
       ],
       id: [
-        'Jika organisasi Anda menghadapi keputusan di persimpangan risiko sosial, perubahan regulasi, dan pertumbuhan berkelanjutan, biarkan kami membantu memikirkannya.',
-        'Kami mulai dengan percakapan. Kami mendengarkan tantangan spesifik Anda. Kami bertanya untuk memperjelas apa yang sebenarnya penting. Kami tidak menjual solusi. Kami mendiagnosis situasi.',
-        'Jika kami adalah mitra yang tepat, kami akan mengatakannya. Jika bukan, kami juga akan mengatakannya.',
+        'Jika organisasi Anda menghadapi keputusan di titik temu risiko sosial, perubahan regulasi, dan pertumbuhan berkelanjutan, izinkan kami membantu Anda memikirkannya.',
+        'Kami mulai dengan percakapan. Kami mendengarkan tantangan spesifik Anda. Kami mengajukan pertanyaan yang memperjelas apa yang sebenarnya penting. Kami tidak menjual solusi. Kami mendiagnosis situasi.',
+        'Jika kami mitra yang tepat, kami akan mengatakan demikian. Jika tidak, kami juga akan mengatakan itu.',
         'Hubungi kami. Mari bicara.',
       ],
     },
   },
 };
 
-export const kicker = {
-  approachTitle: {
-    en: 'Strategy without execution is theory.<br>Execution without measurement is guesswork.',
-    id: 'Strategi tanpa eksekusi hanya teori.<br>Eksekusi tanpa pengukuran hanya tebakan.',
+// Backward-compat alias used by some style files
+export const kicker = { approachTitle: profile.approachKicker };
+
+// ────────────── FINAL CTA (global, every page) ──────────────
+export const finalCta = {
+  tag: { en: 'Work With Us', id: 'Bekerja Sama' },
+  headline: {
+    en: 'Ready to make sustainability a strategic decision?',
+    id: 'Siap menjadikan keberlanjutan sebagai keputusan strategis?',
+  },
+  body: {
+    en: "Don't let unidentified social risk slow your business down. Let's start with a direct conversation. No templates, no generic pitch decks. Just an honest assessment of your context.",
+    id: 'Jangan biarkan risiko sosial yang belum teridentifikasi menghambat bisnis Anda. Mari mulai dengan percakapan langsung. Bukan template, juga bukan pitch deck generik. Cukup penilaian jujur atas konteks Anda.',
+  },
+  ctaPrimary:   { en: 'Talk to Our Team',         id: 'Hubungi Tim Kami' },
+  ctaSecondary: { en: 'Download Company Profile', id: 'Unduh Company Profile' },
+};
+
+// ────────────── CONTACT PAGE ──────────────
+export const contact = {
+  headline: {
+    en: "Let's talk about your challenge.",
+    id: 'Mari bicara tentang tantangan Anda.',
+  },
+  body: {
+    en: "We don't start with a service package. We start with your situation. Tell us what you're facing and we'll tell you honestly whether we can help.",
+    id: 'Kami tidak memulai dari paket layanan. Kami mulai dari situasi Anda. Ceritakan apa yang Anda hadapi dan kami akan jujur menyampaikan apakah kami bisa membantu.',
   },
 };

@@ -29,11 +29,9 @@ const year = new Date().getFullYear();
           <span data-lang="en">Pages</span><span data-lang="id">Halaman</span>
         </h5>
         <ul class="space-y-2.5 text-sm">
-          <li><a class="hover:text-white transition-colors" href={base + '/'}><span data-lang="en">{nav.home.en}</span><span data-lang="id">{nav.home.id}</span></a></li>
-          <li><a class="hover:text-white transition-colors" href={base + '/services'}><span data-lang="en">{nav.services.en}</span><span data-lang="id">{nav.services.id}</span></a></li>
-          <li><a class="hover:text-white transition-colors" href={base + '/impact'}><span data-lang="en">{nav.impact.en}</span><span data-lang="id">{nav.impact.id}</span></a></li>
-          <li><a class="hover:text-white transition-colors" href={base + '/about'}><span data-lang="en">{nav.about.en}</span><span data-lang="id">{nav.about.id}</span></a></li>
-          <li><a class="hover:text-white transition-colors" href={base + '/profile'}><span data-lang="en">{nav.profile.en}</span><span data-lang="id">{nav.profile.id}</span></a></li>
+          {nav.map(item => (
+            <li><a class="hover:text-white transition-colors" href={base.replace(/\/$/, '') + item.href}><span data-lang="en">{item.label.en}</span><span data-lang="id">{item.label.id}</span></a></li>
+          ))}
         </ul>
       </div>
 

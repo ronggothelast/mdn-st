@@ -1,71 +1,75 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { brand } from '../data/content';
+import { brand, contact as contactCopy, finalCta } from '../data/content';
+const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="Contact">
-  <section class="py-24 text-center" style="background: linear-gradient(180deg, #E8F2F1, #FDFCF8);">
-    <div class="container-x">
-      <span class="eyebrow"><span data-lang="en">Contact</span><span data-lang="id">Kontak</span></span>
-      <h1 class="text-5xl mb-5">
-        <span data-lang="en">Reach out. Let's talk.</span>
-        <span data-lang="id">Hubungi kami. Mari bicara.</span>
+  <!-- INTRO -->
+  <section class="py-24" style="background: linear-gradient(180deg, #FAF6EC, #ffffff);">
+    <div class="container-x max-w-4xl text-center">
+      <h1 class="text-5xl md:text-6xl mb-8 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+        <span data-lang="en">{contactCopy.headline.en}</span>
+        <span data-lang="id">{contactCopy.headline.id}</span>
       </h1>
-      <p class="text-[#5C6B7E] text-lg max-w-2xl mx-auto">
-        <span data-lang="en">We start with conversation. We listen to your specific challenges. We ask questions that clarify what actually matters.</span>
-        <span data-lang="id">Kami mulai dengan percakapan. Kami mendengarkan tantangan spesifik Anda. Kami bertanya untuk memperjelas apa yang sebenarnya penting.</span>
+      <p class="text-lg leading-[1.7] max-w-2xl mx-auto" style="color: #4A5568;">
+        <span data-lang="en">{contactCopy.body.en}</span>
+        <span data-lang="id">{contactCopy.body.id}</span>
       </p>
     </div>
   </section>
 
-  <section class="py-20">
-    <div class="container-x">
-      <div class="grid md:grid-cols-3 gap-8 mb-16">
-        <div class="text-center p-8 border border-[#E2E6EC] rounded-2xl bg-white">
-          <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-[#3D8F8A] mb-3">
-            <span data-lang="en">Email</span><span data-lang="id">Surel</span>
-          </h4>
-          <a href={`mailto:${brand.email}`} class="text-[#1A2E4A] hover:text-[#3D8F8A] transition-colors">{brand.email}</a>
-        </div>
-        <div class="text-center p-8 border border-[#E2E6EC] rounded-2xl bg-white">
-          <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-[#3D8F8A] mb-3">
-            <span data-lang="en">Phone</span><span data-lang="id">Telepon</span>
-          </h4>
-          <a href={`tel:${brand.phone.replace(/\s/g, '')}`} class="text-[#1A2E4A] hover:text-[#3D8F8A] transition-colors">{brand.phone}</a>
-        </div>
-        <div class="text-center p-8 border border-[#E2E6EC] rounded-2xl bg-white">
-          <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-[#3D8F8A] mb-3">Web</h4>
-          <span>{brand.web}</span>
+  <!-- DETAILS -->
+  <section class="py-20 bg-white">
+    <div class="container-x max-w-5xl grid md:grid-cols-2 gap-12">
+      <div>
+        <h2 class="text-2xl mb-8" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">Contact Details</span><span data-lang="id">Kontak</span>
+        </h2>
+        <div class="space-y-6">
+          <div>
+            <div class="text-xs font-sans uppercase tracking-[0.3em] mb-2" style="color: #3D8F8A;">
+              <span data-lang="en">Email</span><span data-lang="id">Email</span>
+            </div>
+            <a href={`mailto:${brand.email}`} class="text-xl">{brand.email}</a>
+          </div>
+          <div>
+            <div class="text-xs font-sans uppercase tracking-[0.3em] mb-2" style="color: #3D8F8A;">
+              <span data-lang="en">Phone</span><span data-lang="id">Telepon</span>
+            </div>
+            <a href={`tel:${brand.phone.replace(/[^+\d]/g, '')}`} class="text-xl">{brand.phone}</a>
+          </div>
+          <div>
+            <div class="text-xs font-sans uppercase tracking-[0.3em] mb-2" style="color: #3D8F8A;">
+              <span data-lang="en">Address</span><span data-lang="id">Alamat</span>
+            </div>
+            <p class="leading-[1.7]" style="color: #4A5568;">
+              <span data-lang="en">{brand.address.en}</span>
+              <span data-lang="id">{brand.address.id}</span>
+            </p>
+          </div>
+          <div>
+            <div class="text-xs font-sans uppercase tracking-[0.3em] mb-2" style="color: #3D8F8A;">
+              <span data-lang="en">Web</span><span data-lang="id">Web</span>
+            </div>
+            <p class="text-xl">{brand.web}</p>
+          </div>
         </div>
       </div>
 
-      <form id="contact-form" class="grid gap-5 max-w-xl mx-auto">
-        <input type="text" required placeholder="Your name" data-ph-en="Your name" data-ph-id="Nama Anda" class="px-5 py-3.5 border border-[#E2E6EC] rounded-xl bg-white focus:outline-none focus:border-[#3D8F8A] focus:ring-2 focus:ring-[#3D8F8A]/30" />
-        <input type="email" required placeholder="Email address" data-ph-en="Email address" data-ph-id="Alamat email" class="px-5 py-3.5 border border-[#E2E6EC] rounded-xl bg-white focus:outline-none focus:border-[#3D8F8A] focus:ring-2 focus:ring-[#3D8F8A]/30" />
-        <input type="text" placeholder="Organization (optional)" data-ph-en="Organization (optional)" data-ph-id="Organisasi (opsional)" class="px-5 py-3.5 border border-[#E2E6EC] rounded-xl bg-white focus:outline-none focus:border-[#3D8F8A] focus:ring-2 focus:ring-[#3D8F8A]/30" />
-        <textarea required placeholder="Tell us about the decision you're navigating" data-ph-en="Tell us about the decision you're navigating" data-ph-id="Ceritakan keputusan yang sedang Anda navigasi" class="px-5 py-3.5 border border-[#E2E6EC] rounded-xl bg-white min-h-[140px] resize-y focus:outline-none focus:border-[#3D8F8A] focus:ring-2 focus:ring-[#3D8F8A]/30"></textarea>
-        <button type="submit" class="bg-[#1A2E4A] hover:bg-[#0F1E33] text-white py-3.5 rounded-xl font-medium transition-colors">
-          <span data-lang="en">Send message</span><span data-lang="id">Kirim pesan</span>
-        </button>
-      </form>
+      <div class="rounded-3xl p-8 border" style="border-color: rgba(26,46,74,0.12); background: #FAF6EC;">
+        <h2 class="text-2xl mb-6" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">Send Us a Message</span><span data-lang="id">Kirim Pesan</span>
+        </h2>
+        <form class="space-y-4" onsubmit="window.location.href = `mailto:${'hello@madanistrategies.com'}?subject=${encodeURIComponent(this.subject.value)}&body=${encodeURIComponent(this.message.value)}&from=${encodeURIComponent(this.email.value)}`; return false;">
+          <input name="name" required placeholder="Your name" class="w-full px-4 py-3 rounded-lg border bg-white" style="border-color: rgba(26,46,74,0.15);" />
+          <input name="email" type="email" required placeholder="your@email.com" class="w-full px-4 py-3 rounded-lg border bg-white" style="border-color: rgba(26,46,74,0.15);" />
+          <input name="subject" placeholder="Subject" class="w-full px-4 py-3 rounded-lg border bg-white" style="border-color: rgba(26,46,74,0.15);" />
+          <textarea name="message" required rows="5" placeholder="Tell us what you're facing..." class="w-full px-4 py-3 rounded-lg border bg-white" style="border-color: rgba(26,46,74,0.15);"></textarea>
+          <button type="submit" class="w-full px-6 py-3 rounded-full font-medium text-sm" style="background: #1A2E4A; color: white;">
+            <span data-lang="en">Send Message</span><span data-lang="id">Kirim Pesan</span>
+          </button>
+        </form>
+      </div>
     </div>
   </section>
-
-  <script is:inline>
-    // Update placeholders on lang switch
-    const updatePlaceholders = () => {
-      const lang = document.documentElement.classList.contains('lang-id') ? 'id' : 'en';
-      document.querySelectorAll('[data-ph-en]').forEach(el => {
-        el.placeholder = el.getAttribute(`data-ph-${lang}`) || el.placeholder;
-      });
-    };
-    updatePlaceholders();
-    document.querySelectorAll('[data-lang-set]').forEach(b => b.addEventListener('click', () => setTimeout(updatePlaceholders, 10)));
-
-    document.getElementById('contact-form').addEventListener('submit', e => {
-      e.preventDefault();
-      const lang = document.documentElement.classList.contains('lang-id') ? 'id' : 'en';
-      const msg = lang === 'id' ? 'Terima kasih! Ini adalah prototipe.' : 'Thanks! This is a prototype.';
-      alert(msg);
-    });
-  </script>
 </BaseLayout>

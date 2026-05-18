@@ -1,73 +1,116 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import { hero, stats, services, stages, brand } from '../data/content';
+import { hero, stats, services, valueProp, valueCards, heroQuote, finalCta, brand } from '../data/content';
 const base = import.meta.env.BASE_URL;
 ---
-<BaseLayout title="home">
+<BaseLayout title="Home">
   <!-- HERO -->
-  <section class="relative overflow-hidden pb-20 pt-12" style="background: linear-gradient(180deg, #FDFCF8 0%, #E8F2F1 100%);">
-    <div class="container-x grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
-      <div class="animate-fade-up">
-        <span class="eyebrow">
+  <section class="pt-20 pb-16" style="background: #1A2E4A; color: #FAF6EC;">
+    <div class="container-x grid lg:grid-cols-[1.1fr_1fr] gap-12 items-center">
+      <div>
+        <span class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #C9A876;">
           <span data-lang="en">{hero.eyebrow.en}</span><span data-lang="id">{hero.eyebrow.id}</span>
         </span>
-        <h1 class="text-[clamp(2.4rem,5.5vw,4.2rem)] mb-6">
-          <span data-lang="en" set:html={hero.title.en}></span><span data-lang="id" set:html={hero.title.id}></span>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl mt-5 leading-[1.05] tracking-tight" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">{hero.headline.en}</span>
+          <span data-lang="id">{hero.headline.id}</span>
         </h1>
-        <p class="text-lg text-[#5C6B7E] mb-8 max-w-xl">
-          <span data-lang="en">{hero.lead.en}</span><span data-lang="id">{hero.lead.id}</span>
+        <p class="text-lg leading-[1.7] mt-6 max-w-xl text-[#FAF6EC]/80">
+          <span data-lang="en">{hero.subheadline.en}</span>
+          <span data-lang="id">{hero.subheadline.id}</span>
         </p>
-        <div class="flex flex-wrap gap-4">
-          <a href={base + '/services'} class="btn-primary">
+        <div class="mt-9 flex flex-wrap gap-4">
+          <a href={base + '/contact'} class="inline-block px-7 py-3 rounded-full font-medium text-sm" style="background: #C9A876; color: #1A2E4A;">
             <span data-lang="en">{hero.ctaPrimary.en}</span><span data-lang="id">{hero.ctaPrimary.id}</span>
-            <span>→</span>
           </a>
-          <a href={base + '/profile'} class="btn-ghost">
-            <span data-lang="en">{hero.ctaSecondary.en}</span><span data-lang="id">{hero.ctaSecondary.id}</span>
+          <a href={base + '/services'} class="inline-block px-7 py-3 rounded-full font-medium text-sm border border-[#FAF6EC]/30 hover:bg-[#FAF6EC]/10 transition">
+            <span data-lang="en">{hero.ctaSecondary.en} →</span><span data-lang="id">{hero.ctaSecondary.id} →</span>
           </a>
         </div>
       </div>
-      <div class="relative rounded-3xl overflow-hidden shadow-[0_40px_80px_-30px_rgba(26,46,74,0.25)] aspect-[4/5]">
-        <img src={base + '/assets/images/hero-community.png'} alt="Community gathered around a growing tree" class="w-full h-full object-cover" />
-        <div class="absolute top-8 -right-8 w-20 h-20 rounded-full opacity-60" style="background: var(--color-tan);"></div>
+      <div class="aspect-[4/5] rounded-3xl overflow-hidden">
+        <img src={base + '/assets/images/hero-community.png'} alt="Community" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>
 
   <!-- STATS STRIP -->
-  <section class="py-16" style="background: var(--color-teal); color: white;">
-    <div class="container-x grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+  <section class="py-12" style="background: #3D8F8A; color: #FAF6EC;">
+    <div class="container-x grid grid-cols-2 md:grid-cols-3 gap-8">
       {stats.map(s => (
-        <div>
-          <div class="font-serif text-[clamp(2.5rem,4vw,3.5rem)] font-semibold leading-none mb-2">{s.num}</div>
-          <div class="text-[0.82rem] tracking-[0.1em] uppercase opacity-85 font-medium">
-            <span data-lang="en">{s.en}</span><span data-lang="id">{s.id}</span>
+        <div class="text-center">
+          <div class="text-5xl md:text-6xl font-medium" style="font-family: 'Fraunces', Georgia, serif;">{s.num}</div>
+          <div class="text-xs uppercase tracking-widest mt-2 text-[#FAF6EC]/85">
+            <span data-lang="en">{s.label.en}</span><span data-lang="id">{s.label.id}</span>
           </div>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- WHAT WE DO -->
+  <!-- PULL QUOTE -->
+  <section class="py-20 border-b border-[#1A2E4A]/10">
+    <div class="container-x max-w-4xl text-center">
+      <p class="text-2xl md:text-3xl italic leading-snug" style="font-family: 'Fraunces', Georgia, serif; color: #1A2E4A;">
+        <span class="text-5xl align-top mr-2" style="color: #C9A876;">"</span>
+        <span data-lang="en">{heroQuote.en}</span>
+        <span data-lang="id">{heroQuote.id}</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- WHY MAGIES (VALUE PROP) -->
+  <section class="py-24" style="background: #FAF6EC;">
+    <div class="container-x">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #3D8F8A;">
+          <span data-lang="en">{valueProp.tag.en}</span><span data-lang="id">{valueProp.tag.id}</span>
+        </span>
+        <h2 class="text-4xl md:text-5xl mt-4 mb-6 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">{valueProp.headline.en}</span>
+          <span data-lang="id">{valueProp.headline.id}</span>
+        </h2>
+        <p class="text-lg leading-[1.7]" style="color: #4A5568;">
+          <span data-lang="en">{valueProp.body.en}</span>
+          <span data-lang="id">{valueProp.body.id}</span>
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {valueCards.map((c, i) => (
+          <div class="bg-white p-8 rounded-2xl border border-[#1A2E4A]/10">
+            <div class="text-3xl font-medium mb-4" style="color: #C9A876; font-family: 'Fraunces', Georgia, serif;">0{i + 1}</div>
+            <h3 class="text-xl mb-4 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+              <span data-lang="en">{c.title.en}</span>
+              <span data-lang="id">{c.title.id}</span>
+            </h3>
+            <p class="leading-[1.7]" style="color: #4A5568;">
+              <span data-lang="en">{c.body.en}</span>
+              <span data-lang="id">{c.body.id}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
   <section class="py-24">
     <div class="container-x">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="eyebrow"><span data-lang="en">What We Do</span><span data-lang="id">Yang Kami Lakukan</span></span>
-        <h2 class="text-4xl mb-5">
-          <span data-lang="en">Three services. One integrated approach.</span>
-          <span data-lang="id">Tiga layanan. Satu pendekatan terpadu.</span>
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #3D8F8A;">
+          <span data-lang="en">What We Do</span><span data-lang="id">Layanan Kami</span>
+        </span>
+        <h2 class="text-4xl md:text-5xl mt-4 mb-6 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">Three integrated services. One coherent strategy.</span>
+          <span data-lang="id">Tiga layanan terintegrasi. Satu strategi yang koheren.</span>
         </h2>
-        <p class="text-[#5C6B7E] text-lg">
-          <span data-lang="en">We work with organizations whose viability depends on community relationships, regulatory landscapes, and resource management.</span>
-          <span data-lang="id">Kami bekerja dengan organisasi yang viabilitasnya bergantung pada hubungan komunitas, lanskap regulasi, dan pengelolaan sumber daya.</span>
-        </p>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         {services.map(svc => (
           <ServiceCard
             num={svc.num}
-            image={svc.image}
+            image={base + svc.image}
             titleEn={svc.title.en}
             titleId={svc.title.id}
             shortEn={svc.short.en}
@@ -79,49 +122,28 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
-  <!-- APPROACH (3 stages) -->
-  <section class="py-24" style="background: var(--color-navy); color: white;">
-    <div class="container-x">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="eyebrow" style="color: var(--color-teal-light)">
-          <span data-lang="en">How We Work</span><span data-lang="id">Cara Kami Bekerja</span>
-        </span>
-        <h2 class="text-3xl md:text-4xl text-white">
-          <span data-lang="en">Strategy without execution is theory.<br />Execution without measurement is guesswork.</span>
-          <span data-lang="id">Strategi tanpa eksekusi hanya teori.<br />Eksekusi tanpa pengukuran hanya tebakan.</span>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8 mt-12">
-        {stages.map(stage => (
-          <div class="p-8 border border-white/10 rounded-2xl bg-white/[0.03]">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center font-serif font-semibold text-xl mb-5" style="background: var(--color-teal)">{stage.num}</div>
-            <h3 class="text-xl text-white mb-3">
-              <span data-lang="en">{stage.title.en}</span><span data-lang="id">{stage.title.id}</span>
-            </h3>
-            <p class="text-white/70 text-sm">
-              <span data-lang="en">{stage.body.en}</span><span data-lang="id">{stage.body.id}</span>
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-20 text-center" style="background: var(--color-navy); color: white;">
-    <div class="container-x">
-      <h2 class="text-4xl text-white mb-5">
-        <span data-lang="en">Let's start with a conversation.</span>
-        <span data-lang="id">Mari mulai dengan percakapan.</span>
+  <!-- FINAL CTA -->
+  <section class="py-24" style="background: #1A2E4A; color: #FAF6EC;">
+    <div class="container-x max-w-4xl text-center">
+      <span class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #C9A876;">
+        <span data-lang="en">{finalCta.tag.en}</span><span data-lang="id">{finalCta.tag.id}</span>
+      </span>
+      <h2 class="text-4xl md:text-5xl mt-4 mb-6 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+        <span data-lang="en">{finalCta.headline.en}</span>
+        <span data-lang="id">{finalCta.headline.id}</span>
       </h2>
-      <p class="text-white/75 max-w-xl mx-auto mb-8 text-lg">
-        <span data-lang="en">If your organization faces decisions at the intersection of social risk, regulatory change, and sustainable growth — we'd like to hear about it.</span>
-        <span data-lang="id">Jika organisasi Anda menghadapi keputusan di persimpangan risiko sosial, perubahan regulasi, dan pertumbuhan berkelanjutan — kami ingin mendengarnya.</span>
+      <p class="text-lg leading-[1.7] mb-10 text-[#FAF6EC]/85">
+        <span data-lang="en">{finalCta.body.en}</span>
+        <span data-lang="id">{finalCta.body.id}</span>
       </p>
-      <a href={base + '/contact'} class="btn-teal">
-        <span data-lang="en">Reach out</span><span data-lang="id">Hubungi kami</span>
-        <span>→</span>
-      </a>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href={base + '/contact'} class="inline-block px-8 py-3 rounded-full font-medium text-sm" style="background: #C9A876; color: #1A2E4A;">
+          <span data-lang="en">{finalCta.ctaPrimary.en}</span><span data-lang="id">{finalCta.ctaPrimary.id}</span>
+        </a>
+        <a href={base + '/profile'} class="inline-block px-8 py-3 rounded-full font-medium text-sm border border-[#FAF6EC]/30 hover:bg-[#FAF6EC]/10 transition">
+          <span data-lang="en">{finalCta.ctaSecondary.en}</span><span data-lang="id">{finalCta.ctaSecondary.id}</span>
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>

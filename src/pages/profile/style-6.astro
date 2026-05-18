@@ -1,183 +1,199 @@
 ---
-// STYLE 06 — BMW Engineering
+// STYLE 06 — Heritage Document (Indonesian elegance, classical)
+// Warm cream + tan + navy. Borobudur monograph vibe.
 import ProfileLayout from '../../layouts/ProfileLayout.astro';
 import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
 const base = import.meta.env.BASE_URL;
 ---
-<ProfileLayout styleNum={6} styleName="BMW Engineering">
-  <div style="background: #000; color: #fff; font-family: 'Inter', sans-serif;">
-    <!-- M-stripe -->
-    <div class="h-1 flex">
-      <div class="flex-1" style="background: #1c69d4;"></div>
-      <div class="flex-1" style="background: #2D2D2D;"></div>
-      <div class="flex-1" style="background: #d40015;"></div>
-    </div>
+<ProfileLayout styleNum={6} styleName="Heritage Document">
+  <div style="background: #F4ECDB; color: #1A2E4A; font-family: 'Fraunces', Georgia, serif;">
+    <!-- Cover with classical layout -->
+    <header class="py-32 border-b-4 border-double" style="border-color: #C9A876;">
+      <div class="container-x max-w-3xl text-center">
+        <!-- Ornamental separator top -->
+        <div class="flex items-center justify-center gap-4 mb-12">
+          <div class="h-px w-16" style="background: #C9A876;"></div>
+          <div class="w-2 h-2 rounded-full" style="background: #C9A876;"></div>
+          <div class="h-px w-24" style="background: #C9A876;"></div>
+          <div class="w-2 h-2 rounded-full" style="background: #C9A876;"></div>
+          <div class="h-px w-16" style="background: #C9A876;"></div>
+        </div>
 
-    <!-- 0. Hero -->
-    <section class="py-32 relative overflow-hidden">
-      <div class="absolute inset-0 opacity-20">
-        <img src={base + '/assets/images/forest.png'} alt="" class="w-full h-full object-cover" />
-      </div>
-      <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent 0%, #000 90%);"></div>
-      <div class="container-x relative">
-        <div class="text-xs font-mono uppercase tracking-[0.4em] text-white/60 mb-6">⌬ ENGINEERED FOR IMPACT</div>
-        <h1 class="text-7xl md:text-9xl font-light leading-[0.95] tracking-tight mb-8 uppercase">{brand.name}</h1>
-        <p class="text-2xl text-white/80 max-w-2xl uppercase tracking-wide">
+        <div class="text-xs font-sans uppercase tracking-[0.5em] mb-12" style="color: #C9A876;">
+          <span data-lang="en">— Madani · Indonesia · 2026 —</span>
+          <span data-lang="id">— Madani · Indonesia · 2026 —</span>
+        </div>
+
+        <h1 class="text-7xl md:text-8xl leading-[1] font-medium tracking-tight mb-12">{brand.name}</h1>
+
+        <div class="text-2xl italic mb-12" style="color: #3D8F8A;">
+          <span data-lang="en">A Company Profile.</span>
+          <span data-lang="id">Sebuah Profil Perusahaan.</span>
+        </div>
+
+        <p class="text-xl italic leading-[1.7] max-w-xl mx-auto" style="color: #4A5568;">
           <span data-lang="en">{brand.tagline.en}</span>
           <span data-lang="id">{brand.tagline.id}</span>
+        </p>
+
+        <!-- Ornamental separator bottom -->
+        <div class="flex items-center justify-center gap-4 mt-16">
+          <div class="h-px w-16" style="background: #C9A876;"></div>
+          <div class="w-2 h-2 rounded-full" style="background: #C9A876;"></div>
+          <div class="h-px w-24" style="background: #C9A876;"></div>
+          <div class="w-2 h-2 rounded-full" style="background: #C9A876;"></div>
+          <div class="h-px w-16" style="background: #C9A876;"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- I. Who We Are -->
+    <section class="py-24 border-b border-[#C9A876]/40">
+      <div class="container-x max-w-3xl">
+        <div class="text-center mb-12">
+          <div class="text-xs font-sans uppercase tracking-[0.4em] mb-4" style="color: #C9A876;">~ I ~</div>
+          <h2 class="text-4xl">
+            <span data-lang="en">{profile.whoWeAre.title.en}</span>
+            <span data-lang="id">{profile.whoWeAre.title.id}</span>
+          </h2>
+        </div>
+        {profile.whoWeAre.body.en.map((p, i) => (
+          <p class={`text-lg leading-[1.85] mb-6 ${i === 0 ? 'dropcap' : ''}`} style="text-align: justify;">
+            <span data-lang="en">{p}</span>
+            <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+          </p>
+        ))}
+      </div>
+    </section>
+
+    <!-- II. Who We Serve -->
+    <section class="py-24 border-b border-[#C9A876]/40">
+      <div class="container-x max-w-3xl">
+        <div class="text-center mb-12">
+          <div class="text-xs font-sans uppercase tracking-[0.4em] mb-4" style="color: #C9A876;">~ II ~</div>
+          <h2 class="text-4xl">
+            <span data-lang="en">{profile.whoWeServe.title.en}</span>
+            <span data-lang="id">{profile.whoWeServe.title.id}</span>
+          </h2>
+        </div>
+        <p class="text-lg leading-[1.85]" style="text-align: justify;">
+          <span data-lang="en">{profile.whoWeServe.body.en}</span>
+          <span data-lang="id">{profile.whoWeServe.body.id}</span>
         </p>
       </div>
     </section>
 
-    <!-- 1. Who We Are & 2. Who We Serve -->
-    <section class="py-24 border-t border-white/10">
-      <div class="container-x grid lg:grid-cols-[1fr_2fr] gap-12">
-        <div>
-          <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 01</div>
-          <h2 class="text-3xl uppercase tracking-tight">
-            <span data-lang="en">{profile.whoWeAre.title.en}</span>
-            <span data-lang="id">{profile.whoWeAre.title.id}</span>
-          </h2>
-          <div class="h-1 w-16 mt-6" style="background: linear-gradient(90deg, #1c69d4, #d40015);"></div>
-        </div>
-        <div class="space-y-12">
-          <div>
-            {profile.whoWeAre.body.en.map((p, i) => (
-              <p class="text-lg leading-relaxed mb-6 text-white/80">
-                <span data-lang="en">{p}</span>
-                <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
-              </p>
-            ))}
-          </div>
-          <div class="p-8 border border-white/10" style="background: rgba(255,255,255,0.05);">
-            <h3 class="text-xl uppercase tracking-wide mb-4 text-[#1c69d4]">
-              <span data-lang="en">{profile.whoWeServe.title.en}</span>
-              <span data-lang="id">{profile.whoWeServe.title.id}</span>
-            </h3>
-            <p class="text-white/80 leading-relaxed">
-              <span data-lang="en">{profile.whoWeServe.body.en}</span>
-              <span data-lang="id">{profile.whoWeServe.body.id}</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. The Gap -->
-    <section class="py-24 border-t border-white/10">
-      <div class="container-x grid lg:grid-cols-[1fr_2fr] gap-12">
-        <div>
-          <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 02</div>
-          <h2 class="text-3xl uppercase tracking-tight">
+    <!-- III. The Gap -->
+    <section class="py-24 border-b border-[#C9A876]/40" style="background: #1A2E4A; color: #F4ECDB;">
+      <div class="container-x max-w-3xl">
+        <div class="text-center mb-12">
+          <div class="text-xs font-sans uppercase tracking-[0.4em] mb-4" style="color: #C9A876;">~ III ~</div>
+          <h2 class="text-4xl">
             <span data-lang="en">{profile.theGap.title.en}</span>
             <span data-lang="id">{profile.theGap.title.id}</span>
           </h2>
         </div>
-        <div>
-          {profile.theGap.body.en.map((p, i) => (
-            <p class="text-lg leading-relaxed mb-6 text-white/80">
-              <span data-lang="en">{p}</span>
-              <span data-lang="id">{profile.theGap.body.id[i]}</span>
-            </p>
-          ))}
-        </div>
+        {profile.theGap.body.en.map((p, i) => (
+          <p class="text-lg leading-[1.85] mb-6" style="text-align: justify;">
+            <span data-lang="en">{p}</span>
+            <span data-lang="id">{profile.theGap.body.id[i]}</span>
+          </p>
+        ))}
       </div>
     </section>
 
-    <!-- 4. Approach -->
-    <section class="py-24 border-t border-white/10">
-      <div class="container-x">
-        <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 03 · METHODOLOGY</div>
-        <h2 class="text-4xl uppercase tracking-tight mb-16">
-          <span data-lang="en" set:html={kicker.approachTitle.en}></span>
-          <span data-lang="id" set:html={kicker.approachTitle.id}></span>
-        </h2>
-        <div class="grid md:grid-cols-3 gap-px" style="background: rgba(255,255,255,0.1);">
-          {stages.map(s => (
-            <div class="p-10" style="background: #0a0a0a;">
-              <div class="text-xs font-mono mb-4 text-[#d40015]">PHASE 0{s.num} //</div>
-              <h3 class="text-2xl uppercase tracking-wide mb-4">
-                <span data-lang="en">{s.title.en}</span>
-                <span data-lang="id">{s.title.id}</span>
-              </h3>
-              <p class="text-white/70 leading-relaxed">
-                <span data-lang="en">{s.body.en}</span>
-                <span data-lang="id">{s.body.id}</span>
-              </p>
+    <!-- IV. Approach -->
+    <section class="py-24 border-b border-[#C9A876]/40">
+      <div class="container-x max-w-4xl">
+        <div class="text-center mb-16">
+          <div class="text-xs font-sans uppercase tracking-[0.4em] mb-4" style="color: #C9A876;">~ IV ~</div>
+          <h2 class="text-4xl leading-tight">
+            <span data-lang="en" set:html={kicker.approachTitle.en}></span>
+            <span data-lang="id" set:html={kicker.approachTitle.id}></span>
+          </h2>
+        </div>
+        <div class="space-y-12">
+          {stages.map((s, i) => (
+            <div class={`grid md:grid-cols-12 gap-8 items-start ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+              <div class={`md:col-span-3 text-center ${i % 2 === 1 ? 'md:order-2' : ''}`}>
+                <div class="inline-flex items-center justify-center w-24 h-24 rounded-full text-3xl font-medium" style="background: #C9A876; color: #1A2E4A;">{s.num}</div>
+              </div>
+              <div class={`md:col-span-9 ${i % 2 === 1 ? 'md:order-1 md:text-right' : ''}`}>
+                <h3 class="text-3xl mb-4">
+                  <span data-lang="en">{s.title.en}</span>
+                  <span data-lang="id">{s.title.id}</span>
+                </h3>
+                <p class="text-lg leading-[1.85]" style="color: #4A5568;">
+                  <span data-lang="en">{s.body.en}</span>
+                  <span data-lang="id">{s.body.id}</span>
+                </p>
+              </div>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- 5. Services -->
-    <section class="py-24 border-t border-white/10">
-      <div class="container-x">
-        <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 04 · CAPABILITIES</div>
-        <h2 class="text-4xl uppercase tracking-tight mb-16">
-          <span data-lang="en">Three engineering disciplines</span>
-          <span data-lang="id">Tiga disiplin rekayasa</span>
-        </h2>
-        <div class="space-y-px" style="background: rgba(255,255,255,0.1);">
+    <!-- V. Services -->
+    <section class="py-24 border-b border-[#C9A876]/40">
+      <div class="container-x max-w-4xl">
+        <div class="text-center mb-16">
+          <div class="text-xs font-sans uppercase tracking-[0.4em] mb-4" style="color: #C9A876;">~ V ~</div>
+          <h2 class="text-4xl">
+            <span data-lang="en">Three Services</span>
+            <span data-lang="id">Tiga Layanan</span>
+          </h2>
+        </div>
+        <div class="space-y-16">
           {services.map(svc => (
-            <div class="p-10 lg:p-16 grid lg:grid-cols-[1fr_2fr] gap-8" style="background: #0a0a0a;">
-              <div>
-                <div class="text-5xl font-light mb-4" style="color: #1c69d4;">{svc.num}</div>
-                <h3 class="text-2xl uppercase tracking-wide">
+            <article class="pb-16 border-b border-double border-[#C9A876]/40 last:border-0">
+              <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full text-2xl font-medium" style="background: #1A2E4A; color: #F4ECDB;">{svc.num}</div>
+                <h3 class="text-3xl leading-tight max-w-2xl mx-auto">
                   <span data-lang="en">{svc.title.en}</span>
                   <span data-lang="id">{svc.title.id}</span>
                 </h3>
               </div>
-              <div class="space-y-4">
+              <div class="space-y-5 max-w-2xl mx-auto">
                 {svc.detail.en.map((p, j) => (
-                  <p class="text-white/80 leading-relaxed text-lg">
+                  <p class="text-lg leading-[1.85]" style="text-align: justify; color: #4A5568;">
                     <span data-lang="en">{p}</span>
                     <span data-lang="id">{svc.detail.id[j]}</span>
                   </p>
                 ))}
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- 6. Impact -->
-    <section class="py-24 border-t border-white/10">
-      <div class="container-x">
-        <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 05 · METRICS</div>
+    <!-- VI. Impact -->
+    <section class="py-24 border-b border-[#C9A876]/40">
+      <div class="container-x max-w-4xl">
+        <div class="text-center mb-16">
+          <div class="text-xs font-sans uppercase tracking-[0.4em] mb-4" style="color: #C9A876;">~ VI ~</div>
+          <h2 class="text-4xl">
+            <span data-lang="en">Proof of Execution</span>
+            <span data-lang="id">Bukti Eksekusi</span>
+          </h2>
+        </div>
         <div class="grid md:grid-cols-2 gap-8">
           {impactCards.map(c => (
-            <div class="border border-white/10 p-8">
-              <div class="text-xs font-mono uppercase tracking-wider mb-4" style="color: #d40015;">[{c.tag.en}]</div>
-              <h3 class="text-xl uppercase tracking-wide mb-3"><span data-lang="en">{c.title.en}</span><span data-lang="id">{c.title.id}</span></h3>
-              <p class="text-white/70 leading-relaxed"><span data-lang="en">{c.body.en}</span><span data-lang="id">{c.body.id}</span></p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. Team -->
-    <section class="py-24 border-t border-white/10">
-      <div class="container-x">
-        <div class="text-xs font-mono uppercase tracking-[0.3em] text-white/60 mb-4">/ SECTION 06 · TEAM</div>
-        <h2 class="text-4xl uppercase tracking-tight mb-16">
-          <span data-lang="en">Engineers behind the work</span>
-          <span data-lang="id">Insinyur di balik karya</span>
-        </h2>
-        <div class="grid md:grid-cols-2 gap-12">
-          {team.map(m => (
-            <div class="border-l-2 border-[#1c69d4] pl-8">
-              <div class="w-16 h-16 mb-6 flex items-center justify-center font-light text-2xl" style="background: linear-gradient(135deg, #1c69d4, #000); color: white;">{m.initials}</div>
-              <h3 class="text-2xl uppercase tracking-wide mb-1">{m.name}</h3>
-              <div class="text-sm font-mono uppercase tracking-wider mb-4" style="color: #1c69d4;">
-                <span data-lang="en">{m.role.en}</span>
-                <span data-lang="id">{m.role.id}</span>
+            <div class="p-8 border-2 border-double" style="border-color: #C9A876; background: white;">
+              <div class="text-center mb-4">
+                <div class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #3D8F8A;">
+                  <span data-lang="en">{c.tag.en}</span>
+                  <span data-lang="id">{c.tag.id}</span>
+                </div>
               </div>
-              <p class="text-base text-white/70 leading-relaxed">
-                <span data-lang="en">{m.bioFull.en}</span>
-                <span data-lang="id">{m.bioFull.id}</span>
+              <h3 class="text-2xl mb-4 text-center leading-snug">
+                <span data-lang="en">{c.title.en}</span>
+                <span data-lang="id">{c.title.id}</span>
+              </h3>
+              <p class="text-base leading-[1.7]" style="text-align: justify; color: #4A5568;">
+                <span data-lang="en">{c.body.en}</span>
+                <span data-lang="id">{c.body.id}</span>
               </p>
             </div>
           ))}
@@ -185,29 +201,63 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
-    <!-- 8. Closing -->
-    <section class="py-32 border-t border-white/10 text-center">
+    <!-- VII. Team -->
+    <section class="py-24 border-b border-[#C9A876]/40">
       <div class="container-x max-w-4xl">
-        <h2 class="text-5xl uppercase tracking-tight mb-12">
+        <div class="text-center mb-16">
+          <div class="text-xs font-sans uppercase tracking-[0.4em] mb-4" style="color: #C9A876;">~ VII ~</div>
+          <h2 class="text-4xl">
+            <span data-lang="en">Tim Kami</span>
+            <span data-lang="id">Tim Kami</span>
+          </h2>
+        </div>
+        <div class="space-y-12">
+          {team.map((m, i) => (
+            <div class={`grid md:grid-cols-12 gap-8 items-start pb-12 border-b border-[#C9A876]/30 last:border-0 ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+              <div class={`md:col-span-3 text-center ${i % 2 === 1 ? 'md:order-2' : ''}`}>
+                <div class="aspect-square w-full max-w-[180px] mx-auto rounded-full flex items-center justify-center text-5xl font-medium" style="background: linear-gradient(135deg, #3D8F8A, #1A2E4A); color: #F4ECDB;">{m.initials}</div>
+              </div>
+              <div class={`md:col-span-9 ${i % 2 === 1 ? 'md:order-1' : ''}`}>
+                <h3 class="text-3xl mb-2">{m.name}</h3>
+                <div class="text-xs font-sans uppercase tracking-[0.3em] mb-5" style="color: #3D8F8A;">
+                  <span data-lang="en">{m.role.en}</span>
+                  <span data-lang="id">{m.role.id}</span>
+                </div>
+                <p class="text-lg leading-[1.85]" style="text-align: justify; color: #4A5568;">
+                  <span data-lang="en">{m.bioFull.en}</span>
+                  <span data-lang="id">{m.bioFull.id}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- VIII. Closing -->
+    <section class="py-32 border-t-4 border-double text-center" style="border-color: #C9A876;">
+      <div class="container-x max-w-3xl">
+        <div class="text-xs font-sans uppercase tracking-[0.4em] mb-4" style="color: #C9A876;">~ VIII ~</div>
+        <h2 class="text-5xl mb-12">
           <span data-lang="en">{profile.whatComesNext.title.en}</span>
           <span data-lang="id">{profile.whatComesNext.title.id}</span>
         </h2>
-        <div class="space-y-6 mb-12 text-left">
+        <div class="space-y-6 mb-16 text-left">
           {profile.whatComesNext.body.en.map((p, i) => (
-            <p class="text-xl text-white/80 leading-relaxed">
+            <p class="text-lg leading-[1.85]" style="text-align: justify; color: #4A5568;">
               <span data-lang="en">{p}</span>
               <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
             </p>
           ))}
         </div>
-        <a href={`mailto:${brand.email}`} class="inline-block px-12 py-4 font-medium tracking-wider uppercase text-sm" style="background: #1c69d4; color: white;">&gt; INITIATE CONTACT</a>
+        <div class="flex items-center justify-center gap-4 mb-12">
+          <div class="h-px w-16" style="background: #C9A876;"></div>
+          <div class="w-2 h-2 rounded-full" style="background: #C9A876;"></div>
+          <div class="h-px w-16" style="background: #C9A876;"></div>
+        </div>
+        <a href={`mailto:${brand.email}`} class="inline-block px-12 py-4 rounded-full font-sans" style="background: #1A2E4A; color: #F4ECDB;">{brand.email}</a>
+        <div class="mt-6 text-sm font-sans" style="color: #4A5568;">{brand.phone}</div>
       </div>
     </section>
-
-    <div class="h-1 flex">
-      <div class="flex-1" style="background: #1c69d4;"></div>
-      <div class="flex-1" style="background: #2D2D2D;"></div>
-      <div class="flex-1" style="background: #d40015;"></div>
-    </div>
   </div>
 </ProfileLayout>

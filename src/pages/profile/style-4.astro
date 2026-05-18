@@ -1,160 +1,214 @@
 ---
-// STYLE 04 — Notion Warm
+// STYLE 04 — Magazine Feature (editorial photography)
+// Double columns, drop caps, big imagery, like NatGeo / Monocle.
 import ProfileLayout from '../../layouts/ProfileLayout.astro';
 import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
 const base = import.meta.env.BASE_URL;
 ---
-<ProfileLayout styleNum={4} styleName="Notion Warm">
-  <div style="background: #FFFEFB; color: #37352F; font-family: 'Fraunces', Georgia, serif;">
-    <section class="py-32">
-      <div class="container-x max-w-3xl">
-        <div class="text-7xl mb-2 opacity-90">📋</div>
-        <h1 class="text-6xl font-semibold mb-4 tracking-tight">{brand.name}</h1>
-        <p class="text-2xl text-[#787774] italic">
-          <span data-lang="en">{brand.tagline.en}</span>
-          <span data-lang="id">{brand.tagline.id}</span>
+<ProfileLayout styleNum={4} styleName="Magazine Feature">
+  <div style="background: #FFFFFF; color: #1A2E4A; font-family: 'Fraunces', Georgia, serif;">
+    <!-- Cover with full image -->
+    <header class="relative h-screen overflow-hidden">
+      <img src={base + '/assets/images/forest.png'} alt="" class="absolute inset-0 w-full h-full object-cover" />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,46,74,0.3) 0%, rgba(26,46,74,0.85) 100%);"></div>
+      <div class="relative h-full flex flex-col justify-end pb-20" style="color: #FAF6EC;">
+        <div class="container-x">
+          <div class="text-xs font-sans uppercase tracking-[0.4em] mb-6" style="color: #C9A876;">
+            <span data-lang="en">Issue 01 · A Madani Feature</span>
+            <span data-lang="id">Edisi 01 · Sebuah Liputan Madani</span>
+          </div>
+          <h1 class="text-[clamp(3rem,8vw,7rem)] leading-[0.95] font-medium tracking-tight mb-6 max-w-4xl">
+            <span data-lang="en">Strategy that holds in the real world.</span>
+            <span data-lang="id">Strategi yang teruji di dunia nyata.</span>
+          </h1>
+          <p class="text-2xl italic max-w-2xl">
+            <span data-lang="en">A profile of {brand.name}.</span>
+            <span data-lang="id">Sebuah profil tentang {brand.name}.</span>
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Pull quote -->
+    <section class="py-24 border-b border-[#1A2E4A]/15">
+      <div class="container-x max-w-4xl text-center">
+        <p class="text-3xl md:text-5xl italic leading-tight">
+          <span class="text-7xl font-serif align-top mr-2 leading-none" style="color: #C9A876;">&ldquo;</span>
+          <span data-lang="en">Strategy without execution is theory. Execution without measurement is guesswork.</span>
+          <span data-lang="id">Strategi tanpa eksekusi hanya teori. Eksekusi tanpa pengukuran hanya tebakan.</span>
         </p>
       </div>
     </section>
 
-    <article class="container-x max-w-3xl pb-32 space-y-16">
-      <!-- 1. Who we are -->
-      <section>
-        <h2 class="text-4xl font-semibold mb-6">
+    <!-- 1. Who We Are - two column -->
+    <section class="py-24 border-b border-[#1A2E4A]/15">
+      <div class="container-x max-w-5xl">
+        <div class="text-xs font-sans uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">— Feature</div>
+        <h2 class="text-5xl mb-12 max-w-3xl">
           <span data-lang="en">{profile.whoWeAre.title.en}</span>
           <span data-lang="id">{profile.whoWeAre.title.id}</span>
         </h2>
-        {profile.whoWeAre.body.en.map((p, i) => (
-          <p class="text-lg leading-[1.7] mb-5">
-            <span data-lang="en">{p}</span>
-            <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
-          </p>
-        ))}
-      </section>
+        <div class="md:columns-2 md:gap-12">
+          {profile.whoWeAre.body.en.map((p, i) => (
+            <p class={`text-lg leading-[1.7] mb-6 ${i === 0 ? 'dropcap-magazine' : ''}`}>
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+      </div>
+    </section>
 
-      <!-- 2. Who we serve -->
-      <section>
-        <h2 class="text-3xl font-semibold mb-4">
-          <span data-lang="en">{profile.whoWeServe.title.en}</span>
-          <span data-lang="id">{profile.whoWeServe.title.id}</span>
-        </h2>
-        <div class="rounded p-5" style="background: #F4F4F3;">
-          <p class="text-lg leading-[1.7]">
+    <!-- Photo break -->
+    <div class="aspect-[16/7] overflow-hidden">
+      <img src={base + '/assets/images/hero-community.png'} alt="" class="w-full h-full object-cover" />
+    </div>
+
+    <!-- 2 + 3. Who We Serve & The Gap -->
+    <section class="py-24 border-b border-[#1A2E4A]/15">
+      <div class="container-x max-w-5xl grid md:grid-cols-2 gap-16">
+        <div>
+          <div class="text-xs font-sans uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">— Sidebar</div>
+          <h2 class="text-3xl mb-6">
+            <span data-lang="en">{profile.whoWeServe.title.en}</span>
+            <span data-lang="id">{profile.whoWeServe.title.id}</span>
+          </h2>
+          <p class="text-lg leading-[1.7]" style="color: #4A5568;">
             <span data-lang="en">{profile.whoWeServe.body.en}</span>
             <span data-lang="id">{profile.whoWeServe.body.id}</span>
           </p>
         </div>
-      </section>
-
-      <hr class="border-[#E9E9E7]" />
-
-      <!-- 3. The Gap -->
-      <section>
-        <h2 class="text-4xl font-semibold mb-6">
-          <span data-lang="en">{profile.theGap.title.en}</span>
-          <span data-lang="id">{profile.theGap.title.id}</span>
-        </h2>
-        <div class="rounded-lg p-6 mb-6" style="background: #FBF3DB;">
-          <div class="font-sans text-xs uppercase tracking-wider text-[#7A6A40] mb-2">💡 Insight</div>
-          <p class="text-lg italic leading-[1.6]">
-            <span data-lang="en">The gap is in relevance. Most sustainability work treats social and environmental issues as compliance problems. They are business decisions.</span>
-            <span data-lang="id">Celahnya ada di relevansi. Sebagian besar pekerjaan keberlanjutan memperlakukan isu sosial dan lingkungan sebagai masalah kepatuhan. Itu adalah keputusan bisnis.</span>
-          </p>
+        <div>
+          <div class="text-xs font-sans uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">— Sidebar</div>
+          <h2 class="text-3xl mb-6">
+            <span data-lang="en">{profile.theGap.title.en}</span>
+            <span data-lang="id">{profile.theGap.title.id}</span>
+          </h2>
+          <div class="space-y-4">
+            {profile.theGap.body.en.map((p, i) => (
+              <p class="text-lg leading-[1.7]" style="color: #4A5568;">
+                <span data-lang="en">{p}</span>
+                <span data-lang="id">{profile.theGap.body.id[i]}</span>
+              </p>
+            ))}
+          </div>
         </div>
-        {profile.theGap.body.en.map((p, i) => (
-          <p class="text-lg leading-[1.7] mb-5">
-            <span data-lang="en">{p}</span>
-            <span data-lang="id">{profile.theGap.body.id[i]}</span>
-          </p>
-        ))}
-      </section>
+      </div>
+    </section>
 
-      <!-- 4. Approach -->
-      <section>
-        <h2 class="text-4xl font-semibold mb-6">
+    <!-- 4. Approach -->
+    <section class="py-24 border-b border-[#1A2E4A]/15" style="background: #FAF6EC;">
+      <div class="container-x max-w-5xl">
+        <div class="text-xs font-sans uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">— Method</div>
+        <h2 class="text-4xl mb-16 max-w-3xl">
           <span data-lang="en" set:html={kicker.approachTitle.en}></span>
           <span data-lang="id" set:html={kicker.approachTitle.id}></span>
         </h2>
-        <div class="space-y-6">
+        <div class="grid md:grid-cols-3 gap-12">
           {stages.map(s => (
-            <div class="flex gap-4">
-              <div class="text-2xl pt-1">✅</div>
-              <div>
-                <h3 class="text-xl font-semibold mb-2"><span data-lang="en">{s.title.en}</span><span data-lang="id">{s.title.id}</span></h3>
-                <p class="text-lg text-[#787774] leading-[1.6]"><span data-lang="en">{s.body.en}</span><span data-lang="id">{s.body.id}</span></p>
-              </div>
+            <div>
+              <div class="text-6xl font-medium mb-4" style="color: #C9A876;">0{s.num}.</div>
+              <h3 class="text-2xl mb-4">
+                <span data-lang="en">{s.title.en}</span>
+                <span data-lang="id">{s.title.id}</span>
+              </h3>
+              <p class="text-base leading-[1.7]" style="color: #4A5568;">
+                <span data-lang="en">{s.body.en}</span>
+                <span data-lang="id">{s.body.id}</span>
+              </p>
             </div>
           ))}
         </div>
-      </section>
+      </div>
+    </section>
 
-      <hr class="border-[#E9E9E7]" />
+    <!-- 5. Services - magazine layout -->
+    <section class="py-24 border-b border-[#1A2E4A]/15">
+      <div class="container-x max-w-5xl">
+        <div class="text-xs font-sans uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">— Practice</div>
+        <h2 class="text-5xl mb-16 max-w-3xl">
+          <span data-lang="en">Three integrated services.</span>
+          <span data-lang="id">Tiga layanan terintegrasi.</span>
+        </h2>
+        <div class="space-y-20">
+          {services.map((svc, i) => (
+            <article class="grid md:grid-cols-12 gap-8">
+              <div class="md:col-span-4">
+                <div class="aspect-[4/5] overflow-hidden">
+                  <img src={svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div class="md:col-span-8">
+                <div class="text-xs font-sans uppercase tracking-[0.3em] mb-3" style="color: #C9A876;">Service No. {svc.num}</div>
+                <h3 class="text-3xl mb-6 leading-tight">
+                  <span data-lang="en">{svc.title.en}</span>
+                  <span data-lang="id">{svc.title.id}</span>
+                </h3>
+                <div class="md:columns-2 md:gap-8 space-y-4">
+                  {svc.detail.en.map((p, j) => (
+                    <p class="text-base leading-[1.7]" style="color: #4A5568;">
+                      <span data-lang="en">{p}</span>
+                      <span data-lang="id">{svc.detail.id[j]}</span>
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
 
-      <!-- 5. Services -->
-      <section>
-        <h2 class="text-4xl font-semibold mb-6">
-          <span data-lang="en">Three Services</span>
-          <span data-lang="id">Tiga Layanan</span>
+    <!-- 6. Impact -->
+    <section class="py-24 border-b border-[#1A2E4A]/15">
+      <div class="container-x max-w-5xl">
+        <div class="text-xs font-sans uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">— Dispatch</div>
+        <h2 class="text-5xl mb-16">
+          <span data-lang="en">From the field.</span>
+          <span data-lang="id">Dari lapangan.</span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          {impactCards.map(c => (
+            <div class="border-t border-[#C9A876] pt-6">
+              <div class="text-xs font-sans uppercase tracking-widest mb-3" style="color: #3D8F8A;">
+                <span data-lang="en">{c.tag.en}</span>
+                <span data-lang="id">{c.tag.id}</span>
+              </div>
+              <h3 class="text-2xl mb-4 leading-snug">
+                <span data-lang="en">{c.title.en}</span>
+                <span data-lang="id">{c.title.id}</span>
+              </h3>
+              <p class="text-base leading-[1.7]" style="color: #4A5568;">
+                <span data-lang="en">{c.body.en}</span>
+                <span data-lang="id">{c.body.id}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Team - editorial portrait grid -->
+    <section class="py-24 border-b border-[#1A2E4A]/15" style="background: #FAF6EC;">
+      <div class="container-x max-w-5xl">
+        <div class="text-xs font-sans uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">— Bylines</div>
+        <h2 class="text-5xl mb-16">
+          <span data-lang="en">The contributors.</span>
+          <span data-lang="id">Kontributor.</span>
         </h2>
         <div class="space-y-12">
-          {services.map(svc => (
-            <div class="border-l-4 pl-6" style="border-color: #FFE9CC;">
-              <div class="text-sm font-sans font-medium text-[#787774] mb-1">— Service {svc.num}</div>
-              <h3 class="text-2xl font-semibold mb-4">
-                <span data-lang="en">{svc.title.en}</span>
-                <span data-lang="id">{svc.title.id}</span>
-              </h3>
-              <div class="space-y-4">
-                {svc.detail.en.map((p, j) => (
-                  <p class="text-lg leading-[1.7] text-[#37352F]">
-                    <span data-lang="en">{p}</span>
-                    <span data-lang="id">{svc.detail.id[j]}</span>
-                  </p>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <hr class="border-[#E9E9E7]" />
-
-      <!-- 6. Proof -->
-      <section>
-        <h2 class="text-4xl font-semibold mb-6">
-          <span data-lang="en">Proof of Execution</span>
-          <span data-lang="id">Bukti Eksekusi</span>
-        </h2>
-        <div class="grid sm:grid-cols-2 gap-4">
-          {impactCards.map(c => (
-            <div class="border border-[#E9E9E7] p-5 rounded">
-              <div class="font-sans text-xs text-[#787774] mb-2 font-medium bg-[#F4F4F3] inline-block px-2 py-1 rounded">
-                <span data-lang="en">{c.tag.en}</span><span data-lang="id">{c.tag.id}</span>
-              </div>
-              <h3 class="text-lg font-semibold mb-2"><span data-lang="en">{c.title.en}</span><span data-lang="id">{c.title.id}</span></h3>
-              <p class="text-sm text-[#787774] leading-[1.6]"><span data-lang="en">{c.body.en}</span><span data-lang="id">{c.body.id}</span></p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <!-- 7. Team -->
-      <section>
-        <h2 class="text-4xl font-semibold mb-6">
-          <span data-lang="en">Our Team</span>
-          <span data-lang="id">Tim Kami</span>
-        </h2>
-        <div class="space-y-8">
           {team.map(m => (
-            <div class="flex gap-5 items-start">
-              <div class="w-14 h-14 rounded-full flex items-center justify-center font-sans text-lg font-semibold flex-shrink-0" style="background: #FFE9CC; color: #7A6A40;">{m.initials}</div>
-              <div>
-                <h3 class="text-xl font-semibold">{m.name}</h3>
-                <div class="text-sm font-sans text-[#787774] mb-3">
+            <div class="grid md:grid-cols-12 gap-8 pb-12 border-b border-[#C9A876]/40 last:border-0">
+              <div class="md:col-span-3">
+                <div class="aspect-square w-full max-w-[180px] flex items-center justify-center text-5xl font-medium" style="background: #1A2E4A; color: #FAF6EC;">{m.initials}</div>
+              </div>
+              <div class="md:col-span-9">
+                <h3 class="text-3xl mb-1">{m.name}</h3>
+                <div class="text-xs font-sans uppercase tracking-widest mb-5" style="color: #3D8F8A;">
                   <span data-lang="en">{m.role.en}</span>
                   <span data-lang="id">{m.role.id}</span>
                 </div>
-                <p class="text-base leading-[1.6]">
+                <p class="text-lg leading-[1.7]" style="color: #4A5568;">
                   <span data-lang="en">{m.bioFull.en}</span>
                   <span data-lang="id">{m.bioFull.id}</span>
                 </p>
@@ -162,27 +216,40 @@ const base = import.meta.env.BASE_URL;
             </div>
           ))}
         </div>
-      </section>
+      </div>
+    </section>
 
-      <hr class="border-[#E9E9E7]" />
-
-      <!-- 8. Closing -->
-      <section>
-        <h2 class="text-4xl font-semibold mb-6">
+    <!-- 8. Editor's note (Closing) -->
+    <section class="py-32">
+      <div class="container-x max-w-3xl">
+        <div class="text-xs font-sans uppercase tracking-[0.3em] mb-4" style="color: #3D8F8A;">— Editor's Note</div>
+        <h2 class="text-5xl mb-12">
           <span data-lang="en">{profile.whatComesNext.title.en}</span>
           <span data-lang="id">{profile.whatComesNext.title.id}</span>
         </h2>
         {profile.whatComesNext.body.en.map((p, i) => (
-          <p class="text-lg leading-[1.7] mb-4">
+          <p class="text-xl italic leading-[1.7] mb-6" style="color: #4A5568;">
             <span data-lang="en">{p}</span>
             <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
           </p>
         ))}
-        <div class="mt-8 font-sans text-sm p-4 bg-[#F4F4F3] rounded inline-block">
-          <div>📧 <a href={`mailto:${brand.email}`} class="underline decoration-[#E9E9E7] underline-offset-4">{brand.email}</a></div>
-          <div class="mt-2">📞 {brand.phone}</div>
+        <div class="mt-12 pt-8 border-t border-[#1A2E4A]/20 font-sans">
+          <a href={`mailto:${brand.email}`} class="text-lg underline decoration-[#C9A876] underline-offset-4">{brand.email}</a>
+          <span class="mx-3 text-[#C9A876]">·</span>
+          <span class="text-lg">{brand.phone}</span>
         </div>
-      </section>
-    </article>
+      </div>
+    </section>
   </div>
+
+  <style>
+    .dropcap-magazine::first-letter {
+      font-size: 5em;
+      line-height: 0.85;
+      float: left;
+      margin: 0.05em 0.1em 0 0;
+      color: #C9A876;
+      font-weight: 500;
+    }
+  </style>
 </ProfileLayout>

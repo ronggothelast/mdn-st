@@ -1,176 +1,123 @@
 ---
-// STYLE 07 — Vercel Black & White
+// STYLE 07 — Modern Foundation (Philanthropy/Foundation style)
+// Crisp navy, generous photography, like Gates Foundation or Open Society.
 import ProfileLayout from '../../layouts/ProfileLayout.astro';
 import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
 const base = import.meta.env.BASE_URL;
 ---
-<ProfileLayout styleNum={7} styleName="Vercel B&W">
-  <div style="background: #fff; color: #000; font-family: 'Inter', sans-serif;">
-    <!-- 0. Hero -->
-    <section class="py-32">
-      <div class="container-x">
-        <div class="text-xs uppercase tracking-widest mb-12 text-black/50">▲ Madani · 2026</div>
-        <h1 class="text-[clamp(4rem,11vw,10rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-12">{brand.name}.</h1>
-        <p class="text-3xl font-medium tracking-tight max-w-3xl">
-          <span data-lang="en">{brand.tagline.en}.</span>
-          <span data-lang="id">{brand.tagline.id}.</span>
+<ProfileLayout styleNum={7} styleName="Modern Foundation">
+  <div style="background: #FFFFFF; color: #1A2E4A; font-family: 'Inter', sans-serif;">
+    <!-- Hero with image -->
+    <section class="relative min-h-[90vh] flex items-end pt-32 pb-20 overflow-hidden">
+      <img src={base + '/assets/images/hero-community.png'} alt="" class="absolute inset-0 w-full h-full object-cover" />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(26,46,74,0.92) 95%);"></div>
+      <div class="container-x relative max-w-6xl text-white">
+        <div class="text-xs uppercase tracking-[0.3em] mb-8 font-medium" style="color: #5BAFA9;">
+          <span data-lang="en">Strategic Impact Consultancy</span>
+          <span data-lang="id">Konsultan Dampak Strategis</span>
+        </div>
+        <h1 class="text-[clamp(3rem,7vw,6.5rem)] font-medium leading-[1.05] tracking-tight mb-8 max-w-4xl" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">We work where growth meets community.</span>
+          <span data-lang="id">Kami bekerja di titik temu pertumbuhan dan komunitas.</span>
+        </h1>
+        <p class="text-2xl max-w-2xl leading-snug" style="color: rgba(255,255,255,0.85);">
+          <span data-lang="en">{brand.tagline.en}</span>
+          <span data-lang="id">{brand.tagline.id}</span>
         </p>
       </div>
     </section>
 
     <!-- 1. Who We Are -->
-    <section class="py-24 border-t border-black">
-      <div class="container-x grid lg:grid-cols-[1fr_2fr] gap-12">
-        <div>
-          <div class="text-xs uppercase tracking-widest mb-3">[ 01 ]</div>
-          <h2 class="text-4xl font-bold tracking-tight">
-            <span data-lang="en">{profile.whoWeAre.title.en}</span>
-            <span data-lang="id">{profile.whoWeAre.title.id}</span>
-          </h2>
-        </div>
-        <div>
-          {profile.whoWeAre.body.en.map((p, i) => (
-            <p class="text-xl leading-relaxed mb-6">
-              <span data-lang="en">{p}</span>
-              <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
-            </p>
-          ))}
+    <section class="py-24">
+      <div class="container-x max-w-6xl">
+        <div class="grid md:grid-cols-12 gap-12">
+          <div class="md:col-span-4">
+            <div class="text-xs uppercase tracking-[0.3em] font-medium mb-3" style="color: #3D8F8A;">— About</div>
+            <h2 class="text-4xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+              <span data-lang="en">{profile.whoWeAre.title.en}</span>
+              <span data-lang="id">{profile.whoWeAre.title.id}</span>
+            </h2>
+          </div>
+          <div class="md:col-span-8 space-y-6">
+            {profile.whoWeAre.body.en.map((p, i) => (
+              <p class="text-xl leading-[1.7]" style="color: #4A5568;">
+                <span data-lang="en">{p}</span>
+                <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. Who We Serve -->
-    <section class="py-24 border-t border-black">
-      <div class="container-x grid lg:grid-cols-[1fr_2fr] gap-12">
-        <div>
-          <div class="text-xs uppercase tracking-widest mb-3">[ 02 ]</div>
-          <h2 class="text-4xl font-bold tracking-tight">
-            <span data-lang="en">{profile.whoWeServe.title.en}</span>
-            <span data-lang="id">{profile.whoWeServe.title.id}</span>
-          </h2>
-        </div>
-        <div>
-          <p class="text-xl leading-relaxed">
-            <span data-lang="en">{profile.whoWeServe.body.en}</span>
-            <span data-lang="id">{profile.whoWeServe.body.id}</span>
-          </p>
+    <!-- 2. Who We Serve - photo+text -->
+    <section class="py-24" style="background: #FAF6EC;">
+      <div class="container-x max-w-6xl">
+        <div class="grid md:grid-cols-12 gap-12 items-center">
+          <div class="md:col-span-5">
+            <div class="aspect-[4/5] overflow-hidden rounded-3xl">
+              <img src={base + '/assets/images/service-trade.png'} alt="" class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <div class="md:col-span-7">
+            <div class="text-xs uppercase tracking-[0.3em] font-medium mb-3" style="color: #3D8F8A;">— Constituency</div>
+            <h2 class="text-4xl mb-8 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+              <span data-lang="en">{profile.whoWeServe.title.en}</span>
+              <span data-lang="id">{profile.whoWeServe.title.id}</span>
+            </h2>
+            <p class="text-xl leading-[1.7]" style="color: #4A5568;">
+              <span data-lang="en">{profile.whoWeServe.body.en}</span>
+              <span data-lang="id">{profile.whoWeServe.body.id}</span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 3. The Gap -->
-    <section class="py-24 border-t border-black bg-black text-white">
-      <div class="container-x grid lg:grid-cols-[1fr_2fr] gap-12">
-        <div>
-          <div class="text-xs uppercase tracking-widest mb-3 text-white/50">[ 03 ]</div>
-          <h2 class="text-4xl font-bold tracking-tight">
-            <span data-lang="en">{profile.theGap.title.en}</span>
-            <span data-lang="id">{profile.theGap.title.id}</span>
-          </h2>
-        </div>
-        <div>
-          {profile.theGap.body.en.map((p, i) => (
-            <p class="text-xl leading-relaxed mb-6">
-              <span data-lang="en">{p}</span>
-              <span data-lang="id">{profile.theGap.body.id[i]}</span>
-            </p>
-          ))}
+    <section class="py-24" style="background: #1A2E4A; color: white;">
+      <div class="container-x max-w-6xl">
+        <div class="grid md:grid-cols-12 gap-12">
+          <div class="md:col-span-4">
+            <div class="text-xs uppercase tracking-[0.3em] font-medium mb-3" style="color: #5BAFA9;">— Thesis</div>
+            <h2 class="text-4xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+              <span data-lang="en">{profile.theGap.title.en}</span>
+              <span data-lang="id">{profile.theGap.title.id}</span>
+            </h2>
+          </div>
+          <div class="md:col-span-8 space-y-6">
+            {profile.theGap.body.en.map((p, i) => (
+              <p class="text-xl leading-[1.7] text-white/85">
+                <span data-lang="en">{p}</span>
+                <span data-lang="id">{profile.theGap.body.id[i]}</span>
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 4. Approach -->
-    <section class="py-24 border-t border-black">
-      <div class="container-x">
-        <div class="text-xs uppercase tracking-widest mb-3">[ 04 ]</div>
-        <h2 class="text-4xl font-bold tracking-tight mb-16">
-          <span data-lang="en" set:html={kicker.approachTitle.en}></span>
-          <span data-lang="id" set:html={kicker.approachTitle.id}></span>
-        </h2>
-        <div class="grid md:grid-cols-3 gap-px bg-black">
+    <section class="py-24">
+      <div class="container-x max-w-6xl">
+        <div class="text-center max-w-3xl mx-auto mb-20">
+          <div class="text-xs uppercase tracking-[0.3em] font-medium mb-3" style="color: #3D8F8A;">— Methodology</div>
+          <h2 class="text-4xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+            <span data-lang="en" set:html={kicker.approachTitle.en}></span>
+            <span data-lang="id" set:html={kicker.approachTitle.id}></span>
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
           {stages.map(s => (
-            <div class="bg-white p-10 border border-black">
-              <div class="text-xl font-bold mb-4">0{s.num}.</div>
-              <h3 class="text-2xl font-bold mb-4"><span data-lang="en">{s.title.en}</span><span data-lang="id">{s.title.id}</span></h3>
-              <p class="text-lg leading-relaxed"><span data-lang="en">{s.body.en}</span><span data-lang="id">{s.body.id}</span></p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Services -->
-    <section class="py-24 border-t border-black">
-      <div class="container-x">
-        <div class="text-xs uppercase tracking-widest mb-3">[ 05 ]</div>
-        <h2 class="text-4xl font-bold tracking-tight mb-16">
-          <span data-lang="en">Services.</span>
-          <span data-lang="id">Layanan.</span>
-        </h2>
-        <div class="space-y-px bg-black">
-          {services.map(svc => (
-            <div class="bg-white p-10 lg:p-16 grid lg:grid-cols-[1fr_2fr] gap-8">
-              <div>
-                <div class="text-8xl font-bold mb-6">{svc.num}</div>
-                <h3 class="text-3xl font-bold mb-4">
-                  <span data-lang="en">{svc.title.en}</span>
-                  <span data-lang="id">{svc.title.id}</span>
-                </h3>
-              </div>
-              <div class="space-y-6">
-                {svc.detail.en.map((p, j) => (
-                  <p class="text-xl leading-relaxed">
-                    <span data-lang="en">{p}</span>
-                    <span data-lang="id">{svc.detail.id[j]}</span>
-                  </p>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. Impact Cards -->
-    <section class="py-24 border-t border-black">
-      <div class="container-x">
-        <div class="text-xs uppercase tracking-widest mb-3">[ 06 ]</div>
-        <h2 class="text-4xl font-bold tracking-tight mb-16">
-          <span data-lang="en">Impact.</span>
-          <span data-lang="id">Dampak.</span>
-        </h2>
-        <div class="grid md:grid-cols-2 gap-px bg-black">
-          {impactCards.map(c => (
-            <div class="bg-white p-10 border border-black">
-              <div class="text-sm font-bold uppercase tracking-widest mb-4">[{c.tag.en}]</div>
-              <h3 class="text-2xl font-bold mb-4"><span data-lang="en">{c.title.en}</span><span data-lang="id">{c.title.id}</span></h3>
-              <p class="text-lg leading-relaxed"><span data-lang="en">{c.body.en}</span><span data-lang="id">{c.body.id}</span></p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. Team -->
-    <section class="py-24 border-t border-black bg-black text-white">
-      <div class="container-x">
-        <div class="text-xs uppercase tracking-widest mb-3 text-white/50">[ 07 ]</div>
-        <h2 class="text-4xl font-bold tracking-tight mb-16">
-          <span data-lang="en">Team.</span>
-          <span data-lang="id">Tim.</span>
-        </h2>
-        <div class="grid md:grid-cols-2 gap-px" style="background: rgba(255,255,255,0.2);">
-          {team.map(m => (
-            <div class="bg-black p-10">
-              <div class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-2xl font-bold mb-6">{m.initials}</div>
-              <h3 class="text-3xl font-bold mb-2">{m.name}</h3>
-              <div class="text-sm uppercase tracking-widest text-white/60 mb-6">
-                <span data-lang="en">{m.role.en}</span>
-                <span data-lang="id">{m.role.id}</span>
-              </div>
-              <p class="text-lg text-white/80 leading-relaxed">
-                <span data-lang="en">{m.bioFull.en}</span>
-                <span data-lang="id">{m.bioFull.id}</span>
+            <div class="p-10 rounded-3xl" style="background: #FAF6EC;">
+              <div class="text-sm uppercase tracking-widest font-medium mb-4" style="color: #C9A876;">Stage {s.num}</div>
+              <h3 class="text-2xl mb-4 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+                <span data-lang="en">{s.title.en}</span>
+                <span data-lang="id">{s.title.id}</span>
+              </h3>
+              <p class="text-base leading-[1.7]" style="color: #4A5568;">
+                <span data-lang="en">{s.body.en}</span>
+                <span data-lang="id">{s.body.id}</span>
               </p>
             </div>
           ))}
@@ -178,22 +125,129 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
+    <!-- 5. Services -->
+    <section class="py-24" style="background: #FAF6EC;">
+      <div class="container-x max-w-6xl">
+        <div class="text-center max-w-3xl mx-auto mb-20">
+          <div class="text-xs uppercase tracking-[0.3em] font-medium mb-3" style="color: #3D8F8A;">— Services</div>
+          <h2 class="text-4xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+            <span data-lang="en">Three integrated services.</span>
+            <span data-lang="id">Tiga layanan terintegrasi.</span>
+          </h2>
+        </div>
+        <div class="space-y-12">
+          {services.map((svc, i) => (
+            <div class={`grid md:grid-cols-12 gap-8 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+              <div class={`md:col-span-5 ${i % 2 === 1 ? 'md:order-2' : ''}`}>
+                <div class="aspect-[4/3] overflow-hidden rounded-3xl">
+                  <img src={svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div class={`md:col-span-7 ${i % 2 === 1 ? 'md:order-1' : ''}`}>
+                <div class="text-sm uppercase tracking-widest font-medium mb-3" style="color: #C9A876;">Service {svc.num}</div>
+                <h3 class="text-3xl mb-6 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+                  <span data-lang="en">{svc.title.en}</span>
+                  <span data-lang="id">{svc.title.id}</span>
+                </h3>
+                <div class="space-y-4">
+                  {svc.detail.en.map((p, j) => (
+                    <p class="text-lg leading-[1.7]" style="color: #4A5568;">
+                      <span data-lang="en">{p}</span>
+                      <span data-lang="id">{svc.detail.id[j]}</span>
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Impact -->
+    <section class="py-24">
+      <div class="container-x max-w-6xl">
+        <div class="text-center max-w-3xl mx-auto mb-20">
+          <div class="text-xs uppercase tracking-[0.3em] font-medium mb-3" style="color: #3D8F8A;">— Evidence</div>
+          <h2 class="text-4xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+            <span data-lang="en">Proof of execution.</span>
+            <span data-lang="id">Bukti eksekusi.</span>
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-12">
+          {impactCards.map(c => (
+            <div class="border-l-4 pl-6 py-2" style="border-color: #3D8F8A;">
+              <div class="text-xs uppercase tracking-widest font-medium mb-3" style="color: #C9A876;">
+                <span data-lang="en">{c.tag.en}</span>
+                <span data-lang="id">{c.tag.id}</span>
+              </div>
+              <h3 class="text-2xl mb-4 leading-snug" style="font-family: 'Fraunces', Georgia, serif;">
+                <span data-lang="en">{c.title.en}</span>
+                <span data-lang="id">{c.title.id}</span>
+              </h3>
+              <p class="text-lg leading-[1.7]" style="color: #4A5568;">
+                <span data-lang="en">{c.body.en}</span>
+                <span data-lang="id">{c.body.id}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Team -->
+    <section class="py-24" style="background: #FAF6EC;">
+      <div class="container-x max-w-6xl">
+        <div class="text-center max-w-3xl mx-auto mb-20">
+          <div class="text-xs uppercase tracking-[0.3em] font-medium mb-3" style="color: #3D8F8A;">— Leadership</div>
+          <h2 class="text-4xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+            <span data-lang="en">Practitioners, not analysts.</span>
+            <span data-lang="id">Praktisi, bukan analis.</span>
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12">
+          {team.map(m => (
+            <div class="grid grid-cols-[auto_1fr] gap-6">
+              <div class="w-24 h-24 rounded-3xl flex items-center justify-center text-2xl font-medium shrink-0" style="background: linear-gradient(135deg, #3D8F8A, #1A2E4A); color: white; font-family: 'Fraunces', Georgia, serif;">{m.initials}</div>
+              <div>
+                <h3 class="text-2xl mb-1 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">{m.name}</h3>
+                <div class="text-xs uppercase tracking-widest font-medium mb-4" style="color: #3D8F8A;">
+                  <span data-lang="en">{m.role.en}</span>
+                  <span data-lang="id">{m.role.id}</span>
+                </div>
+                <p class="text-base leading-[1.7]" style="color: #4A5568;">
+                  <span data-lang="en">{m.bioFull.en}</span>
+                  <span data-lang="id">{m.bioFull.id}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- 8. Closing -->
-    <section class="py-32 border-t border-black text-center">
+    <section class="py-32" style="background: #1A2E4A; color: white;">
       <div class="container-x max-w-4xl">
-        <h2 class="text-5xl md:text-7xl font-bold tracking-tight mb-12">
-          <span data-lang="en">{profile.whatComesNext.title.en}</span>
-          <span data-lang="id">{profile.whatComesNext.title.id}</span>
-        </h2>
-        <div class="space-y-6 mb-16 text-left">
+        <div class="text-center mb-12">
+          <div class="text-xs uppercase tracking-[0.3em] font-medium mb-3" style="color: #5BAFA9;">— Engagement</div>
+          <h2 class="text-5xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+            <span data-lang="en">{profile.whatComesNext.title.en}</span>
+            <span data-lang="id">{profile.whatComesNext.title.id}</span>
+          </h2>
+        </div>
+        <div class="space-y-6 mb-16">
           {profile.whatComesNext.body.en.map((p, i) => (
-            <p class="text-2xl leading-relaxed">
+            <p class="text-xl leading-[1.7] text-white/85">
               <span data-lang="en">{p}</span>
               <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
             </p>
           ))}
         </div>
-        <a href={`mailto:${brand.email}`} class="inline-block px-12 py-5 bg-black text-white font-bold text-xl hover:bg-black/80 transition">{brand.email}</a>
+        <div class="text-center pt-12 border-t border-white/15">
+          <a href={`mailto:${brand.email}`} class="inline-block px-12 py-4 rounded-full font-medium" style="background: #5BAFA9; color: #1A2E4A;">{brand.email}</a>
+          <div class="mt-6 text-sm" style="color: rgba(255,255,255,0.7);">{brand.phone}</div>
+        </div>
       </div>
     </section>
   </div>

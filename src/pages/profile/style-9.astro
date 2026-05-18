@@ -1,65 +1,104 @@
 ---
-// STYLE 09 — SpaceX Cinematic
+// STYLE 09 — Strategic Brief (Pitch deck inspired)
+// Dense info, deep navy, executive summary feel.
 import ProfileLayout from '../../layouts/ProfileLayout.astro';
 import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
 const base = import.meta.env.BASE_URL;
 ---
-<ProfileLayout styleNum={9} styleName="SpaceX Cinematic">
-  <div style="background: #000; color: #fff; font-family: 'Inter', sans-serif;">
-    <!-- 0. Hero -->
-    <section class="relative h-screen overflow-hidden">
-      <img src={base + '/assets/images/forest.png'} alt="" class="absolute inset-0 w-full h-full object-cover scale-110" style="filter: grayscale(100%) brightness(0.4);" />
-      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.95) 100%);"></div>
-      <div class="relative h-full flex items-end pb-24">
-        <div class="container-x">
-          <h1 class="text-[clamp(4rem,12vw,11rem)] font-light leading-[0.9] tracking-tight uppercase mb-8">{brand.name}</h1>
-          <p class="text-2xl uppercase tracking-[0.3em] text-white/70">
+<ProfileLayout styleNum={9} styleName="Strategic Brief">
+  <div style="background: #FAF6EC; color: #1A2E4A; font-family: 'Inter', sans-serif;">
+    <!-- Slide 1: Cover -->
+    <section class="min-h-screen flex flex-col justify-between py-20" style="background: #1A2E4A; color: white;">
+      <div class="container-x max-w-6xl">
+        <div class="flex justify-between items-start text-xs uppercase tracking-[0.3em]">
+          <div style="color: #C9A876;">Madani Strategies</div>
+          <div style="color: #5BAFA9;">
+            <span data-lang="en">Strategic Brief · 2026</span>
+            <span data-lang="id">Brief Strategis · 2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="container-x max-w-6xl">
+        <div class="max-w-4xl">
+          <h1 class="text-[clamp(3rem,8vw,7rem)] font-medium leading-[0.95] tracking-tight mb-12" style="font-family: 'Fraunces', Georgia, serif;">{brand.name}</h1>
+          <p class="text-3xl max-w-2xl leading-snug" style="color: rgba(255,255,255,0.85); font-family: 'Fraunces', Georgia, serif;">
             <span data-lang="en">{brand.tagline.en}</span>
             <span data-lang="id">{brand.tagline.id}</span>
           </p>
         </div>
       </div>
-    </section>
-
-    <!-- 1. Who We Are & 2. Who We Serve -->
-    <section class="py-32">
-      <div class="container-x max-w-4xl text-center">
-        <h2 class="text-4xl md:text-6xl uppercase tracking-tight font-light mb-12">
-          <span data-lang="en">{profile.whoWeAre.title.en}</span>
-          <span data-lang="id">{profile.whoWeAre.title.id}</span>
-        </h2>
-        <div class="space-y-6 text-left mb-24">
-          {profile.whoWeAre.body.en.map((p, i) => (
-            <p class="text-2xl leading-relaxed text-white/80">
-              <span data-lang="en">{p}</span>
-              <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
-            </p>
-          ))}
+      <div class="container-x max-w-6xl">
+        <div class="pt-8 border-t border-white/15 grid md:grid-cols-3 gap-8 text-sm">
+          <div>
+            <div class="text-xs uppercase tracking-widest mb-1" style="color: #5BAFA9;">Practice</div>
+            <div>
+              <span data-lang="en">Strategic Impact</span>
+              <span data-lang="id">Dampak Strategis</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-widest mb-1" style="color: #5BAFA9;">Region</div>
+            <div>
+              <span data-lang="en">Indonesia & SE Asia</span>
+              <span data-lang="id">Indonesia & Asia Tenggara</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-widest mb-1" style="color: #5BAFA9;">Contact</div>
+            <div>{brand.email}</div>
+          </div>
         </div>
-
-        <h2 class="text-3xl uppercase tracking-tight font-light mb-8">
-          <span data-lang="en">{profile.whoWeServe.title.en}</span>
-          <span data-lang="id">{profile.whoWeServe.title.id}</span>
-        </h2>
-        <p class="text-xl leading-relaxed text-white/60 text-left">
-          <span data-lang="en">{profile.whoWeServe.body.en}</span>
-          <span data-lang="id">{profile.whoWeServe.body.id}</span>
-        </p>
       </div>
     </section>
 
-    <!-- 3. The Gap -->
-    <section class="py-32" style="background: #0a0a0a;">
-      <div class="container-x max-w-4xl">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl uppercase tracking-tight font-light">
-            <span data-lang="en">{profile.theGap.title.en}</span>
-            <span data-lang="id">{profile.theGap.title.id}</span>
-          </h2>
+    <!-- Slide 2: Executive Summary (Who we are + serve) -->
+    <section class="py-20 border-b border-[#1A2E4A]/15">
+      <div class="container-x max-w-6xl">
+        <div class="text-xs uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">02 / Executive Summary</div>
+        <h2 class="text-4xl font-medium mb-12 max-w-3xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">{profile.whoWeAre.title.en} & {profile.whoWeServe.title.en}</span>
+          <span data-lang="id">{profile.whoWeAre.title.id} & {profile.whoWeServe.title.id}</span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div>
+            <div class="text-xs uppercase tracking-widest font-medium mb-3" style="color: #C9A876;">
+              <span data-lang="en">— About Us</span>
+              <span data-lang="id">— Tentang Kami</span>
+            </div>
+            <div class="space-y-4">
+              {profile.whoWeAre.body.en.map((p, i) => (
+                <p class="text-base leading-[1.7]" style="color: #4A5568;">
+                  <span data-lang="en">{p}</span>
+                  <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+                </p>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-widest font-medium mb-3" style="color: #C9A876;">
+              <span data-lang="en">— Our Constituency</span>
+              <span data-lang="id">— Yang Kami Layani</span>
+            </div>
+            <p class="text-base leading-[1.7]" style="color: #4A5568;">
+              <span data-lang="en">{profile.whoWeServe.body.en}</span>
+              <span data-lang="id">{profile.whoWeServe.body.id}</span>
+            </p>
+          </div>
         </div>
-        <div class="space-y-8">
+      </div>
+    </section>
+
+    <!-- Slide 3: The Problem -->
+    <section class="py-20 border-b border-[#1A2E4A]/15">
+      <div class="container-x max-w-6xl">
+        <div class="text-xs uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">03 / Problem Statement</div>
+        <h2 class="text-4xl font-medium mb-12 max-w-3xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">{profile.theGap.title.en}</span>
+          <span data-lang="id">{profile.theGap.title.id}</span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-6 max-w-5xl">
           {profile.theGap.body.en.map((p, i) => (
-            <p class="text-2xl leading-relaxed text-white/80">
+            <p class="text-lg leading-[1.7]" style="color: #4A5568;">
               <span data-lang="en">{p}</span>
               <span data-lang="id">{profile.theGap.body.id[i]}</span>
             </p>
@@ -68,119 +107,164 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
-    <!-- 4. Approach -->
-    <section class="py-32">
-      <div class="container-x">
-        <h2 class="text-4xl md:text-5xl uppercase tracking-tight font-light text-center mb-24">
+    <!-- Slide 4: Our Approach -->
+    <section class="py-20 border-b border-[#1A2E4A]/15" style="background: #F4ECDB;">
+      <div class="container-x max-w-6xl">
+        <div class="text-xs uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">04 / Methodology</div>
+        <h2 class="text-4xl font-medium mb-16 max-w-3xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
           <span data-lang="en" set:html={kicker.approachTitle.en}></span>
           <span data-lang="id" set:html={kicker.approachTitle.id}></span>
         </h2>
-        <div class="grid md:grid-cols-3 gap-12">
+        <div class="grid md:grid-cols-3 gap-px" style="background: #1A2E4A;">
           {stages.map(s => (
-            <div class="border-t border-white/20 pt-8">
-              <div class="text-xl uppercase tracking-widest text-white/40 mb-4">Phase 0{s.num}</div>
-              <h3 class="text-3xl uppercase tracking-tight font-light mb-6"><span data-lang="en">{s.title.en}</span><span data-lang="id">{s.title.id}</span></h3>
-              <p class="text-lg text-white/70 leading-relaxed"><span data-lang="en">{s.body.en}</span><span data-lang="id">{s.body.id}</span></p>
+            <div class="p-8" style="background: #F4ECDB;">
+              <div class="flex items-baseline gap-4 mb-4">
+                <div class="text-5xl font-medium" style="color: #C9A876; font-family: 'Fraunces', Georgia, serif;">{s.num}</div>
+                <h3 class="text-xl font-medium" style="font-family: 'Fraunces', Georgia, serif;">
+                  <span data-lang="en">{s.title.en}</span>
+                  <span data-lang="id">{s.title.id}</span>
+                </h3>
+              </div>
+              <p class="text-base leading-[1.7]" style="color: #4A5568;">
+                <span data-lang="en">{s.body.en}</span>
+                <span data-lang="id">{s.body.id}</span>
+              </p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- 5. Services -->
-    {services.map((svc, i) => {
-      const img = svc.image;
-      return (
-        <section class="relative min-h-screen py-32 overflow-hidden flex items-center">
-          <img src={img} alt={svc.title.en} class="absolute inset-0 w-full h-full object-cover" style="filter: grayscale(100%) brightness(0.3);" />
-          <div class="absolute inset-0" style={`background: linear-gradient(${i % 2 === 0 ? '90deg' : '270deg'}, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);`}></div>
-          <div class={`relative w-full ${i % 2 === 0 ? '' : 'flex justify-end'}`}>
-            <div class={`container-x w-full ${i % 2 === 0 ? '' : 'text-right'}`}>
-              <div class={`max-w-2xl ${i % 2 === 0 ? '' : 'ml-auto'}`}>
-                <div class="text-sm uppercase tracking-[0.4em] text-white/60 mb-4">{svc.num} / Service</div>
-                <h2 class="text-5xl md:text-7xl uppercase tracking-tight font-light mb-12">
-                  <span data-lang="en">{svc.title.en}</span>
-                  <span data-lang="id">{svc.title.id}</span>
-                </h2>
-                <div class="space-y-6">
-                  {svc.detail.en.map((p, j) => (
-                    <p class="text-xl leading-relaxed text-white/80">
-                      <span data-lang="en">{p}</span>
-                      <span data-lang="id">{svc.detail.id[j]}</span>
-                    </p>
-                  ))}
-                </div>
+    <!-- Slide 5: Services - 3 column dense -->
+    <section class="py-20 border-b border-[#1A2E4A]/15">
+      <div class="container-x max-w-6xl">
+        <div class="text-xs uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">05 / Services</div>
+        <h2 class="text-4xl font-medium mb-16 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">Three integrated service lines.</span>
+          <span data-lang="id">Tiga lini layanan terintegrasi.</span>
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {services.map(svc => (
+            <div class="p-8 border-t-4" style="border-color: #3D8F8A; background: #FAF6EC;">
+              <div class="text-5xl font-medium mb-4" style="color: #C9A876; font-family: 'Fraunces', Georgia, serif;">{svc.num}</div>
+              <h3 class="text-2xl font-medium mb-6 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+                <span data-lang="en">{svc.title.en}</span>
+                <span data-lang="id">{svc.title.id}</span>
+              </h3>
+              <div class="space-y-4">
+                {svc.detail.en.map((p, j) => (
+                  <p class="text-sm leading-[1.7]" style="color: #4A5568;">
+                    <span data-lang="en">{p}</span>
+                    <span data-lang="id">{svc.detail.id[j]}</span>
+                  </p>
+                ))}
               </div>
             </div>
-          </div>
-        </section>
-      );
-    })}
+          ))}
+        </div>
+      </div>
+    </section>
 
-    <!-- 6. Impact -->
-    <section class="py-32" style="background: #0a0a0a;">
-      <div class="container-x">
-        <h2 class="text-5xl uppercase tracking-tight font-light text-center mb-20">
-          <span data-lang="en">Telemetry Data</span>
-          <span data-lang="id">Data Telemetri</span>
+    <!-- Slide 6: Track Record -->
+    <section class="py-20 border-b border-[#1A2E4A]/15" style="background: #1A2E4A; color: white;">
+      <div class="container-x max-w-6xl">
+        <div class="text-xs uppercase tracking-[0.3em] mb-3" style="color: #5BAFA9;">06 / Track Record</div>
+        <h2 class="text-4xl font-medium mb-16 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">Proof of execution.</span>
+          <span data-lang="id">Bukti eksekusi.</span>
         </h2>
-        <div class="grid md:grid-cols-2 gap-16">
+        <div class="grid md:grid-cols-4 gap-px" style="background: rgba(255,255,255,0.15);">
           {impactCards.map(c => (
-            <div>
-              <div class="text-sm uppercase tracking-widest text-white/40 mb-3">[{c.tag.en}]</div>
-              <h3 class="text-3xl uppercase tracking-tight font-light mb-4"><span data-lang="en">{c.title.en}</span><span data-lang="id">{c.title.id}</span></h3>
-              <p class="text-xl text-white/60 leading-relaxed"><span data-lang="en">{c.body.en}</span><span data-lang="id">{c.body.id}</span></p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. Team -->
-    <section class="py-32">
-      <div class="container-x">
-        <h2 class="text-5xl uppercase tracking-tight font-light text-center mb-24">
-          <span data-lang="en">The Crew</span>
-          <span data-lang="id">Awak</span>
-        </h2>
-        <div class="grid lg:grid-cols-2 gap-16">
-          {team.map(m => (
-            <div class="flex flex-col md:flex-row gap-8 items-start">
-              <div class="aspect-square w-32 shrink-0 flex items-center justify-center font-light text-5xl border border-white/20" style="background: #0a0a0a;">{m.initials}</div>
-              <div>
-                <h3 class="text-3xl uppercase tracking-wider font-light mb-2">{m.name}</h3>
-                <div class="text-sm uppercase tracking-[0.3em] text-white/40 mb-6">
-                  <span data-lang="en">{m.role.en}</span>
-                  <span data-lang="id">{m.role.id}</span>
-                </div>
-                <p class="text-lg text-white/70 leading-relaxed">
-                  <span data-lang="en">{m.bioFull.en}</span>
-                  <span data-lang="id">{m.bioFull.id}</span>
-                </p>
+            <div class="p-6" style="background: #1A2E4A;">
+              <div class="text-xs uppercase tracking-widest font-medium mb-3" style="color: #C9A876;">
+                <span data-lang="en">{c.tag.en}</span>
+                <span data-lang="id">{c.tag.id}</span>
               </div>
+              <h3 class="text-lg font-medium mb-3 leading-snug" style="font-family: 'Fraunces', Georgia, serif;">
+                <span data-lang="en">{c.title.en}</span>
+                <span data-lang="id">{c.title.id}</span>
+              </h3>
+              <p class="text-sm leading-[1.6] text-white/75">
+                <span data-lang="en">{c.body.en}</span>
+                <span data-lang="id">{c.body.id}</span>
+              </p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- 8. Closing -->
-    <section class="py-40 text-center relative overflow-hidden">
-      <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);"></div>
-      <div class="container-x relative max-w-4xl">
-        <h2 class="text-5xl md:text-7xl uppercase tracking-tight font-light mb-16">
+    <!-- Slide 7: Team -->
+    <section class="py-20 border-b border-[#1A2E4A]/15">
+      <div class="container-x max-w-6xl">
+        <div class="text-xs uppercase tracking-[0.3em] mb-3" style="color: #3D8F8A;">07 / Leadership</div>
+        <h2 class="text-4xl font-medium mb-16 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
+          <span data-lang="en">Practitioners, not analysts.</span>
+          <span data-lang="id">Praktisi, bukan analis.</span>
+        </h2>
+        <div class="grid md:grid-cols-4 gap-6">
+          {team.map(m => (
+            <div class="p-6 border" style="border-color: rgba(26,46,74,0.15); background: white;">
+              <div class="w-16 h-16 rounded-full flex items-center justify-center text-xl font-medium mb-4" style="background: linear-gradient(135deg, #3D8F8A, #1A2E4A); color: white; font-family: 'Fraunces', Georgia, serif;">{m.initials}</div>
+              <h3 class="text-xl mb-1 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">{m.name}</h3>
+              <div class="text-xs uppercase tracking-widest font-medium mb-4" style="color: #3D8F8A;">
+                <span data-lang="en">{m.role.en}</span>
+                <span data-lang="id">{m.role.id}</span>
+              </div>
+              <p class="text-sm leading-[1.7]" style="color: #4A5568;">
+                <span data-lang="en">{m.bioFull.en}</span>
+                <span data-lang="id">{m.bioFull.id}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: Engagement -->
+    <section class="py-32" style="background: #1A2E4A; color: white;">
+      <div class="container-x max-w-6xl">
+        <div class="text-xs uppercase tracking-[0.3em] mb-3" style="color: #5BAFA9;">08 / Engagement</div>
+        <h2 class="text-5xl font-medium mb-16 max-w-4xl leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
           <span data-lang="en">{profile.whatComesNext.title.en}</span>
           <span data-lang="id">{profile.whatComesNext.title.id}</span>
         </h2>
-        <div class="space-y-6 text-left mb-16">
-          {profile.whatComesNext.body.en.map((p, i) => (
-            <p class="text-2xl text-white/80 leading-relaxed">
-              <span data-lang="en">{p}</span>
-              <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
-            </p>
-          ))}
+        <div class="grid md:grid-cols-12 gap-12">
+          <div class="md:col-span-7 space-y-6">
+            {profile.whatComesNext.body.en.map((p, i) => (
+              <p class="text-lg leading-[1.7] text-white/85">
+                <span data-lang="en">{p}</span>
+                <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
+              </p>
+            ))}
+          </div>
+          <div class="md:col-span-5">
+            <div class="p-8 border" style="border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.03);">
+              <div class="text-xs uppercase tracking-widest mb-6" style="color: #5BAFA9;">
+                <span data-lang="en">Reach Out</span>
+                <span data-lang="id">Hubungi Kami</span>
+              </div>
+              <div class="space-y-4 mb-8">
+                <div>
+                  <div class="text-xs uppercase tracking-widest mb-1" style="color: #C9A876;">Email</div>
+                  <a href={`mailto:${brand.email}`} class="text-lg">{brand.email}</a>
+                </div>
+                <div>
+                  <div class="text-xs uppercase tracking-widest mb-1" style="color: #C9A876;">Phone</div>
+                  <div class="text-lg">{brand.phone}</div>
+                </div>
+                <div>
+                  <div class="text-xs uppercase tracking-widest mb-1" style="color: #C9A876;">Web</div>
+                  <div class="text-lg">{brand.web}</div>
+                </div>
+              </div>
+              <a href={`mailto:${brand.email}`} class="block text-center py-3 font-medium" style="background: #C9A876; color: #1A2E4A;">
+                <span data-lang="en">Schedule a Conversation</span>
+                <span data-lang="id">Atur Pertemuan</span>
+              </a>
+            </div>
+          </div>
         </div>
-        <a href={`mailto:${brand.email}`} class="inline-block border border-white/40 px-16 py-6 uppercase tracking-[0.3em] text-lg hover:bg-white hover:text-black transition duration-500">{brand.email}</a>
       </div>
     </section>
   </div>

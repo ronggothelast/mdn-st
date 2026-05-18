@@ -4,16 +4,16 @@ import { brand, profile } from '../../data/content';
 const base = import.meta.env.BASE_URL;
 
 const styles = [
-  { id: 1,  name: 'Editorial Magazine',     desc: { en: 'Serif-led editorial layout, drop caps, generous margins. Reads like a long-form feature.', id: 'Tata letak editorial dengan serif, drop cap, margin lapang. Terbaca seperti artikel panjang.' }, accent: '#1A2E4A' },
-  { id: 2,  name: 'Stripe Minimal',          desc: { en: 'Light weight elegance, soft purples, weight-300 type. Premium SaaS feel.', id: 'Elegan ringan, ungu lembut, tipografi weight-300. Nuansa SaaS premium.' }, accent: '#635BFF' },
-  { id: 3,  name: 'Linear Dark',             desc: { en: 'Ultra-precise dark mode, monospace accents, purple highlights.', id: 'Mode gelap presisi, aksen monospace, sorotan ungu.' }, accent: '#5E6AD2' },
-  { id: 4,  name: 'Notion Warm',             desc: { en: 'Warm minimalism, serif headings, soft surfaces. Editorial but friendly.', id: 'Minimalis hangat, judul serif, permukaan lembut. Editorial tapi ramah.' }, accent: '#37352F' },
-  { id: 5,  name: 'Apple Premium',           desc: { en: 'Cinematic white space, large imagery, restrained typography.', id: 'Ruang putih sinematik, citra besar, tipografi terkendali.' }, accent: '#000' },
-  { id: 6,  name: 'BMW Engineering',         desc: { en: 'Dark premium, precision lines, monochrome with one accent stripe.', id: 'Gelap premium, garis presisi, monokrom dengan satu aksen.' }, accent: '#1c69d4' },
-  { id: 7,  name: 'Vercel Black & White',    desc: { en: 'Pure monochrome, Geist font system, brutally clean grids.', id: 'Monokrom murni, sistem font Geist, grid bersih.' }, accent: '#000' },
-  { id: 8,  name: 'Sanity Editorial Red',    desc: { en: 'Red accent, content-first editorial layout.', id: 'Aksen merah, tata letak editorial mengutamakan konten.' }, accent: '#F03E2F' },
-  { id: 9,  name: 'Spacex Cinematic',        desc: { en: 'Stark black and white, full-bleed imagery, futuristic minimalism.', id: 'Hitam putih tegas, citra full-bleed, minimalisme futuristik.' }, accent: '#005288' },
-  { id: 10, name: 'Madani Heritage',          desc: { en: 'Madani brand applied with maximum warmth — earthy tones, organic shapes.', id: 'Brand Madani dengan kehangatan maksimum — nada bumi, bentuk organik.' }, accent: '#3D8F8A' },
+  { id: 1,  name: 'Editorial Report',     desc: { en: 'Annual report formality with sectioned navy + cream layout.',  id: 'Format laporan tahunan, tata letak navy + krem yang berstruktur.' }, tag: { en: 'Formal', id: 'Formal' } },
+  { id: 2,  name: 'Boutique Consulting',  desc: { en: 'Crisp McKinsey/Bain rigor — generous whitespace, structured.', id: 'Ketegasan McKinsey/Bain — banyak ruang putih, terstruktur.' },          tag: { en: 'Corporate', id: 'Korporat' } },
+  { id: 3,  name: 'White Paper',          desc: { en: 'Research document with serif typography, justified text.',     id: 'Dokumen riset, tipografi serif, teks rata kanan-kiri.' },              tag: { en: 'Research', id: 'Riset' } },
+  { id: 4,  name: 'Magazine Feature',     desc: { en: 'Editorial photography with drop caps and dual columns.',       id: 'Fotografi editorial dengan drop cap dan dua kolom.' },                  tag: { en: 'Editorial', id: 'Editorial' } },
+  { id: 5,  name: 'Sustainability Brief', desc: { en: 'Foundation-style impact brief with stat cards & flow.',        id: 'Brief dampak gaya foundation, kartu statistik dan alur.' },             tag: { en: 'Impact', id: 'Dampak' } },
+  { id: 6,  name: 'Heritage Document',    desc: { en: 'Classical Indonesian elegance with ornamental separators.',    id: 'Keanggunan klasik Indonesia dengan pemisah ornamental.' },              tag: { en: 'Classical', id: 'Klasik' } },
+  { id: 7,  name: 'Modern Foundation',    desc: { en: 'Philanthropy-style with generous photography & navy.',         id: 'Gaya filantropi dengan fotografi besar dan navy.' },                    tag: { en: 'Modern', id: 'Modern' } },
+  { id: 8,  name: 'Community Story',      desc: { en: 'Photo-led narrative storytelling, warm earthy palette.',       id: 'Cerita berbasis foto, palet hangat dan natural.' },                     tag: { en: 'Narrative', id: 'Naratif' } },
+  { id: 9,  name: 'Strategic Brief',      desc: { en: 'Pitch-deck inspired with dense info on deep navy.',            id: 'Terinspirasi pitch deck, info padat pada navy gelap.' },                tag: { en: 'Executive', id: 'Eksekutif' } },
+  { id: 10, name: 'Premium Folio',        desc: { en: 'Coffee-table book elegance with large imagery & gold.',        id: 'Keanggunan buku coffee-table, gambar besar dan aksen emas.' },          tag: { en: 'Premium', id: 'Premium' } },
 ];
 ---
 <BaseLayout title="Company Profile">
@@ -48,7 +48,7 @@ const styles = [
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         {styles.map(s => (
           <a href={`${base}/profile/style-${s.id}`} class="group block bg-white border border-[#E2E6EC] rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl hover:border-[#3D8F8A] transition-all">
-            <div class="aspect-[4/3] rounded-lg mb-5 overflow-hidden flex items-center justify-center font-serif text-3xl font-semibold text-white relative" style={`background: linear-gradient(135deg, ${s.accent}, color-mix(in srgb, ${s.accent} 70%, black));`}>
+            <div class="aspect-[4/3] rounded-lg mb-5 overflow-hidden flex items-center justify-center font-serif text-3xl font-semibold text-white relative" style="background: linear-gradient(135deg, var(--color-navy), var(--color-teal));">
               <span class="opacity-90">{String(s.id).padStart(2, '0')}</span>
               <div class="absolute bottom-3 right-3 text-[0.62rem] font-sans uppercase tracking-wider opacity-70">Madani</div>
             </div>

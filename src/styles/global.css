@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* ─── Madani Brand Design Tokens ─── */
+@theme {
+  /* Brand palette from Brand Guidelines */
+  --color-navy: #1A2E4A;
+  --color-navy-deep: #0F1E33;
+  --color-navy-50: #F0F3F8;
+  --color-navy-100: #DBE2EC;
+  --color-navy-700: #1A2E4A;
+  --color-navy-800: #142340;
+  --color-navy-900: #0F1E33;
+
+  --color-teal: #3D8F8A;
+  --color-teal-light: #5BAFA9;
+  --color-teal-soft: #E8F2F1;
+  --color-teal-50: #F0F8F7;
+  --color-teal-100: #D6EAE8;
+  --color-teal-500: #3D8F8A;
+  --color-teal-600: #2F7773;
+
+  --color-tan: #C9A876;
+  --color-tan-soft: #F4ECDB;
+  --color-tan-50: #FAF6EC;
+
+  --color-bg: #FDFCF8;
+  --color-ink: #1A2E4A;
+  --color-muted: #5C6B7E;
+  --color-border: #E2E6EC;
+
+  /* Typography */
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+
+  /* Radii */
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
+}
+
+/* ─── Base styles ─── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  h1 { font-weight: 500; }
+  ::selection { background: var(--color-teal); color: white; }
+}
+
+/* ─── Components ─── */
+@layer components {
+  .container-x { @apply max-w-[1280px] mx-auto px-5 md:px-10 lg:px-12; }
+
+  .eyebrow {
+    @apply inline-block text-xs font-semibold uppercase tracking-[0.18em] text-teal-500 mb-4;
+    font-family: var(--font-sans);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-medium transition-all;
+    background: var(--color-navy);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: var(--color-navy-deep);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-medium border bg-white transition-all;
+    border-color: var(--color-border);
+    color: var(--color-ink);
+  }
+  .btn-ghost:hover { border-color: var(--color-navy); }
+
+  .btn-teal {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-medium transition-all;
+    background: var(--color-teal);
+    color: white;
+  }
+  .btn-teal:hover { background: var(--color-teal-600); }
+
+  /* Animated underline link */
+  .link-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 1px;
+    background: currentColor;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s;
+  }
+  .link-underline:hover::after { transform-origin: left; transform: scaleX(1); }
+
+  /* Drop cap */
+  .dropcap::first-letter {
+    font-family: var(--font-serif);
+    font-size: 4.2rem;
+    font-weight: 500;
+    float: left;
+    line-height: 0.85;
+    margin: 6px 12px 0 0;
+    color: var(--color-teal);
+  }
+}
+
+/* ─── Animations ─── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-fade-up { animation: fade-up .6s cubic-bezier(.2, .8, .2, 1) both; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

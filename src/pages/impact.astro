@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { impactCards } from '../data/content';
+---
+<BaseLayout title="Impact">
+  <section class="py-24 text-center" style="background: linear-gradient(180deg, #E8F2F1, #FDFCF8);">
+    <div class="container-x">
+      <span class="eyebrow"><span data-lang="en">Impact</span><span data-lang="id">Dampak</span></span>
+      <h1 class="text-5xl mb-5">
+        <span data-lang="en">Proof of execution.</span>
+        <span data-lang="id">Bukti eksekusi.</span>
+      </h1>
+      <p class="text-[#5C6B7E] text-lg max-w-2xl mx-auto">
+        <span data-lang="en">Our credibility comes from doing the work. We measure what we deliver. We adjust when results do not match expectations. We build on what works.</span>
+        <span data-lang="id">Kredibilitas kami datang dari mengerjakannya. Kami mengukur apa yang kami berikan. Kami menyesuaikan ketika hasil tidak sesuai ekspektasi. Kami membangun di atas apa yang berhasil.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="container-x grid md:grid-cols-2 gap-6">
+      {impactCards.map(card => (
+        <article class="border border-[#E2E6EC] rounded-2xl p-8 bg-white hover:border-[#3D8F8A] hover:-translate-y-0.5 transition-all">
+          <span class="inline-block text-[0.72rem] font-semibold tracking-[0.12em] uppercase text-[#3D8F8A] bg-[#E8F2F1] px-2.5 py-1.5 rounded mb-4">
+            <span data-lang="en">{card.tag.en}</span><span data-lang="id">{card.tag.id}</span>
+          </span>
+          <h3 class="text-xl mb-3">
+            <span data-lang="en">{card.title.en}</span><span data-lang="id">{card.title.id}</span>
+          </h3>
+          <p class="text-[#5C6B7E] text-[0.95rem]">
+            <span data-lang="en">{card.body.en}</span><span data-lang="id">{card.body.id}</span>
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,98 @@
+---
+// STYLE 09 — SpaceX Cinematic
+import ProfileLayout from '../../layouts/ProfileLayout.astro';
+import { brand, profile, services, team } from '../../data/content';
+const base = import.meta.env.BASE_URL;
+---
+<ProfileLayout styleNum={9} styleName="SpaceX Cinematic">
+  <div style="background: #000; color: #fff; font-family: 'Inter', sans-serif;">
+    <!-- Full-bleed cinematic hero -->
+    <section class="relative h-screen overflow-hidden">
+      <img src={base + '/assets/images/forest.png'} alt="" class="absolute inset-0 w-full h-full object-cover scale-110" style="filter: grayscale(100%) brightness(0.4);" />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.95) 100%);"></div>
+      <div class="relative h-full flex items-end pb-24">
+        <div class="container-x">
+          <h1 class="text-[clamp(4rem,12vw,11rem)] font-light leading-[0.9] tracking-tight uppercase mb-8">{brand.name}</h1>
+          <p class="text-2xl uppercase tracking-[0.3em] text-white/70">
+            <span data-lang="en">{brand.tagline.en}</span>
+            <span data-lang="id">{brand.tagline.id}</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-32">
+      <div class="container-x max-w-4xl text-center">
+        <h2 class="text-4xl md:text-6xl uppercase tracking-tight font-light mb-12">
+          <span data-lang="en">{profile.whoWeAre.title.en}</span>
+          <span data-lang="id">{profile.whoWeAre.title.id}</span>
+        </h2>
+        {profile.whoWeAre.body.en.map((p, i) => (
+          <p class="text-xl leading-relaxed mb-6 text-white/80">
+            <span data-lang="en">{p}</span>
+            <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+          </p>
+        ))}
+      </div>
+    </section>
+
+    <!-- Image-rich service sections -->
+    {services.map((svc, i) => {
+      const img = svc.image;
+      return (
+        <section class="relative h-screen overflow-hidden">
+          <img src={img} alt={svc.title.en} class="absolute inset-0 w-full h-full object-cover" style="filter: grayscale(100%) brightness(0.5);" />
+          <div class="absolute inset-0" style={`background: linear-gradient(${i % 2 === 0 ? '90deg' : '270deg'}, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);`}></div>
+          <div class={`relative h-full flex items-center ${i % 2 === 0 ? '' : 'justify-end'}`}>
+            <div class={`container-x ${i % 2 === 0 ? '' : 'text-right'}`}>
+              <div class="text-sm uppercase tracking-[0.4em] text-white/60 mb-4">{svc.num} / Service</div>
+              <h2 class={`text-5xl md:text-7xl uppercase tracking-tight font-light mb-6 max-w-2xl ${i % 2 === 0 ? '' : 'ml-auto'}`}>
+                <span data-lang="en">{svc.title.en}</span>
+                <span data-lang="id">{svc.title.id}</span>
+              </h2>
+              <p class={`text-lg max-w-xl text-white/80 ${i % 2 === 0 ? '' : 'ml-auto'}`}>
+                <span data-lang="en">{svc.short.en}</span>
+                <span data-lang="id">{svc.short.id}</span>
+              </p>
+            </div>
+          </div>
+        </section>
+      );
+    })}
+
+    <!-- Team -->
+    <section class="py-32">
+      <div class="container-x">
+        <h2 class="text-5xl uppercase tracking-tight font-light text-center mb-20">
+          <span data-lang="en">The Crew</span>
+          <span data-lang="id">Awak</span>
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+          {team.map(m => (
+            <div>
+              <div class="aspect-square mb-5 flex items-center justify-center font-light text-5xl border border-white/20" style="background: #0a0a0a;">{m.initials}</div>
+              <h3 class="text-xl uppercase tracking-wider font-light">{m.name}</h3>
+              <div class="text-xs uppercase tracking-[0.3em] text-white/60 mt-2 mb-4">
+                <span data-lang="en">{m.role.en}</span>
+                <span data-lang="id">{m.role.id}</span>
+              </div>
+              <p class="text-sm text-white/70 leading-relaxed">
+                <span data-lang="en">{m.bioShort.en}</span>
+                <span data-lang="id">{m.bioShort.id}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-32 text-center">
+      <h2 class="text-6xl uppercase tracking-tight font-light mb-8">
+        <span data-lang="en">Mission Control</span>
+        <span data-lang="id">Pusat Kendali</span>
+      </h2>
+      <p class="text-xl uppercase tracking-[0.3em] text-white/60 mb-2">{brand.email}</p>
+      <p class="text-lg text-white/40">{brand.phone}</p>
+    </section>
+  </div>
+</ProfileLayout>

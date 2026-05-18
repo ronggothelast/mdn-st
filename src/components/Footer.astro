@@ -1,0 +1,57 @@
+---
+import { brand, nav } from '../data/content';
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+---
+<footer class="bg-[#0F1E33] text-white/70 pt-16 pb-8 mt-24">
+  <div class="container-x">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div class="md:col-span-2 max-w-md">
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="relative w-9 h-9 rounded-full overflow-hidden">
+            <div class="absolute inset-0" style="background: radial-gradient(circle at 30% 30%, var(--color-teal-light), var(--color-teal) 60%, var(--color-navy));"></div>
+            <div class="absolute inset-2 rounded-full opacity-70" style="background: linear-gradient(135deg, transparent 40%, var(--color-tan) 40%, var(--color-tan-soft) 60%, transparent 60%);"></div>
+          </div>
+          <div>
+            <div class="font-serif font-semibold text-white text-[1.05rem]">{brand.name}</div>
+            <div class="text-[0.62rem] font-semibold tracking-[0.15em] uppercase text-[#5BAFA9]">
+              <span data-lang="en">{brand.tagline.en}</span>
+              <span data-lang="id">{brand.tagline.id}</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-sm" data-lang="en">A strategic impact consultancy helping organizations navigate social risk, regulatory complexity, and sustainable growth.</p>
+        <p class="text-sm" data-lang="id">Konsultan dampak strategis yang membantu organisasi menavigasi risiko sosial, kompleksitas regulasi, dan pertumbuhan berkelanjutan.</p>
+      </div>
+
+      <div>
+        <h5 class="text-white text-[0.78rem] font-semibold uppercase tracking-[0.15em] mb-4">
+          <span data-lang="en">Pages</span><span data-lang="id">Halaman</span>
+        </h5>
+        <ul class="space-y-2.5 text-sm">
+          <li><a class="hover:text-white transition-colors" href={base + '/'}><span data-lang="en">{nav.home.en}</span><span data-lang="id">{nav.home.id}</span></a></li>
+          <li><a class="hover:text-white transition-colors" href={base + '/services'}><span data-lang="en">{nav.services.en}</span><span data-lang="id">{nav.services.id}</span></a></li>
+          <li><a class="hover:text-white transition-colors" href={base + '/impact'}><span data-lang="en">{nav.impact.en}</span><span data-lang="id">{nav.impact.id}</span></a></li>
+          <li><a class="hover:text-white transition-colors" href={base + '/about'}><span data-lang="en">{nav.about.en}</span><span data-lang="id">{nav.about.id}</span></a></li>
+          <li><a class="hover:text-white transition-colors" href={base + '/profile'}><span data-lang="en">{nav.profile.en}</span><span data-lang="id">{nav.profile.id}</span></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="text-white text-[0.78rem] font-semibold uppercase tracking-[0.15em] mb-4">
+          <span data-lang="en">Contact</span><span data-lang="id">Kontak</span>
+        </h5>
+        <ul class="space-y-2.5 text-sm">
+          <li><a class="hover:text-white transition-colors" href={`mailto:${brand.email}`}>{brand.email}</a></li>
+          <li><a class="hover:text-white transition-colors" href={`tel:${brand.phone.replace(/\s/g, '')}`}>{brand.phone}</a></li>
+          <li>{brand.web}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-6 flex flex-wrap justify-between gap-3 text-xs">
+      <span>© {year} {brand.name}. <span data-lang="en">All rights reserved.</span><span data-lang="id">Hak cipta dilindungi.</span></span>
+      <span data-lang="en">Built with care.</span><span data-lang="id">Dibangun dengan teliti.</span>
+    </div>
+  </div>
+</footer>

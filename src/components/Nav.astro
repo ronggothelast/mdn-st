@@ -1,0 +1,96 @@
+---
+import { brand, nav } from '../data/content';
+const base = import.meta.env.BASE_URL;
+const path = Astro.url.pathname;
+const isActive = (p: string) => {
+  const target = base.replace(/\/$/, '') + p;
+  if (p === '/') return path === base || path === base + '/';
+  return path.startsWith(target);
+};
+---
+<nav id="site-nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-[#FDFCF8]/90 backdrop-blur-md border-b border-transparent">
+  <div class="container-x flex items-center justify-between py-4">
+    <a href={base + '/'} class="flex items-center gap-2.5 group">
+      <div class="relative w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
+        <div class="absolute inset-0" style="background: radial-gradient(circle at 30% 30%, var(--color-teal-light), var(--color-teal) 60%, var(--color-navy));"></div>
+        <div class="absolute inset-2 rounded-full opacity-70" style="background: linear-gradient(135deg, transparent 40%, var(--color-tan) 40%, var(--color-tan-soft) 60%, transparent 60%);"></div>
+      </div>
+      <div class="flex flex-col leading-none">
+        <span class="font-serif font-semibold text-[1.05rem] text-[#1A2E4A]">{brand.name}</span>
+        <span class="text-[0.62rem] font-semibold tracking-[0.15em] uppercase text-[#3D8F8A] mt-0.5">
+          <span data-lang="en">{brand.tagline.en}</span>
+          <span data-lang="id">{brand.tagline.id}</span>
+        </span>
+      </div>
+    </a>
+
+    <button id="menu-btn" aria-label="Menu" class="md:hidden flex flex-col gap-[5px] p-2">
+      <span class="w-5 h-[2px] bg-[#1A2E4A]"></span>
+      <span class="w-5 h-[2px] bg-[#1A2E4A]"></span>
+      <span class="w-5 h-[2px] bg-[#1A2E4A]"></span>
+    </button>
+
+    <div id="nav-links" class="hidden md:flex items-center gap-9 absolute md:static top-full left-0 right-0 md:bg-transparent bg-white md:flex-row flex-col md:items-center items-start md:p-0 px-6 py-6 md:border-0 border-t border-[#E2E6EC]">
+      <a href={base + '/'} class={`text-[0.92rem] font-medium transition-opacity ${isActive('/') ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
+        <span data-lang="en">{nav.home.en}</span><span data-lang="id">{nav.home.id}</span>
+      </a>
+      <a href={base + '/services'} class={`text-[0.92rem] font-medium transition-opacity ${isActive('/services') ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
+        <span data-lang="en">{nav.services.en}</span><span data-lang="id">{nav.services.id}</span>
+      </a>
+      <a href={base + '/impact'} class={`text-[0.92rem] font-medium transition-opacity ${isActive('/impact') ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
+        <span data-lang="en">{nav.impact.en}</span><span data-lang="id">{nav.impact.id}</span>
+      </a>
+      <a href={base + '/about'} class={`text-[0.92rem] font-medium transition-opacity ${isActive('/about') ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
+        <span data-lang="en">{nav.about.en}</span><span data-lang="id">{nav.about.id}</span>
+      </a>
+      <a href={base + '/profile'} class={`text-[0.92rem] font-medium transition-opacity ${isActive('/profile') ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
+        <span data-lang="en">{nav.profile.en}</span><span data-lang="id">{nav.profile.id}</span>
+      </a>
+
+      <div class="flex items-center gap-0 border border-[#E2E6EC] rounded-full p-[3px] bg-white">
+        <button data-lang-set="en" class="lang-btn px-3.5 py-1.5 rounded-full text-[0.78rem] font-semibold text-[#5C6B7E]">EN</button>
+        <button data-lang-set="id" class="lang-btn px-3.5 py-1.5 rounded-full text-[0.78rem] font-semibold text-[#5C6B7E]">ID</button>
+      </div>
+
+      <a href={base + '/contact'} class="bg-[#1A2E4A] hover:bg-[#0F1E33] text-white px-5 py-2.5 rounded-full text-[0.88rem] font-medium transition-colors">
+        <span data-lang="en">{nav.contact.en}</span><span data-lang="id">{nav.contact.id}</span>
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="h-[72px]"></div>
+
+<script is:inline>
+  // Lang toggle persistence
+  const langBtns = document.querySelectorAll('[data-lang-set]');
+  const setLang = (lang) => {
+    document.documentElement.classList.toggle('lang-id', lang === 'id');
+    localStorage.setItem('mdn-lang', lang);
+    langBtns.forEach(b => {
+      const active = b.getAttribute('data-lang-set') === lang;
+      b.classList.toggle('bg-[#1A2E4A]', active);
+      b.classList.toggle('text-white', active);
+      b.classList.toggle('text-[#5C6B7E]', !active);
+    });
+  };
+  setLang(localStorage.getItem('mdn-lang') || 'en');
+  langBtns.forEach(b => b.addEventListener('click', () => setLang(b.getAttribute('data-lang-set'))));
+
+  // Sticky nav border on scroll
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => {
+    if (window.scrollY > 20) {
+      nav.classList.add('border-[#E2E6EC]', 'shadow-[0_1px_20px_rgba(26,46,74,0.04)]');
+      nav.classList.remove('border-transparent');
+    } else {
+      nav.classList.remove('border-[#E2E6EC]', 'shadow-[0_1px_20px_rgba(26,46,74,0.04)]');
+      nav.classList.add('border-transparent');
+    }
+  };
+  window.addEventListener('scroll', onScroll); onScroll();
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const navLinks = document.getElementById('nav-links');
+  menuBtn?.addEventListener('click', () => navLinks.classList.toggle('hidden'));
+</script>

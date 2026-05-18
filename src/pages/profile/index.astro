@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { brand, profile } from '../../data/content';
+const base = import.meta.env.BASE_URL;
+
+const styles = [
+  { id: 1,  name: 'Editorial Magazine',     desc: { en: 'Serif-led editorial layout, drop caps, generous margins. Reads like a long-form feature.', id: 'Tata letak editorial dengan serif, drop cap, margin lapang. Terbaca seperti artikel panjang.' }, accent: '#1A2E4A' },
+  { id: 2,  name: 'Stripe Minimal',          desc: { en: 'Light weight elegance, soft purples, weight-300 type. Premium SaaS feel.', id: 'Elegan ringan, ungu lembut, tipografi weight-300. Nuansa SaaS premium.' }, accent: '#635BFF' },
+  { id: 3,  name: 'Linear Dark',             desc: { en: 'Ultra-precise dark mode, monospace accents, purple highlights.', id: 'Mode gelap presisi, aksen monospace, sorotan ungu.' }, accent: '#5E6AD2' },
+  { id: 4,  name: 'Notion Warm',             desc: { en: 'Warm minimalism, serif headings, soft surfaces. Editorial but friendly.', id: 'Minimalis hangat, judul serif, permukaan lembut. Editorial tapi ramah.' }, accent: '#37352F' },
+  { id: 5,  name: 'Apple Premium',           desc: { en: 'Cinematic white space, large imagery, restrained typography.', id: 'Ruang putih sinematik, citra besar, tipografi terkendali.' }, accent: '#000' },
+  { id: 6,  name: 'BMW Engineering',         desc: { en: 'Dark premium, precision lines, monochrome with one accent stripe.', id: 'Gelap premium, garis presisi, monokrom dengan satu aksen.' }, accent: '#1c69d4' },
+  { id: 7,  name: 'Vercel Black & White',    desc: { en: 'Pure monochrome, Geist font system, brutally clean grids.', id: 'Monokrom murni, sistem font Geist, grid bersih.' }, accent: '#000' },
+  { id: 8,  name: 'Sanity Editorial Red',    desc: { en: 'Red accent, content-first editorial layout.', id: 'Aksen merah, tata letak editorial mengutamakan konten.' }, accent: '#F03E2F' },
+  { id: 9,  name: 'Spacex Cinematic',        desc: { en: 'Stark black and white, full-bleed imagery, futuristic minimalism.', id: 'Hitam putih tegas, citra full-bleed, minimalisme futuristik.' }, accent: '#005288' },
+  { id: 10, name: 'Madani Heritage',          desc: { en: 'Madani brand applied with maximum warmth — earthy tones, organic shapes.', id: 'Brand Madani dengan kehangatan maksimum — nada bumi, bentuk organik.' }, accent: '#3D8F8A' },
+];
+---
+<BaseLayout title="Company Profile">
+  <section class="py-24 text-center" style="background: linear-gradient(180deg, #E8F2F1, #FDFCF8);">
+    <div class="container-x">
+      <span class="eyebrow"><span data-lang="en">Company Profile</span><span data-lang="id">Profil Perusahaan</span></span>
+      <h1 class="text-5xl md:text-6xl mb-4">{brand.name}</h1>
+      <p class="font-serif italic text-2xl mb-2" style="color: var(--color-teal);">
+        <span data-lang="en">{brand.tagline.en}</span>
+        <span data-lang="id">{brand.tagline.id}</span>
+      </p>
+      <p class="text-[#5C6B7E] mt-6 max-w-2xl mx-auto">
+        <span data-lang="en">Choose the design direction that feels right. Same content — ten distinct visual languages.</span>
+        <span data-lang="id">Pilih arah desain yang paling pas. Konten sama — sepuluh bahasa visual berbeda.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Style picker -->
+  <section class="py-12">
+    <div class="container-x">
+      <div class="flex items-center justify-center gap-3 mb-12 flex-wrap">
+        <label for="style-picker" class="text-sm font-semibold text-[#5C6B7E]">
+          <span data-lang="en">Jump to style:</span><span data-lang="id">Lompat ke gaya:</span>
+        </label>
+        <select id="style-picker" class="px-4 py-2.5 border border-[#E2E6EC] rounded-full bg-white font-medium focus:outline-none focus:border-[#3D8F8A]">
+          <option value="">— pick a style —</option>
+          {styles.map(s => <option value={s.id}>{`Style ${String(s.id).padStart(2, '0')} · ${s.name}`}</option>)}
+        </select>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {styles.map(s => (
+          <a href={`${base}/profile/style-${s.id}`} class="group block bg-white border border-[#E2E6EC] rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl hover:border-[#3D8F8A] transition-all">
+            <div class="aspect-[4/3] rounded-lg mb-5 overflow-hidden flex items-center justify-center font-serif text-3xl font-semibold text-white relative" style={`background: linear-gradient(135deg, ${s.accent}, color-mix(in srgb, ${s.accent} 70%, black));`}>
+              <span class="opacity-90">{String(s.id).padStart(2, '0')}</span>
+              <div class="absolute bottom-3 right-3 text-[0.62rem] font-sans uppercase tracking-wider opacity-70">Madani</div>
+            </div>
+            <div class="text-[0.7rem] font-semibold tracking-wider uppercase text-[#3D8F8A] mb-1.5">Style {String(s.id).padStart(2, '0')}</div>
+            <h3 class="font-semibold text-lg mb-2 group-hover:text-[#3D8F8A] transition-colors">{s.name}</h3>
+            <p class="text-sm text-[#5C6B7E] leading-relaxed">
+              <span data-lang="en">{s.desc.en}</span>
+              <span data-lang="id">{s.desc.id}</span>
+            </p>
+            <div class="mt-4 text-sm font-semibold text-[#1A2E4A] flex items-center gap-1.5">
+              <span data-lang="en">View design</span><span data-lang="id">Lihat desain</span>
+              <span class="transition-transform group-hover:translate-x-1">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ base }}>
+    document.getElementById('style-picker').addEventListener('change', e => {
+      const v = e.target.value;
+      if (v) window.location.href = `${base}/profile/style-${v}`;
+    });
+  </script>
+</BaseLayout>

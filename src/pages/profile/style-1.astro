@@ -1,0 +1,137 @@
+---
+// STYLE 01 — Editorial Magazine
+// Serif-led, magazine layout, drop caps, generous margins
+import ProfileLayout from '../../layouts/ProfileLayout.astro';
+import { brand, profile, services, team } from '../../data/content';
+const base = import.meta.env.BASE_URL;
+---
+<ProfileLayout styleNum={1} styleName="Editorial Magazine">
+  <article class="font-serif" style="background: #FDFCF8;">
+
+    <!-- Cover -->
+    <header class="min-h-screen flex flex-col justify-center py-32 border-b-2 border-[#1A2E4A]">
+      <div class="container-x max-w-5xl">
+        <div class="text-xs font-sans uppercase tracking-[0.4em] text-[#3D8F8A] mb-8">Issue 01 · 2026</div>
+        <h1 class="text-[clamp(3.5rem,9vw,8rem)] leading-[0.95] font-medium mb-12">{brand.name}</h1>
+        <p class="text-2xl italic text-[#5C6B7E] max-w-2xl mb-8">
+          <span data-lang="en">{brand.tagline.en}</span>
+          <span data-lang="id">{brand.tagline.id}</span>
+        </p>
+        <div class="flex items-end justify-between flex-wrap gap-6 mt-16 pt-8 border-t border-[#E2E6EC]">
+          <div class="text-sm font-sans">
+            <div class="uppercase tracking-wider text-[#5C6B7E] mb-1" data-lang="en">A strategic impact consultancy</div>
+            <div class="uppercase tracking-wider text-[#5C6B7E] mb-1" data-lang="id">Konsultan dampak strategis</div>
+          </div>
+          <div class="text-sm font-sans text-right">
+            <div>{brand.email}</div>
+            <div>{brand.phone}</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Section: Who We Are with drop cap -->
+    <section class="py-32">
+      <div class="container-x max-w-3xl">
+        <div class="text-xs font-sans uppercase tracking-[0.3em] text-[#3D8F8A] mb-6">Chapter I</div>
+        <h2 class="text-5xl mb-12">
+          <span data-lang="en">{profile.whoWeAre.title.en}</span>
+          <span data-lang="id">{profile.whoWeAre.title.id}</span>
+        </h2>
+        {profile.whoWeAre.body.en.map((para, i) => (
+          <p class={`text-xl leading-[1.7] mb-7 text-[#1A2E4A] ${i === 0 ? 'dropcap' : ''}`}>
+            <span data-lang="en">{para}</span>
+            <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+          </p>
+        ))}
+      </div>
+    </section>
+
+    <!-- Pull quote -->
+    <section class="py-24 border-y border-[#1A2E4A]">
+      <div class="container-x max-w-4xl text-center">
+        <p class="text-4xl md:text-6xl leading-tight italic">
+          <span class="text-[#3D8F8A] text-7xl align-top mr-2">"</span>
+          <span data-lang="en">Strategy without execution is theory. Execution without measurement is guesswork.</span>
+          <span data-lang="id">Strategi tanpa eksekusi hanya teori. Eksekusi tanpa pengukuran hanya tebakan.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Services as articles -->
+    <section class="py-32">
+      <div class="container-x max-w-5xl">
+        <div class="text-xs font-sans uppercase tracking-[0.3em] text-[#3D8F8A] mb-6">Chapter II</div>
+        <h2 class="text-5xl mb-16">
+          <span data-lang="en">Three Services</span>
+          <span data-lang="id">Tiga Layanan</span>
+        </h2>
+        {services.map((svc, i) => (
+          <div class={`grid lg:grid-cols-[1fr_2fr] gap-10 py-12 ${i < services.length - 1 ? 'border-b border-[#E2E6EC]' : ''}`}>
+            <div>
+              <div class="text-7xl font-medium text-[#3D8F8A] mb-2">{svc.num}</div>
+              <h3 class="text-3xl mb-4">
+                <span data-lang="en">{svc.title.en}</span>
+                <span data-lang="id">{svc.title.id}</span>
+              </h3>
+            </div>
+            <div>
+              {svc.detail.en.map((para, j) => (
+                <p class="text-lg leading-relaxed text-[#5C6B7E] mb-4">
+                  <span data-lang="en">{para}</span>
+                  <span data-lang="id">{svc.detail.id[j]}</span>
+                </p>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Team as bylines -->
+    <section class="py-32 bg-[#1A2E4A] text-white">
+      <div class="container-x max-w-5xl">
+        <div class="text-xs font-sans uppercase tracking-[0.3em] text-[#5BAFA9] mb-6">Chapter III</div>
+        <h2 class="text-5xl mb-16">
+          <span data-lang="en">Contributors</span>
+          <span data-lang="id">Kontributor</span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          {team.map(m => (
+            <div class="border-l-2 border-[#5BAFA9] pl-6">
+              <div class="text-xs font-sans uppercase tracking-[0.2em] text-[#5BAFA9] mb-2">
+                <span data-lang="en">{m.role.en}</span>
+                <span data-lang="id">{m.role.id}</span>
+              </div>
+              <h3 class="text-2xl mb-4">{m.name}</h3>
+              <p class="text-white/70 leading-relaxed">
+                <span data-lang="en">{m.bioFull.en}</span>
+                <span data-lang="id">{m.bioFull.id}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <footer class="py-32">
+      <div class="container-x max-w-3xl text-center">
+        <h2 class="text-5xl mb-12">
+          <span data-lang="en">{profile.whatComesNext.title.en}</span>
+          <span data-lang="id">{profile.whatComesNext.title.id}</span>
+        </h2>
+        {profile.whatComesNext.body.en.map((para, i) => (
+          <p class="text-xl leading-relaxed mb-5 text-[#5C6B7E]">
+            <span data-lang="en">{para}</span>
+            <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
+          </p>
+        ))}
+        <div class="mt-16 pt-12 border-t border-[#E2E6EC] font-sans">
+          <div class="text-2xl font-serif italic mb-2">{brand.name}</div>
+          <div class="text-sm text-[#5C6B7E]">{brand.email} · {brand.phone}</div>
+        </div>
+      </div>
+    </footer>
+  </article>
+</ProfileLayout>

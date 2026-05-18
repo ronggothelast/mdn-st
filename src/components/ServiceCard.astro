@@ -1,0 +1,26 @@
+---
+export interface Props {
+  num: string;
+  image: string;
+  titleEn: string;
+  titleId: string;
+  shortEn: string;
+  shortId: string;
+  href: string;
+}
+const { num, image, titleEn, titleId, shortEn, shortId, href } = Astro.props;
+---
+<a href={href} class="group block bg-white border border-[#E2E6EC] rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(26,46,74,0.15)] hover:border-[#3D8F8A] transition-all duration-300">
+  <div class="aspect-[16/10] overflow-hidden bg-[#E8F2F1]">
+    <img src={image} alt={titleEn} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+  </div>
+  <div class="p-7 pb-8 flex flex-col h-[calc(100%-theme(spacing.40))]">
+    <div class="font-serif text-sm text-[#3D8F8A] font-semibold mb-2">{num}</div>
+    <h3 class="text-xl mb-3"><span data-lang="en">{titleEn}</span><span data-lang="id">{titleId}</span></h3>
+    <p class="text-[#5C6B7E] text-sm flex-1"><span data-lang="en">{shortEn}</span><span data-lang="id">{shortId}</span></p>
+    <span class="mt-5 text-sm font-semibold text-[#1A2E4A] inline-flex items-center gap-1.5">
+      <span data-lang="en">Learn more</span><span data-lang="id">Selengkapnya</span>
+      <span class="transition-transform group-hover:translate-x-1">→</span>
+    </span>
+  </div>
+</a>

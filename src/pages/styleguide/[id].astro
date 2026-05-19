@@ -1,0 +1,695 @@
+---
+// Dynamic Style Guide page — one per profile style.
+// Renders the design system (tokens, components, patterns) using the style's own visual language.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { styleguides, type StyleTokens } from '../../data/styleguides';
+
+export async function getStaticPaths() {
+  return styleguides.map((style) => ({
+    params: { id: String(style.num) },
+    props: { style },
+  }));
+}
+
+interface Props {
+  style: StyleTokens;
+}
+
+const { style } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+// Helpers — derive small variants from base tokens
+const colorTokens = [
+  { name: 'Background', token: '--bg', hex: style.bg, role: 'page' },
+  { name: 'Surface', token: '--surface', hex: style.surface, role: 'card / panel' },
+  { name: 'Ink', token: '--ink', hex: style.ink, role: 'primary text' },
+  { name: 'Muted', token: '--muted', hex: style.muted, role: 'secondary text' },
+  { name: 'Primary', token: '--primary', hex: style.primary, role: 'brand / CTA' },
+  { name: 'Accent', token: '--accent', hex: style.accent, role: 'secondary accent' },
+  { name: 'Highlight', token: '--highlight', hex: style.highlight, role: 'tertiary / decor' },
+  { name: 'Border', token: '--border', hex: style.border, role: 'dividers' },
+];
+
+const typeScale = [
+  { label: 'Display', size: '4.5rem', weight: style.headingWeight, sample: 'Connecting Growth' },
+  { label: 'H1', size: '3rem', weight: style.headingWeight, sample: 'Strategic Impact' },
+  { label: 'H2', size: '2.25rem', weight: style.headingWeight, sample: 'Who We Serve' },
+  { label: 'H3', size: '1.5rem', weight: 600, sample: 'Section Heading' },
+  { label: 'Body Lead', size: '1.25rem', weight: 400, sample: 'A 20-year track record working alongside farmers and communities.' },
+  { label: 'Body', size: '1rem', weight: 400, sample: 'Madani Strategies is a strategic impact consultancy that connects business growth to community impact.' },
+  { label: 'Caption', size: '0.85rem', weight: 500, sample: 'Source: Internal field study, 2025' },
+  { label: 'Eyebrow', size: '0.75rem', weight: 600, sample: 'WHO WE ARE', upper: true },
+];
+
+const spacingScale = [
+  { name: 'xs', value: '0.5rem', px: '8px' },
+  { name: 'sm', value: '1rem', px: '16px' },
+  { name: 'md', value: '1.5rem', px: '24px' },
+  { name: 'lg', value: '2.5rem', px: '40px' },
+  { name: 'xl', value: '4rem', px: '64px' },
+  { name: '2xl', value: '6rem', px: '96px' },
+  { name: '3xl', value: style.sectionPadding, px: 'section' },
+];
+
+const navLinks = styleguides.map((s) => s.num);
+
+// Pre-compute root inline style for the article (CSS variables wiring)
+const rootStyle = [
+  `--bg:${style.bg}`,
+  `--surface:${style.surface}`,
+  `--ink:${style.ink}`,
+  `--muted:${style.muted}`,
+  `--primary:${style.primary}`,
+  `--accent:${style.accent}`,
+  `--highlight:${style.highlight}`,
+  `--border:${style.border}`,
+  `--font-heading:${style.fontHeading}`,
+  `--font-body:${style.fontBody}`,
+  `--font-mono:${style.fontMono}`,
+  `--radius:${style.radius}`,
+  `--btn-radius:${style.buttonRadius}`,
+  `--shadow:${style.shadow}`,
+  `--border-w:${style.borderWidth}`,
+  `--sec-pad:${style.sectionPadding}`,
+  `--container-max:${style.containerMax}`,
+  `--h-weight:${style.headingWeight}`,
+  `--h-tracking:${style.headingTracking}`,
+  `background:var(--bg)`,
+  `color:var(--ink)`,
+  `font-family:var(--font-body)`,
+].join(';');
+
+const headingStyle = `font-family:var(--font-heading);font-weight:var(--h-weight);letter-spacing:var(--h-tracking);`;
+const fontHeadName = style.fontHeading.split(',')[0].replace(/['"]/g, '');
+const fontBodyName = style.fontBody.split(',')[0].replace(/['"]/g, '');
+---
+<BaseLayout title={`Style Guide ${String(style.num).padStart(2, '0')} · ${style.name}`}>
+  <!-- Bottom switcher -->
+  <div class="fixed bottom-6 inset-x-0 z-40 pointer-events-none">
+    <div class="container-x flex justify-center">
+      <div class="pointer-events-auto bg-white/95 backdrop-blur-md border border-[#E2E6EC] shadow-2xl rounded-full px-3 py-2 flex items-center gap-1 max-w-full overflow-x-auto">
+        <a href={base + 'profile'} class="text-xs font-semibold uppercase tracking-wider px-3 py-1.5 text-[#5C6B7E] hover:text-[#1A2E4A] whitespace-nowrap">
+          ← Profile
+        </a>
+        <div class="w-px h-5 bg-[#E2E6EC]"></div>
+        {navLinks.map((n) => (
+          <a
+            href={`${base}styleguide/${n}`}
+            class={`px-3 py-1.5 text-xs font-semibold rounded-full transition-colors ${n === style.num ? 'bg-[#1A2E4A] text-white' : 'text-[#5C6B7E] hover:bg-[#F0F3F8]'}`}
+          >
+            {String(n).padStart(2, '0')}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <article
+    class="sg-root pb-32"
+    style={rootStyle}
+  >
+    <!-- ==================== HERO ==================== -->
+    <header class="sg-section" style="border-bottom:var(--border-w) solid var(--border);">
+      <div class="sg-container">
+        <div class="sg-eyebrow" style="color:var(--accent);">
+          Style {String(style.num).padStart(2, '0')} · Design System
+        </div>
+        <h1 class="sg-display" style={headingStyle}>
+          {style.name}
+        </h1>
+        <p class="sg-lead" style="color:var(--muted);">{style.description}</p>
+        <p class="sg-meta" style="color:var(--muted);font-style:italic;">{style.vibe}</p>
+
+        <div class="sg-meta-grid">
+          <div>
+            <div class="sg-eyebrow" style="color:var(--accent);">Headline Font</div>
+            <div class="sg-meta-val" style="font-family:var(--font-heading);">{fontHeadName}</div>
+          </div>
+          <div>
+            <div class="sg-eyebrow" style="color:var(--accent);">Body Font</div>
+            <div class="sg-meta-val" style="font-family:var(--font-body);">{fontBodyName}</div>
+          </div>
+          <div>
+            <div class="sg-eyebrow" style="color:var(--accent);">Button Style</div>
+            <div class="sg-meta-val">{style.buttonStyle}</div>
+          </div>
+          <div>
+            <div class="sg-eyebrow" style="color:var(--accent);">Radius</div>
+            <div class="sg-meta-val">{style.radius}</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== COLORS ==================== -->
+    <section class="sg-section">
+      <div class="sg-container">
+        <div class="sg-section-head">
+          <div class="sg-eyebrow" style="color:var(--accent);">01 · Color</div>
+          <h2 class="sg-h2" style={headingStyle}>Color Palette</h2>
+          <p class="sg-body" style="color:var(--muted);">All colors used across this style. Click any swatch to copy hex.</p>
+        </div>
+        <div class="sg-color-grid">
+          {colorTokens.map((c) => (
+            <button class="sg-color-card copy-btn" data-copy={c.hex} type="button">
+              <div class="sg-color-swatch" style={`background:${c.hex};`}></div>
+              <div class="sg-color-meta">
+                <div class="sg-color-name">{c.name}</div>
+                <div class="sg-color-hex">{c.hex}</div>
+                <div class="sg-color-role" style="color:var(--muted);">{c.role}</div>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TYPOGRAPHY ==================== -->
+    <section class="sg-section" style="background:var(--surface);border-top:var(--border-w) solid var(--border);border-bottom:var(--border-w) solid var(--border);">
+      <div class="sg-container">
+        <div class="sg-section-head">
+          <div class="sg-eyebrow" style="color:var(--accent);">02 · Typography</div>
+          <h2 class="sg-h2" style={headingStyle}>Type Scale</h2>
+          <p class="sg-body" style="color:var(--muted);">Heading: <strong>{fontHeadName}</strong> · Body: <strong>{fontBodyName}</strong></p>
+        </div>
+        <div class="sg-type-stack">
+          {typeScale.map((t) => (
+            <div class="sg-type-row">
+              <div class="sg-type-meta" style="color:var(--muted);">
+                <div class="sg-type-label">{t.label}</div>
+                <div class="sg-type-spec">{t.size} · {t.weight}</div>
+              </div>
+              <div
+                class="sg-type-sample"
+                style={`font-family:${['Display','H1','H2','H3'].includes(t.label) ? 'var(--font-heading)' : 'var(--font-body)'};font-size:${t.size};font-weight:${t.weight};letter-spacing:${['Display','H1','H2'].includes(t.label) ? 'var(--h-tracking)' : 'normal'};text-transform:${t.upper ? 'uppercase' : 'none'};line-height:1.15;`}
+              >
+                {t.sample}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== BUTTONS ==================== -->
+    <section class="sg-section">
+      <div class="sg-container">
+        <div class="sg-section-head">
+          <div class="sg-eyebrow" style="color:var(--accent);">03 · Buttons</div>
+          <h2 class="sg-h2" style={headingStyle}>Buttons</h2>
+          <p class="sg-body" style="color:var(--muted);">All button variants used in this style.</p>
+        </div>
+        <div class="sg-component-grid">
+          <div class="sg-component-cell">
+            <div class="sg-cell-label" style="color:var(--muted);">Primary</div>
+            <button class="sg-btn sg-btn-primary">Discuss Your Challenge</button>
+          </div>
+          <div class="sg-component-cell">
+            <div class="sg-cell-label" style="color:var(--muted);">Secondary</div>
+            <button class="sg-btn sg-btn-secondary">Talk to Our Team</button>
+          </div>
+          <div class="sg-component-cell">
+            <div class="sg-cell-label" style="color:var(--muted);">Outline</div>
+            <button class="sg-btn sg-btn-outline">Read More</button>
+          </div>
+          <div class="sg-component-cell">
+            <div class="sg-cell-label" style="color:var(--muted);">Ghost / Link</div>
+            <button class="sg-btn sg-btn-ghost">Learn more →</button>
+          </div>
+          <div class="sg-component-cell">
+            <div class="sg-cell-label" style="color:var(--muted);">Small</div>
+            <button class="sg-btn sg-btn-primary sg-btn-sm">View</button>
+          </div>
+          <div class="sg-component-cell">
+            <div class="sg-cell-label" style="color:var(--muted);">Disabled</div>
+            <button class="sg-btn sg-btn-primary" disabled>Disabled</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAGS / PILLS ==================== -->
+    <section class="sg-section" style="background:var(--surface);border-top:var(--border-w) solid var(--border);border-bottom:var(--border-w) solid var(--border);">
+      <div class="sg-container">
+        <div class="sg-section-head">
+          <div class="sg-eyebrow" style="color:var(--accent);">04 · Tags</div>
+          <h2 class="sg-h2" style={headingStyle}>Tags & Pills</h2>
+          <p class="sg-body" style="color:var(--muted);">Used in services and impact cards.</p>
+        </div>
+        <div class="sg-tag-row">
+          <span class="sg-tag">[ESG]</span>
+          <span class="sg-tag">[PADI]</span>
+          <span class="sg-tag">[Fair Trade]</span>
+          <span class="sg-tag">[EUDR]</span>
+          <span class="sg-tag sg-tag-accent">Active</span>
+          <span class="sg-tag sg-tag-highlight">Featured</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CARDS ==================== -->
+    <section class="sg-section">
+      <div class="sg-container">
+        <div class="sg-section-head">
+          <div class="sg-eyebrow" style="color:var(--accent);">05 · Cards</div>
+          <h2 class="sg-h2" style={headingStyle}>Card Patterns</h2>
+        </div>
+
+        <div class="sg-cell-label" style="color:var(--muted);">Service Card</div>
+        <div class="sg-card sg-card-service">
+          <div class="sg-tag-row" style="margin-bottom:1rem;">
+            <span class="sg-tag">[ESG]</span>
+            <span class="sg-tag">[Risk]</span>
+          </div>
+          <h3 class="sg-h3" style={`font-family:var(--font-heading);font-weight:var(--h-weight);`}>ESG & Social Risk Advisory</h3>
+          <p class="sg-card-tagline" style="color:var(--accent);">Identify social risk before it becomes operational cost.</p>
+          <p class="sg-body" style="color:var(--muted);">Companies treat social risk as a "soft topic" until it becomes a delay. We help you read communities the way you read finance.</p>
+        </div>
+
+        <div class="sg-cell-label" style="color:var(--muted);margin-top:3rem;">Impact Card</div>
+        <div class="sg-card-grid">
+          <div class="sg-card sg-card-impact">
+            <div class="sg-card-num" style="color:var(--accent);">01</div>
+            <h3 class="sg-h3" style={`font-family:var(--font-heading);font-weight:var(--h-weight);`}>EUDR & IBSAP Research</h3>
+            <p class="sg-body" style="color:var(--muted);">Research on EU Deforestation Regulation and Indonesian Biodiversity Strategy.</p>
+            <div class="sg-card-meta" style="color:var(--muted);">2024 · Policy</div>
+          </div>
+          <div class="sg-card sg-card-impact">
+            <div class="sg-card-num" style="color:var(--accent);">02</div>
+            <h3 class="sg-h3" style={`font-family:var(--font-heading);font-weight:var(--h-weight);`}>Platform PADI</h3>
+            <p class="sg-body" style="color:var(--muted);">Digital platform connecting smallholder farmers to fair markets.</p>
+            <div class="sg-card-meta" style="color:var(--muted);">2023 · Tech</div>
+          </div>
+        </div>
+
+        <div class="sg-cell-label" style="color:var(--muted);margin-top:3rem;">Team Card</div>
+        <div class="sg-card sg-card-team" style="max-width:24rem;">
+          <div class="sg-avatar" style="background:var(--primary);color:var(--surface);">GBI</div>
+          <div>
+            <h3 class="sg-h3" style={`font-family:var(--font-heading);font-weight:var(--h-weight);font-size:1.25rem;`}>Giorgio Budi Indrarto</h3>
+            <p class="sg-card-tagline" style="color:var(--accent);">Chief Executive Officer</p>
+            <p class="sg-body" style="color:var(--muted);font-size:0.9rem;">20+ years in sustainability, governance, and community impact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FORM ==================== -->
+    <section class="sg-section" style="background:var(--surface);border-top:var(--border-w) solid var(--border);border-bottom:var(--border-w) solid var(--border);">
+      <div class="sg-container">
+        <div class="sg-section-head">
+          <div class="sg-eyebrow" style="color:var(--accent);">06 · Forms</div>
+          <h2 class="sg-h2" style={headingStyle}>Form Elements</h2>
+        </div>
+        <form class="sg-form" onsubmit="event.preventDefault(); return false;">
+          <div class="sg-field">
+            <label class="sg-label" style="color:var(--muted);">Name</label>
+            <input type="text" class="sg-input" placeholder="Your full name" />
+          </div>
+          <div class="sg-field">
+            <label class="sg-label" style="color:var(--muted);">Email</label>
+            <input type="email" class="sg-input" placeholder="you@company.com" />
+          </div>
+          <div class="sg-field">
+            <label class="sg-label" style="color:var(--muted);">Service of Interest</label>
+            <select class="sg-input">
+              <option>ESG & Social Risk Advisory</option>
+              <option>Community Engagement</option>
+              <option>Impact Strategy</option>
+            </select>
+          </div>
+          <div class="sg-field">
+            <label class="sg-label" style="color:var(--muted);">Message</label>
+            <textarea class="sg-input" rows="4" placeholder="Tell us about your challenge..."></textarea>
+          </div>
+          <button class="sg-btn sg-btn-primary" type="button">Send Inquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================== STATS BLOCK ==================== -->
+    <section class="sg-section">
+      <div class="sg-container">
+        <div class="sg-section-head">
+          <div class="sg-eyebrow" style="color:var(--accent);">07 · Patterns</div>
+          <h2 class="sg-h2" style={headingStyle}>Stats Block</h2>
+        </div>
+        <div class="sg-stats-grid">
+          <div class="sg-stat">
+            <div class="sg-stat-num" style={`font-family:var(--font-heading);color:var(--primary);font-weight:var(--h-weight);`}>20+</div>
+            <div class="sg-stat-label" style="color:var(--muted);">Years experience</div>
+          </div>
+          <div class="sg-stat">
+            <div class="sg-stat-num" style={`font-family:var(--font-heading);color:var(--primary);font-weight:var(--h-weight);`}>400+</div>
+            <div class="sg-stat-label" style="color:var(--muted);">Farmers engaged</div>
+          </div>
+          <div class="sg-stat">
+            <div class="sg-stat-num" style={`font-family:var(--font-heading);color:var(--primary);font-weight:var(--h-weight);`}>100K</div>
+            <div class="sg-stat-label" style="color:var(--muted);">Beneficiaries reached</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PULL QUOTE ==================== -->
+    <section class="sg-section" style="background:var(--surface);border-top:var(--border-w) solid var(--border);border-bottom:var(--border-w) solid var(--border);">
+      <div class="sg-container">
+        <div class="sg-cell-label" style="color:var(--muted);margin-bottom:1.5rem;">Pull Quote</div>
+        <blockquote class="sg-pullquote" style={`font-family:var(--font-heading);font-weight:${Math.max(400, style.headingWeight - 100)};letter-spacing:var(--h-tracking);border-left:3px solid var(--accent);`}>
+          "Fifteen years working with farmers taught me that growth without community is risk in disguise."
+        </blockquote>
+        <div class="sg-quote-attr" style="color:var(--muted);">— Giorgio Budi Indrarto, CEO</div>
+      </div>
+    </section>
+
+    <!-- ==================== ALERTS / NOTES ==================== -->
+    <section class="sg-section">
+      <div class="sg-container">
+        <div class="sg-section-head">
+          <div class="sg-eyebrow" style="color:var(--accent);">08 · Notes</div>
+          <h2 class="sg-h2" style={headingStyle}>Notes & Callouts</h2>
+        </div>
+        <div class="sg-callout sg-callout-info">
+          <strong>Note.</strong> This section captures the way Madani communicates findings, footnotes, and asides within reports.
+        </div>
+        <div class="sg-callout sg-callout-accent">
+          <strong>Highlight.</strong> Used to emphasize key insights or strategic recommendations.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SPACING ==================== -->
+    <section class="sg-section" style="background:var(--surface);border-top:var(--border-w) solid var(--border);">
+      <div class="sg-container">
+        <div class="sg-section-head">
+          <div class="sg-eyebrow" style="color:var(--accent);">09 · Spacing</div>
+          <h2 class="sg-h2" style={headingStyle}>Spacing Scale</h2>
+        </div>
+        <div class="sg-spacing-stack">
+          {spacingScale.map((s) => (
+            <div class="sg-spacing-row">
+              <div class="sg-spacing-name" style="color:var(--muted);">{s.name}</div>
+              <div class="sg-spacing-bar" style={`width:${s.value};background:var(--accent);`}></div>
+              <div class="sg-spacing-val" style="color:var(--muted);">{s.value} · {s.px}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TOAST ==================== -->
+    <div id="copy-toast" class="sg-toast">
+      Copied to clipboard
+    </div>
+  </article>
+
+  <style is:global>
+    .sg-root {
+      --copy-toast-shown: 0;
+    }
+    .sg-section {
+      padding: var(--sec-pad) 1.5rem;
+    }
+    .sg-container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+    .sg-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .sg-display {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .sg-h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      line-height: 1.1;
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+    .sg-h3 {
+      font-size: 1.5rem;
+      line-height: 1.2;
+      margin: 0 0 0.5rem 0;
+    }
+    .sg-lead {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      max-width: 42rem;
+      margin: 0 0 0.5rem 0;
+    }
+    .sg-meta {
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 42rem;
+      margin: 0;
+    }
+    .sg-body {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0 0 1rem 0;
+    }
+    .sg-meta-grid {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .sg-meta-grid > div .sg-eyebrow { margin-bottom: 0.5rem; }
+    .sg-meta-val { font-size: 1.05rem; font-weight: 500; }
+
+    .sg-section-head { margin-bottom: 3rem; max-width: 50rem; }
+
+    /* Colors */
+    .sg-color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .sg-color-card {
+      background: var(--surface);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      color: var(--ink);
+      transition: transform 0.15s ease;
+    }
+    .sg-color-card:hover { transform: translateY(-2px); }
+    .sg-color-swatch { height: 100px; }
+    .sg-color-meta { padding: 1rem; }
+    .sg-color-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .sg-color-hex { font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.25rem; opacity: 0.85; }
+    .sg-color-role { font-size: 0.78rem; }
+
+    /* Type */
+    .sg-type-stack { display: flex; flex-direction: column; gap: 2.5rem; }
+    .sg-type-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 2rem;
+      align-items: baseline;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .sg-type-meta { font-family: var(--font-mono); font-size: 0.75rem; }
+    .sg-type-label { font-weight: 700; margin-bottom: 0.25rem; }
+    .sg-type-spec { opacity: 0.8; }
+    .sg-type-sample { color: var(--ink); word-wrap: break-word; }
+
+    /* Buttons */
+    .sg-component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .sg-component-cell {
+      padding: 1.5rem;
+      background: var(--surface);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .sg-cell-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
+    .sg-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: var(--btn-radius);
+      transition: all 0.15s ease;
+    }
+    .sg-btn-sm { padding: 0.45rem 1rem; font-size: 0.85rem; }
+    .sg-btn-primary { background: var(--primary); color: var(--surface); }
+    .sg-btn-primary:hover:not(:disabled) { opacity: 0.9; }
+    .sg-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+    .sg-btn-secondary { background: var(--accent); color: var(--surface); }
+    .sg-btn-outline { background: transparent; border-color: var(--ink); color: var(--ink); }
+    .sg-btn-ghost { background: transparent; color: var(--primary); padding-left: 0; padding-right: 0; }
+
+    /* Tags */
+    .sg-tag-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .sg-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.85rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--ink);
+      border-radius: var(--radius);
+    }
+    .sg-tag-accent { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+    .sg-tag-highlight { background: var(--highlight); color: var(--ink); border-color: var(--highlight); }
+
+    /* Cards */
+    .sg-card {
+      background: var(--surface);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-top: 0.75rem;
+    }
+    .sg-card-tagline { font-size: 0.95rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem; }
+    .sg-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 0.75rem;
+    }
+    .sg-card-num { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
+    .sg-card-meta { font-family: var(--font-mono); font-size: 0.75rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .sg-card-team { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .sg-avatar {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    /* Forms */
+    .sg-form { max-width: 32rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .sg-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .sg-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+    .sg-input {
+      padding: 0.85rem 1rem;
+      background: var(--bg);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.15s;
+    }
+    .sg-input:focus { outline: none; border-color: var(--accent); }
+
+    /* Stats */
+    .sg-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      padding-top: 1rem;
+    }
+    .sg-stat-num { font-size: clamp(3rem, 6vw, 5rem); line-height: 1; margin-bottom: 0.5rem; }
+    .sg-stat-label { font-size: 0.95rem; }
+
+    /* Pull quote */
+    .sg-pullquote {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      line-height: 1.4;
+      padding: 0.5rem 0 0.5rem 2rem;
+      margin: 0 0 1rem 0;
+      max-width: 48rem;
+    }
+    .sg-quote-attr { font-family: var(--font-body); font-size: 0.95rem; }
+
+    /* Callouts */
+    .sg-callout {
+      padding: 1.5rem 1.75rem;
+      border-radius: var(--radius);
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .sg-callout-info { background: var(--surface); border-left: 3px solid var(--accent); }
+    .sg-callout-accent { background: var(--surface); border-left: 3px solid var(--highlight); }
+
+    /* Spacing */
+    .sg-spacing-stack { display: flex; flex-direction: column; gap: 1rem; }
+    .sg-spacing-row { display: grid; grid-template-columns: 60px 1fr 160px; gap: 1.5rem; align-items: center; }
+    .sg-spacing-name { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; }
+    .sg-spacing-bar { height: 18px; max-width: 100%; opacity: 0.7; }
+    .sg-spacing-val { font-family: var(--font-mono); font-size: 0.78rem; text-align: right; }
+
+    /* Toast */
+    .sg-toast {
+      position: fixed;
+      bottom: 5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      padding: 0.85rem 1.5rem;
+      background: #1A2E4A;
+      color: white;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 50;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .sg-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+
+  <script is:inline>
+    const buttons = document.querySelectorAll('.copy-btn');
+    const toast = document.getElementById('copy-toast');
+    let toastTimer;
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const v = btn.getAttribute('data-copy');
+        try {
+          await navigator.clipboard.writeText(v);
+          toast.textContent = 'Copied: ' + v;
+          toast.classList.add('show');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
+        } catch (e) {
+          console.warn('clipboard failed', e);
+        }
+      });
+    });
+  </script>
+</BaseLayout>

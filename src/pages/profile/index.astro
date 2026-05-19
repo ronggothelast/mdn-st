@@ -47,22 +47,29 @@ const styles = [
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         {styles.map(s => (
-          <a href={`${base}/profile/style-${s.id}`} class="group block bg-white border border-[#E2E6EC] rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl hover:border-[#3D8F8A] transition-all">
-            <div class="aspect-[4/3] rounded-lg mb-5 overflow-hidden flex items-center justify-center font-serif text-3xl font-semibold text-white relative" style="background: linear-gradient(135deg, var(--color-navy), var(--color-teal));">
-              <span class="opacity-90">{String(s.id).padStart(2, '0')}</span>
-              <div class="absolute bottom-3 right-3 text-[0.62rem] font-sans uppercase tracking-wider opacity-70">Madani</div>
+          <div class="group bg-white border border-[#E2E6EC] rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl hover:border-[#3D8F8A] transition-all flex flex-col">
+            <a href={`${base}/profile/style-${s.id}`} class="block">
+              <div class="aspect-[4/3] rounded-lg mb-5 overflow-hidden flex items-center justify-center font-serif text-3xl font-semibold text-white relative" style="background: linear-gradient(135deg, var(--color-navy), var(--color-teal));">
+                <span class="opacity-90">{String(s.id).padStart(2, '0')}</span>
+                <div class="absolute bottom-3 right-3 text-[0.62rem] font-sans uppercase tracking-wider opacity-70">Madani</div>
+              </div>
+              <div class="text-[0.7rem] font-semibold tracking-wider uppercase text-[#3D8F8A] mb-1.5">Style {String(s.id).padStart(2, '0')}</div>
+              <h3 class="font-semibold text-lg mb-2 group-hover:text-[#3D8F8A] transition-colors">{s.name}</h3>
+              <p class="text-sm text-[#5C6B7E] leading-relaxed">
+                <span data-lang="en">{s.desc.en}</span>
+                <span data-lang="id">{s.desc.id}</span>
+              </p>
+            </a>
+            <div class="mt-4 pt-4 border-t border-[#E2E6EC] flex items-center justify-between gap-3">
+              <a href={`${base}/profile/style-${s.id}`} class="text-sm font-semibold text-[#1A2E4A] flex items-center gap-1.5 hover:text-[#3D8F8A] transition-colors">
+                <span data-lang="en">View profile</span><span data-lang="id">Lihat profil</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a href={`${base}/styleguide/${s.id}`} class="text-xs font-semibold uppercase tracking-wider text-[#3D8F8A] hover:text-[#1A2E4A] transition-colors" title="View design system">
+                <span data-lang="en">System</span><span data-lang="id">Sistem</span>
+              </a>
             </div>
-            <div class="text-[0.7rem] font-semibold tracking-wider uppercase text-[#3D8F8A] mb-1.5">Style {String(s.id).padStart(2, '0')}</div>
-            <h3 class="font-semibold text-lg mb-2 group-hover:text-[#3D8F8A] transition-colors">{s.name}</h3>
-            <p class="text-sm text-[#5C6B7E] leading-relaxed">
-              <span data-lang="en">{s.desc.en}</span>
-              <span data-lang="id">{s.desc.id}</span>
-            </p>
-            <div class="mt-4 text-sm font-semibold text-[#1A2E4A] flex items-center gap-1.5">
-              <span data-lang="en">View design</span><span data-lang="id">Lihat desain</span>
-              <span class="transition-transform group-hover:translate-x-1">→</span>
-            </div>
-          </a>
+          </div>
         ))}
       </div>
     </div>

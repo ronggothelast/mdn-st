@@ -26,6 +26,10 @@ const styleLinks = Array.from({ length: 10 }, (_, i) => i + 1);
             {String(n).padStart(2, '0')}
           </a>
         ))}
+        <div class="w-px h-5 bg-[#E2E6EC]"></div>
+        <a href={`${base}/styleguide/${styleNum}`} class="text-xs font-semibold uppercase tracking-wider px-3 py-1.5 text-[#3D8F8A] hover:text-[#1A2E4A] whitespace-nowrap" title="View design system for this style">
+          <span data-lang="en">System</span><span data-lang="id">Sistem</span> →
+        </a>
       </div>
     </div>
   </div>

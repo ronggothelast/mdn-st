@@ -122,7 +122,7 @@ export const servicesIntro = {
 export const services = [
   {
     num: '01',
-    image: '/assets/images/service-consulting.png',
+    image: '/assets/images/service-consulting.webp',
     title: {
       en: 'Strategic Impact Consulting',
       id: 'Konsultansi Dampak Strategis',
@@ -162,7 +162,7 @@ export const services = [
   },
   {
     num: '02',
-    image: '/assets/images/service-trade.png',
+    image: '/assets/images/service-trade.webp',
     title: {
       en: 'Enabling Trade & Market Access',
       id: 'Penguatan Perniagaan & Akses Pasar',
@@ -202,7 +202,7 @@ export const services = [
   },
   {
     num: '03',
-    image: '/assets/images/service-capacity.png',
+    image: '/assets/images/service-capacity.webp',
     title: {
       en: 'Capacity Building & Literacy',
       id: 'Penguatan Kapasitas & Literasi',

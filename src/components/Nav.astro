@@ -30,19 +30,19 @@ const isActive = (p: string) => {
       <span class="w-5 h-[2px] bg-[#1A2E4A]"></span>
     </button>
 
-    <div id="nav-links" class="hidden md:flex items-center gap-9 absolute md:static top-full left-0 right-0 md:bg-transparent bg-white md:flex-row flex-col md:items-center items-start md:p-0 px-6 py-6 md:border-0 border-t border-[#E2E6EC]">
+    <div id="nav-links" class="hidden absolute top-full left-0 right-0 flex-col items-start gap-6 bg-white px-6 py-8 shadow-2xl border-t border-[#E2E6EC] md:static md:flex md:flex-row md:items-center md:gap-9 md:bg-transparent md:p-0 md:shadow-none md:border-0">
       {nav.map(item => (
-        <a href={base.replace(/\/$/, '') + item.href} class={`text-[0.92rem] font-medium transition-opacity ${isActive(item.href) ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
+        <a href={base.replace(/\/$/, '') + item.href} class={`block w-full text-[0.95rem] md:text-[0.92rem] font-medium transition-opacity ${isActive(item.href) ? 'text-[#1A2E4A]' : 'text-[#5C6B7E] hover:text-[#1A2E4A]'}`}>
           <span data-lang="en">{item.label.en}</span><span data-lang="id">{item.label.id}</span>
         </a>
       ))}
 
-      <div class="flex items-center gap-0 border border-[#E2E6EC] rounded-full p-[3px] bg-white">
-        <button data-lang-set="en" class="lang-btn px-3.5 py-1.5 rounded-full text-[0.78rem] font-semibold text-[#5C6B7E]">EN</button>
-        <button data-lang-set="id" class="lang-btn px-3.5 py-1.5 rounded-full text-[0.78rem] font-semibold text-[#5C6B7E]">ID</button>
+      <div class="flex w-full md:w-auto items-center gap-0 border border-[#E2E6EC] rounded-full p-[3px] bg-white mt-2 md:mt-0">
+        <button data-lang-set="en" class="lang-btn flex-1 md:flex-none px-3.5 py-1.5 rounded-full text-[0.78rem] font-semibold text-[#5C6B7E]">EN</button>
+        <button data-lang-set="id" class="lang-btn flex-1 md:flex-none px-3.5 py-1.5 rounded-full text-[0.78rem] font-semibold text-[#5C6B7E]">ID</button>
       </div>
 
-      <a href={base + '/contact'} class="bg-[#1A2E4A] hover:bg-[#0F1E33] text-white px-5 py-2.5 rounded-full text-[0.88rem] font-medium transition-colors">
+      <a href={base + '/contact'} class="block w-full md:w-auto text-center bg-[#1A2E4A] hover:bg-[#0F1E33] text-white px-5 py-3 md:py-2.5 rounded-full text-[0.88rem] font-medium transition-colors mt-2 md:mt-0">
         <span data-lang="en">Get in Touch</span><span data-lang="id">Hubungi Kami</span>
       </a>
     </div>
@@ -82,5 +82,8 @@ const isActive = (p: string) => {
   // Mobile menu
   const menuBtn = document.getElementById('menu-btn');
   const navLinks = document.getElementById('nav-links');
-  menuBtn?.addEventListener('click', () => navLinks.classList.toggle('hidden'));
+  menuBtn?.addEventListener('click', () => {
+    navLinks.classList.toggle('hidden');
+    navLinks.classList.toggle('flex');
+  });
 </script>

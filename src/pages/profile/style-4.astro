@@ -135,7 +135,7 @@ const base = import.meta.env.BASE_URL;
             <article class="grid md:grid-cols-12 gap-8">
               <div class="md:col-span-4">
                 <div class="aspect-[4/5] overflow-hidden">
-                  <img loading="lazy" decoding="async" src={svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={base + svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
                 </div>
               </div>
               <div class="md:col-span-8">

@@ -10,7 +10,12 @@ export interface Props {
 const { styleNum, styleName, title = 'Company Profile' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
-const styleLinks = Array.from({ length: 10 }, (_, i) => i + 1);
+// V1 = 1-10, V2 = 11-20. Switcher only shows links within current set.
+const isV2 = styleNum >= 11;
+const versionLabel = isV2 ? 'V2' : 'V1';
+const styleLinks = isV2
+  ? Array.from({ length: 10 }, (_, i) => i + 11)
+  : Array.from({ length: 10 }, (_, i) => i + 1);
 ---
 <BaseLayout title={`${title} · Style ${String(styleNum).padStart(2, '0')}`}>
   <!-- Style switcher bar (sticky bottom) -->
@@ -21,6 +26,7 @@ const styleLinks = Array.from({ length: 10 }, (_, i) => i + 1);
           ← <span data-lang="en">Home</span><span data-lang="id">Beranda</span>
         </a>
         <div class="w-px h-5 bg-[#E2E6EC]"></div>
+        <div class="text-[10px] font-mono font-bold tracking-wider px-2 py-1 rounded bg-[#F0F3F8] text-[#5C6B7E]">{versionLabel}</div>
         {styleLinks.map(n => (
           <a href={`${base}/profile/style-${n}`} class={`px-3 py-1.5 text-xs font-semibold rounded-full transition-colors ${n === styleNum ? 'bg-[#1A2E4A] text-white' : 'text-[#5C6B7E] hover:bg-[#F0F3F8]'}`}>
             {String(n).padStart(2, '0')}

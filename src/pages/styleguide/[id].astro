@@ -62,7 +62,9 @@ const spacingScale = [
   { name: '3xl', value: style.sectionPadding, px: 'section' },
 ];
 
-const navLinks = styleguides.map((s) => s.num);
+const navLinks = styleguides.filter((s) => style.num >= 11 ? s.num >= 11 : s.num <= 10).map((s) => s.num);
+const isV2 = style.num >= 11;
+const versionLabel = isV2 ? 'V2' : 'V1';
 
 // Pre-compute root inline style for the article (CSS variables wiring — light + dark sets)
 const rootStyle = [
@@ -115,6 +117,7 @@ const fontBodyName = style.fontBody.split(',')[0].replace(/['"]/g, '');
           ← Home
         </a>
         <div class="w-px h-5 bg-[#E2E6EC]"></div>
+        <div class="text-[10px] font-mono font-bold tracking-wider px-2 py-1 rounded bg-[#F0F3F8] text-[#5C6B7E]">{versionLabel}</div>
         {navLinks.map((n) => (
           <a
             href={`${base}/styleguide/${n}`}

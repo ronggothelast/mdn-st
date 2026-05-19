@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { brand, profile } from '../data/content';
 const base = import.meta.env.BASE_URL;
 
-const styles = [
+const stylesV1 = [
   { id: 1,  name: 'Editorial Report',     desc: { en: 'Annual report formality with sectioned navy + cream layout.',  id: 'Format laporan tahunan, tata letak navy + krem yang berstruktur.' }, tag: { en: 'Formal', id: 'Formal' } },
   { id: 2,  name: 'Boutique Consulting',  desc: { en: 'Crisp McKinsey/Bain rigor — generous whitespace, structured.', id: 'Ketegasan McKinsey/Bain — banyak ruang putih, terstruktur.' },          tag: { en: 'Corporate', id: 'Korporat' } },
   { id: 3,  name: 'White Paper',          desc: { en: 'Research document with serif typography, justified text.',     id: 'Dokumen riset, tipografi serif, teks rata kanan-kiri.' },              tag: { en: 'Research', id: 'Riset' } },
@@ -15,8 +15,22 @@ const styles = [
   { id: 9,  name: 'Strategic Brief',      desc: { en: 'Pitch-deck inspired with dense info on deep navy.',            id: 'Terinspirasi pitch deck, info padat pada navy gelap.' },                tag: { en: 'Executive', id: 'Eksekutif' } },
   { id: 10, name: 'Premium Folio',        desc: { en: 'Coffee-table book elegance with large imagery & gold.',        id: 'Keanggunan buku coffee-table, gambar besar dan aksen emas.' },          tag: { en: 'Premium', id: 'Premium' } },
 ];
+
+const stylesV2 = [
+  { id: 11, name: 'Swiss Minimal',     desc: { en: 'Pure white canvas. Sharp grid, hairline rules.',          id: 'Kanvas putih murni. Grid tajam, garis tipis.' },               tag: { en: 'Minimal', id: 'Minimal' } },
+  { id: 12, name: 'Linear Mono',       desc: { en: 'Single-accent doc style. Clean, dense, scannable.',      id: 'Dokumen satu aksen. Bersih, padat, mudah dibaca.' },          tag: { en: 'Mono', id: 'Mono' } },
+  { id: 13, name: 'Glass Atelier',     desc: { en: 'Soft shadow cards. Apple/Stripe inspired landing.',      id: 'Kartu bayangan halus. Inspirasi Apple/Stripe.' },             tag: { en: 'Glass', id: 'Kaca' } },
+  { id: 14, name: 'Quiet Serif',       desc: { en: 'Whisper quiet serif. NYT Magazine reading column.',      id: 'Serif yang tenang. Kolom baca ala NYT Magazine.' },           tag: { en: 'Serif', id: 'Serif' } },
+  { id: 15, name: 'Architect Brief',   desc: { en: 'Drafting blueprint white. Hairlines & mono labels.',      id: 'Putih cetak biru. Garis tipis dan label mono.' },             tag: { en: 'Technical', id: 'Teknis' } },
+  { id: 16, name: 'Pearl Boutique',    desc: { en: 'Pearl whites with gold accents. Refined warmth.',        id: 'Putih mutiara dengan aksen emas. Hangat dan halus.' },        tag: { en: 'Boutique', id: 'Butik' } },
+  { id: 17, name: 'Notion Clean',      desc: { en: 'Doc-app calm. Reading-first, hierarchy via space.',      id: 'Tenang ala dokumen. Mudah dibaca, hierarki dari ruang.' },    tag: { en: 'Doc', id: 'Dokumen' } },
+  { id: 18, name: 'Gallery White',     desc: { en: 'Museum white walls. Big breathing room, tiny labels.',   id: 'Dinding putih museum. Ruang lapang, label kecil.' },          tag: { en: 'Gallery', id: 'Galeri' } },
+  { id: 19, name: 'Linen Sage',        desc: { en: 'Cotton white with sage accents. Calm, grounded.',        id: 'Putih katun dengan aksen sage. Tenang, membumi.' },           tag: { en: 'Calm', id: 'Tenang' } },
+  { id: 20, name: 'Executive White',   desc: { en: 'Bright corporate white. Crisp, confident, data-led.',    id: 'Putih korporat cerah. Tajam, percaya diri, berbasis data.' }, tag: { en: 'Executive', id: 'Eksekutif' } },
+];
 ---
 <BaseLayout title="Company Profile">
+  <!-- Top hero -->
   <section class="py-24 text-center" style="background: linear-gradient(180deg, #E8F2F1, #FDFCF8);">
     <div class="container-x">
       <span class="eyebrow"><span data-lang="en">Company Profile</span><span data-lang="id">Profil Perusahaan</span></span>
@@ -26,32 +40,46 @@ const styles = [
         <span data-lang="id">{brand.tagline.id}</span>
       </p>
       <p class="text-[#5C6B7E] mt-6 max-w-2xl mx-auto">
-        <span data-lang="en">Choose the design direction that feels right. Same content — ten distinct visual languages.</span>
-        <span data-lang="id">Pilih arah desain yang paling pas. Konten sama — sepuluh bahasa visual berbeda.</span>
+        <span data-lang="en">Choose the design direction that feels right. Twenty distinct visual languages across two collections.</span>
+        <span data-lang="id">Pilih arah desain yang paling pas. Dua puluh bahasa visual berbeda dalam dua koleksi.</span>
       </p>
-    </div>
-  </section>
 
-  <!-- Style picker -->
-  <section class="py-12">
-    <div class="container-x">
-      <div class="flex items-center justify-center gap-3 mb-12 flex-wrap">
+      <!-- Quick links -->
+      <div class="flex items-center justify-center gap-3 mt-10 flex-wrap">
         <a href={`${base}/styleguide`} class="px-5 py-2.5 bg-[#1A2E4A] text-white text-sm font-semibold rounded-full hover:bg-[#3D8F8A] transition-colors shadow-md">
           <span data-lang="en">View All Design Systems</span>
           <span data-lang="id">Lihat Semua Sistem Desain</span>
         </a>
-        <span class="text-[#E2E6EC] mx-2">|</span>
-        <label for="style-picker" class="text-sm font-semibold text-[#5C6B7E]">
-          <span data-lang="en">Jump to style:</span><span data-lang="id">Lompat ke gaya:</span>
-        </label>
-        <select id="style-picker" class="px-4 py-2.5 border border-[#E2E6EC] rounded-full bg-white font-medium focus:outline-none focus:border-[#3D8F8A]">
-          <option value="">— pick a style —</option>
-          {styles.map(s => <option value={s.id}>{`Style ${String(s.id).padStart(2, '0')} · ${s.name}`}</option>)}
+        <a href="#v1" class="px-5 py-2.5 border border-[#E2E6EC] text-[#1A2E4A] text-sm font-semibold rounded-full hover:bg-white transition-colors">
+          V1 · Editorial
+        </a>
+        <a href="#v2" class="px-5 py-2.5 border border-[#E2E6EC] text-[#1A2E4A] text-sm font-semibold rounded-full hover:bg-white transition-colors">
+          V2 · White
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ V1 SECTION ============ -->
+  <section id="v1" class="py-20" style="background:#FDFCF8;">
+    <div class="container-x">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+        <div>
+          <div class="text-xs font-mono font-bold tracking-[0.3em] mb-3" style="color:#3D8F8A;">COLLECTION V1 · 10 STYLES</div>
+          <h2 class="font-serif text-4xl md:text-5xl text-[#1A2E4A] tracking-tight">Editorial Collection</h2>
+          <p class="text-[#5C6B7E] mt-3 max-w-2xl">
+            <span data-lang="en">Mixed palette explorations — cream, navy, warm earth tones. Magazine, foundation, and report directions.</span>
+            <span data-lang="id">Eksplorasi palet campuran — krem, navy, warna bumi. Arah majalah, foundation, dan laporan.</span>
+          </p>
+        </div>
+        <select id="picker-v1" class="px-4 py-2.5 border border-[#E2E6EC] rounded-full bg-white font-medium focus:outline-none focus:border-[#3D8F8A]">
+          <option value="">— jump to V1 style —</option>
+          {stylesV1.map(s => <option value={s.id}>{`Style ${String(s.id).padStart(2, '0')} · ${s.name}`}</option>)}
         </select>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        {styles.map(s => (
+        {stylesV1.map(s => (
           <div class="group bg-white border border-[#E2E6EC] rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl hover:border-[#3D8F8A] transition-all flex flex-col">
             <a href={`${base}/profile/style-${s.id}`} class="block">
               <div class="aspect-[4/3] rounded-lg mb-5 overflow-hidden flex items-center justify-center font-serif text-3xl font-semibold text-white relative" style="background: linear-gradient(135deg, var(--color-navy), var(--color-teal));">
@@ -80,8 +108,66 @@ const styles = [
     </div>
   </section>
 
+  <!-- divider -->
+  <div class="h-px bg-gradient-to-r from-transparent via-[#E2E6EC] to-transparent"></div>
+
+  <!-- ============ V2 SECTION ============ -->
+  <section id="v2" class="py-20 bg-white">
+    <div class="container-x">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+        <div>
+          <div class="text-xs font-mono font-bold tracking-[0.3em] mb-3" style="color:#3D8F8A;">COLLECTION V2 · 10 STYLES · WHITE-DOMINANT</div>
+          <h2 class="font-serif text-4xl md:text-5xl text-[#1A2E4A] tracking-tight">White Collection</h2>
+          <p class="text-[#5C6B7E] mt-3 max-w-2xl">
+            <span data-lang="en">All ten variants share a clean white canvas. Brand applied as accent only — Swiss grids, glass cards, quiet serifs, and editorial restraint.</span>
+            <span data-lang="id">Sepuluh varian dengan kanvas putih bersih. Brand dipakai sebagai aksen — grid Swiss, kartu kaca, serif tenang, dan restraint editorial.</span>
+          </p>
+        </div>
+        <select id="picker-v2" class="px-4 py-2.5 border border-[#E2E6EC] rounded-full bg-white font-medium focus:outline-none focus:border-[#3D8F8A]">
+          <option value="">— jump to V2 style —</option>
+          {stylesV2.map(s => <option value={s.id}>{`Style ${String(s.id).padStart(2, '0')} · ${s.name}`}</option>)}
+        </select>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {stylesV2.map(s => (
+          <div class="group bg-white border-2 border-[#E2E6EC] rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl hover:border-[#1A2E4A] transition-all flex flex-col">
+            <a href={`${base}/profile/style-${s.id}`} class="block">
+              <div class="aspect-[4/3] rounded-lg mb-5 overflow-hidden flex items-center justify-center relative bg-white border border-[#E2E6EC]">
+                <span class="font-serif text-4xl font-semibold text-[#1A2E4A] opacity-80">{String(s.id).padStart(2, '0')}</span>
+                <div class="absolute top-3 left-3 text-[0.62rem] font-mono font-bold uppercase tracking-wider text-[#3D8F8A]">V2</div>
+                <div class="absolute bottom-3 right-3 text-[0.62rem] font-sans uppercase tracking-wider text-[#5C6B7E]">Madani</div>
+                <!-- subtle decorative grid lines -->
+                <div class="absolute inset-0 pointer-events-none" style="background-image: linear-gradient(to right, rgba(26,46,74,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,46,74,0.03) 1px, transparent 1px); background-size: 24px 24px;"></div>
+              </div>
+              <div class="text-[0.7rem] font-mono font-bold tracking-wider uppercase text-[#3D8F8A] mb-1.5">Style {String(s.id).padStart(2, '0')} · V2</div>
+              <h3 class="font-semibold text-lg mb-2 group-hover:text-[#3D8F8A] transition-colors">{s.name}</h3>
+              <p class="text-sm text-[#5C6B7E] leading-relaxed">
+                <span data-lang="en">{s.desc.en}</span>
+                <span data-lang="id">{s.desc.id}</span>
+              </p>
+            </a>
+            <div class="mt-4 pt-4 border-t border-[#E2E6EC] flex items-center justify-between gap-3">
+              <a href={`${base}/profile/style-${s.id}`} class="text-sm font-semibold text-[#1A2E4A] flex items-center gap-1.5 hover:text-[#3D8F8A] transition-colors">
+                <span data-lang="en">View profile</span><span data-lang="id">Lihat profil</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a href={`${base}/styleguide/${s.id}`} class="text-xs font-semibold uppercase tracking-wider text-[#3D8F8A] hover:text-[#1A2E4A] transition-colors" title="View design system">
+                <span data-lang="en">System</span><span data-lang="id">Sistem</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <script is:inline define:vars={{ base }}>
-    document.getElementById('style-picker').addEventListener('change', e => {
+    document.getElementById('picker-v1').addEventListener('change', e => {
+      const v = e.target.value;
+      if (v) window.location.href = `${base}/profile/style-${v}`;
+    });
+    document.getElementById('picker-v2').addEventListener('change', e => {
       const v = e.target.value;
       if (v) window.location.href = `${base}/profile/style-${v}`;
     });

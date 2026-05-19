@@ -2,6 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { styleguides } from '../../data/styleguides';
 const base = import.meta.env.BASE_URL;
+
+const v1 = styleguides.filter(s => s.num <= 10);
+const v2 = styleguides.filter(s => s.num >= 11);
 ---
 <BaseLayout title="Style Guides">
   <section class="py-24 px-6">
@@ -10,52 +13,102 @@ const base = import.meta.env.BASE_URL;
         ← Home
       </a>
       <div class="mb-16 max-w-3xl">
-        <div class="text-xs font-semibold uppercase tracking-[0.2em] text-[#3D8F8A] mb-4">Design Systems</div>
+        <div class="text-xs font-semibold uppercase tracking-[0.2em] text-[#3D8F8A] mb-4">Design Systems · 20 Styles</div>
         <h1 class="font-serif text-5xl md:text-6xl text-[#1A2E4A] leading-[1.05] mb-6" style="letter-spacing:-0.02em;">
           Style Guides
         </h1>
         <p class="text-lg text-[#5C6B7E] leading-relaxed">
           Each Company Profile style ships with its own design system — colors, typography, buttons, cards, forms, and patterns. Click any style to inspect every component used in that visual language.
         </p>
+        <div class="mt-6 flex gap-3 flex-wrap">
+          <a href="#sg-v1" class="px-4 py-2 border border-[#E2E6EC] text-[#1A2E4A] text-xs font-mono font-bold uppercase tracking-wider rounded-full hover:bg-[#FAF6EC] transition-colors">V1 · 10 Editorial</a>
+          <a href="#sg-v2" class="px-4 py-2 border border-[#E2E6EC] text-[#1A2E4A] text-xs font-mono font-bold uppercase tracking-wider rounded-full hover:bg-[#FAF6EC] transition-colors">V2 · 10 White</a>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {styleguides.map((s) => {
-          const headName = s.fontHeading.split(',')[0].replace(/['"]/g, '');
-          const bodyName = s.fontBody.split(',')[0].replace(/['"]/g, '');
-          return (
-          <a
-            href={`${base}/styleguide/${s.num}`}
-            class="group block border border-[#E2E6EC] hover:border-[#1A2E4A] bg-white rounded-lg overflow-hidden transition-all hover:shadow-xl"
-          >
-            <div class="grid grid-cols-4 h-32">
-              <div style={`background:${s.bg};`}></div>
-              <div style={`background:${s.primary};`}></div>
-              <div style={`background:${s.accent};`}></div>
-              <div style={`background:${s.highlight};`}></div>
-            </div>
-            <div class="p-6">
-              <div class="flex items-center gap-3 mb-3">
-                <span class="font-mono text-xs font-bold text-[#3D8F8A]">{String(s.num).padStart(2, '0')}</span>
-                <span class="text-xs font-medium uppercase tracking-wider text-[#5C6B7E]">{s.buttonStyle} · {s.radius}</span>
+      <!-- V1 grid -->
+      <div id="sg-v1" class="mb-20">
+        <div class="text-xs font-mono font-bold tracking-[0.3em] mb-3 text-[#3D8F8A]">COLLECTION V1 · EDITORIAL</div>
+        <h2 class="font-serif text-3xl text-[#1A2E4A] mb-8" style="letter-spacing:-0.02em;">Editorial Collection</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {v1.map((s) => {
+            const headName = s.fontHeading.split(',')[0].replace(/['"]/g, '');
+            const bodyName = s.fontBody.split(',')[0].replace(/['"]/g, '');
+            return (
+            <a
+              href={`${base}/styleguide/${s.num}`}
+              class="group block border border-[#E2E6EC] hover:border-[#1A2E4A] bg-white rounded-lg overflow-hidden transition-all hover:shadow-xl"
+            >
+              <div class="grid grid-cols-4 h-32">
+                <div style={`background:${s.bg};`}></div>
+                <div style={`background:${s.primary};`}></div>
+                <div style={`background:${s.accent};`}></div>
+                <div style={`background:${s.highlight};`}></div>
               </div>
-              <h3 class="font-serif text-2xl text-[#1A2E4A] mb-2 group-hover:text-[#3D8F8A] transition-colors">{s.name}</h3>
-              <p class="text-sm text-[#5C6B7E] leading-relaxed mb-4">{s.description}</p>
-              <div class="flex items-center gap-2 text-xs text-[#5C6B7E]">
-                <span style={`font-family:${s.fontHeading};`}>{headName}</span>
-                <span class="text-[#C9A876]">·</span>
-                <span style={`font-family:${s.fontBody};`}>{bodyName}</span>
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="font-mono text-xs font-bold text-[#3D8F8A]">{String(s.num).padStart(2, '0')}</span>
+                  <span class="text-xs font-medium uppercase tracking-wider text-[#5C6B7E]">{s.buttonStyle} · {s.radius}</span>
+                </div>
+                <h3 class="font-serif text-2xl text-[#1A2E4A] mb-2 group-hover:text-[#3D8F8A] transition-colors">{s.name}</h3>
+                <p class="text-sm text-[#5C6B7E] leading-relaxed mb-4">{s.description}</p>
+                <div class="flex items-center gap-2 text-xs text-[#5C6B7E]">
+                  <span style={`font-family:${s.fontHeading};`}>{headName}</span>
+                  <span class="text-[#C9A876]">·</span>
+                  <span style={`font-family:${s.fontBody};`}>{bodyName}</span>
+                </div>
+                <div class="mt-4 text-sm font-semibold text-[#1A2E4A] inline-flex items-center gap-1.5 group-hover:gap-3 transition-all">
+                  Inspect system <span aria-hidden="true">→</span>
+                </div>
               </div>
-              <div class="mt-4 text-sm font-semibold text-[#1A2E4A] inline-flex items-center gap-1.5 group-hover:gap-3 transition-all">
-                Inspect system <span aria-hidden="true">→</span>
-              </div>
-            </div>
-          </a>
-          );
-        })}
+            </a>
+            );
+          })}
+        </div>
       </div>
 
-      <div class="mt-20 p-8 bg-[#FAF6EC] border border-[#C9A876]/30 rounded-lg">
+      <!-- V2 grid -->
+      <div id="sg-v2" class="mb-20">
+        <div class="text-xs font-mono font-bold tracking-[0.3em] mb-3 text-[#3D8F8A]">COLLECTION V2 · WHITE-DOMINANT</div>
+        <h2 class="font-serif text-3xl text-[#1A2E4A] mb-8" style="letter-spacing:-0.02em;">White Collection</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {v2.map((s) => {
+            const headName = s.fontHeading.split(',')[0].replace(/['"]/g, '');
+            const bodyName = s.fontBody.split(',')[0].replace(/['"]/g, '');
+            return (
+            <a
+              href={`${base}/styleguide/${s.num}`}
+              class="group block border-2 border-[#E2E6EC] hover:border-[#1A2E4A] bg-white rounded-lg overflow-hidden transition-all hover:shadow-xl"
+            >
+              <div class="grid grid-cols-4 h-32">
+                <div style={`background:${s.bg};`}></div>
+                <div style={`background:${s.primary};`}></div>
+                <div style={`background:${s.accent};`}></div>
+                <div style={`background:${s.highlight};`}></div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="font-mono text-xs font-bold text-[#3D8F8A]">{String(s.num).padStart(2, '0')} · V2</span>
+                  <span class="text-xs font-medium uppercase tracking-wider text-[#5C6B7E]">{s.buttonStyle} · {s.radius}</span>
+                </div>
+                <h3 class="font-serif text-2xl text-[#1A2E4A] mb-2 group-hover:text-[#3D8F8A] transition-colors">{s.name}</h3>
+                <p class="text-sm text-[#5C6B7E] leading-relaxed mb-4">{s.description}</p>
+                <div class="flex items-center gap-2 text-xs text-[#5C6B7E]">
+                  <span style={`font-family:${s.fontHeading};`}>{headName}</span>
+                  <span class="text-[#C9A876]">·</span>
+                  <span style={`font-family:${s.fontBody};`}>{bodyName}</span>
+                </div>
+                <div class="mt-4 text-sm font-semibold text-[#1A2E4A] inline-flex items-center gap-1.5 group-hover:gap-3 transition-all">
+                  Inspect system <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+            );
+          })}
+        </div>
+      </div>
+
+      <div class="mt-12 p-8 bg-[#FAF6EC] border border-[#C9A876]/30 rounded-lg">
         <div class="text-xs font-semibold uppercase tracking-[0.2em] text-[#3D8F8A] mb-3">Tip</div>
         <p class="text-[#1A2E4A] leading-relaxed">
           Use these guides to compare how each style renders the same content. The design tokens are the source of truth — change one in <code class="font-mono text-sm bg-white px-1.5 py-0.5 rounded border border-[#E2E6EC]">src/data/styleguides.ts</code> and the system updates everywhere.

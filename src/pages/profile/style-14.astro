@@ -1,0 +1,236 @@
+---
+// STYLE 14 — Quiet Serif (V2 white-dominant collection)
+// Aesop / NYT-Magazine: full-serif, italic flourishes, narrow reading column.
+import ProfileLayout from '../../layouts/ProfileLayout.astro';
+import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
+const base = import.meta.env.BASE_URL;
+---
+<ProfileLayout styleNum={14} styleName="Quiet Serif">
+  <div style="background:#FFFFFF;color:#2A3340;font-family:'Fraunces', serif;">
+
+    <!-- Hero -->
+    <section class="text-center" style="padding:9rem 1.5rem;">
+      <div class="container-x max-w-3xl">
+        <div class="text-xs uppercase tracking-[0.3em] mb-12 italic" style="color:#A04545;font-family:'Fraunces', serif;">
+          <span data-lang="en">{brand.name} — Strategic Impact Consultancy</span>
+          <span data-lang="id">{brand.name} — Konsultan Dampak Strategis</span>
+        </div>
+        <h1 class="text-[clamp(3rem,8vw,6.5rem)] leading-[1] mb-12 font-normal tracking-[-0.025em]" style="font-family:'Fraunces', serif;">
+          <em>{brand.name}</em>
+        </h1>
+        <p class="text-2xl italic leading-snug max-w-xl mx-auto" style="color:#8B95A1;font-family:'Fraunces', serif;">
+          <span data-lang="en">{brand.tagline.en}</span>
+          <span data-lang="id">{brand.tagline.id}</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- 01 Identity (centered narrow column) -->
+    <section style="padding:5rem 1.5rem;">
+      <div class="container-x max-w-2xl">
+        <div class="text-center mb-12">
+          <div class="text-xs uppercase tracking-[0.3em] italic" style="color:#A04545;font-family:'Fraunces', serif;">I · Identity</div>
+        </div>
+        <h2 class="text-4xl md:text-5xl text-center mb-12 leading-tight tracking-[-0.02em]" style="font-family:'Fraunces', serif;font-weight:400;">
+          <span data-lang="en">{profile.whoWeAre.title.en}</span>
+          <span data-lang="id">{profile.whoWeAre.title.id}</span>
+        </h2>
+        <div class="space-y-6">
+          {profile.whoWeAre.body.en.map((p, i) => (
+            <p class="text-lg leading-[1.85]" style={`color:#8B95A1;`}>
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ornament divider -->
+    <div class="text-center" style="color:#A04545;font-family:'Fraunces', serif;font-size:1.5rem;letter-spacing:0.5em;">· · ·</div>
+
+    <!-- 02 Clients -->
+    <section style="padding:5rem 1.5rem;">
+      <div class="container-x max-w-2xl">
+        <div class="text-center mb-12">
+          <div class="text-xs uppercase tracking-[0.3em] italic" style="color:#A04545;font-family:'Fraunces', serif;">II · Clients</div>
+        </div>
+        <h2 class="text-4xl md:text-5xl text-center mb-12 leading-tight tracking-[-0.02em]" style="font-family:'Fraunces', serif;font-weight:400;">
+          <span data-lang="en">{profile.whoWeServe.title.en}</span>
+          <span data-lang="id">{profile.whoWeServe.title.id}</span>
+        </h2>
+        <p class="text-lg leading-[1.85]" style="color:#8B95A1;">
+          <span data-lang="en">{profile.whoWeServe.body.en}</span>
+          <span data-lang="id">{profile.whoWeServe.body.id}</span>
+        </p>
+      </div>
+    </section>
+
+    <div class="text-center" style="color:#A04545;font-family:'Fraunces', serif;font-size:1.5rem;letter-spacing:0.5em;">· · ·</div>
+
+    <!-- 03 Thesis -->
+    <section style="padding:5rem 1.5rem;background:#FCFCFA;">
+      <div class="container-x max-w-2xl">
+        <div class="text-center mb-12">
+          <div class="text-xs uppercase tracking-[0.3em] italic" style="color:#A04545;font-family:'Fraunces', serif;">III · Thesis</div>
+        </div>
+        <h2 class="text-4xl md:text-5xl text-center mb-12 leading-tight tracking-[-0.02em]" style="font-family:'Fraunces', serif;font-weight:400;">
+          <span data-lang="en">{profile.theGap.title.en}</span>
+          <span data-lang="id">{profile.theGap.title.id}</span>
+        </h2>
+        <div class="space-y-6">
+          {profile.theGap.body.en.map((p, i) => (
+            <p class="text-lg leading-[1.85]" style={`color:#8B95A1;`}>
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.theGap.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Methodology -->
+    <section style="padding:5rem 1.5rem;">
+      <div class="container-x max-w-3xl">
+        <div class="text-center mb-12">
+          <div class="text-xs uppercase tracking-[0.3em] italic" style="color:#A04545;font-family:'Fraunces', serif;">IV · Methodology</div>
+          <h2 class="text-4xl md:text-5xl mt-6 leading-tight tracking-[-0.02em]" style="font-family:'Fraunces', serif;font-weight:400;">
+            <span data-lang="en" set:html={kicker.approachTitle.en}></span>
+            <span data-lang="id" set:html={kicker.approachTitle.id}></span>
+          </h2>
+        </div>
+        <div class="space-y-12 mt-16">
+          {stages.map(s => (
+            <div class="grid grid-cols-[auto_1fr] gap-8">
+              <div class="text-3xl italic" style={`color:#A04545;font-family:'Fraunces', serif;`}>{s.num}</div>
+              <div>
+                <h3 class="text-2xl mb-3 leading-tight tracking-[-0.02em]" style={`font-family:'Fraunces', serif;font-weight:500;`}>
+                  <span data-lang="en">{s.title.en}</span>
+                  <span data-lang="id">{s.title.id}</span>
+                </h3>
+                <p class="text-base leading-[1.85]" style={`color:#8B95A1;`}>
+                  <span data-lang="en">{s.body.en}</span>
+                  <span data-lang="id">{s.body.id}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="text-center" style="color:#A04545;font-family:'Fraunces', serif;font-size:1.5rem;letter-spacing:0.5em;">· · ·</div>
+
+    <!-- 05 Services -->
+    <section style="padding:5rem 1.5rem;">
+      <div class="container-x max-w-3xl">
+        <div class="text-center mb-12">
+          <div class="text-xs uppercase tracking-[0.3em] italic" style="color:#A04545;font-family:'Fraunces', serif;">V · Services</div>
+          <h2 class="text-4xl md:text-5xl mt-6 leading-tight tracking-[-0.02em]" style="font-family:'Fraunces', serif;font-weight:400;">
+            <em>Three integrated services.</em>
+          </h2>
+        </div>
+        <div class="space-y-12 mt-16">
+          {services.map(svc => (
+            <div class="border-t pt-8" style={`border-color:#A04545;`}>
+              <div class="text-xs uppercase tracking-[0.2em] italic mb-3" style={`color:#A04545;font-family:'Fraunces', serif;`}>Service {svc.num}</div>
+              <h3 class="text-2xl mb-5 leading-tight tracking-[-0.02em]" style={`font-family:'Fraunces', serif;font-weight:500;`}>
+                <span data-lang="en">{svc.title.en}</span>
+                <span data-lang="id">{svc.title.id}</span>
+              </h3>
+              <div class="space-y-4">
+                {svc.detail.en.map((p, j) => (
+                  <p class="text-base leading-[1.85]" style={`color:#8B95A1;`}>
+                    <span data-lang="en">{p}</span>
+                    <span data-lang="id">{svc.detail.id[j]}</span>
+                  </p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Evidence -->
+    <section style="padding:5rem 1.5rem;background:#FCFCFA;">
+      <div class="container-x max-w-3xl">
+        <div class="text-center mb-12">
+          <div class="text-xs uppercase tracking-[0.3em] italic" style="color:#A04545;font-family:'Fraunces', serif;">VI · Evidence</div>
+          <h2 class="text-4xl md:text-5xl mt-6 leading-tight tracking-[-0.02em]" style="font-family:'Fraunces', serif;font-weight:400;">
+            <em>Proof of execution.</em>
+          </h2>
+        </div>
+        <div class="space-y-8 mt-12">
+          {impactCards.map(c => (
+            <div class="border-t pt-6" style={`border-color:#A04545;`}>
+              <div class="text-xs uppercase tracking-[0.2em] italic mb-3" style={`color:#A04545;font-family:'Fraunces', serif;`}>
+                <span data-lang="en">{c.tag.en}</span>
+                <span data-lang="id">{c.tag.id}</span>
+              </div>
+              <h3 class="text-xl mb-3 leading-snug tracking-[-0.02em]" style={`font-family:'Fraunces', serif;font-weight:500;`}>
+                <span data-lang="en">{c.title.en}</span>
+                <span data-lang="id">{c.title.id}</span>
+              </h3>
+              <p class="text-base leading-[1.8]" style={`color:#8B95A1;`}>
+                <span data-lang="en">{c.body.en}</span>
+                <span data-lang="id">{c.body.id}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 People -->
+    <section style="padding:5rem 1.5rem;">
+      <div class="container-x max-w-3xl">
+        <div class="text-center mb-12">
+          <div class="text-xs uppercase tracking-[0.3em] italic" style="color:#A04545;font-family:'Fraunces', serif;">VII · People</div>
+          <h2 class="text-4xl md:text-5xl mt-6 leading-tight tracking-[-0.02em]" style="font-family:'Fraunces', serif;font-weight:400;">
+            <em>Practitioners, not analysts.</em>
+          </h2>
+        </div>
+        <div class="space-y-12 mt-12">
+          {team.map(m => (
+            <div class="text-center">
+              <h3 class="text-2xl mb-2 leading-tight" style={`font-family:'Fraunces', serif;font-weight:500;`}>
+                <em>{m.name}</em>
+              </h3>
+              <div class="text-xs uppercase tracking-[0.3em] italic mb-5" style={`color:#A04545;font-family:'Fraunces', serif;`}>
+                <span data-lang="en">{m.role.en}</span>
+                <span data-lang="id">{m.role.id}</span>
+              </div>
+              <p class="text-base leading-[1.85] max-w-xl mx-auto" style={`color:#8B95A1;`}>
+                <span data-lang="en">{m.bioFull.en}</span>
+                <span data-lang="id">{m.bioFull.id}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 Closing -->
+    <section class="text-center" style="padding:8rem 1.5rem;background:#FCFCFA;">
+      <div class="container-x max-w-2xl">
+        <div class="text-xs uppercase tracking-[0.3em] italic mb-8" style="color:#A04545;font-family:'Fraunces', serif;">VIII · Engagement</div>
+        <h2 class="text-4xl md:text-6xl mb-10 leading-[1.05] tracking-[-0.025em]" style="font-family:'Fraunces', serif;font-weight:400;">
+          <em><span data-lang="en">{profile.whatComesNext.title.en}</span><span data-lang="id">{profile.whatComesNext.title.id}</span></em>
+        </h2>
+        <div class="space-y-5 mb-12">
+          {profile.whatComesNext.body.en.map((p, i) => (
+            <p class="text-lg leading-[1.85]" style={`color:#8B95A1;`}>
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+        <div class="space-y-3">
+          <a href={`mailto:${brand.email}`} class="block text-xl italic" style="font-family:'Fraunces', serif;">{brand.email}</a>
+          <div class="text-base" style="color:#8B95A1;">{brand.phone}</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</ProfileLayout>

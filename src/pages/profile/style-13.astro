@@ -1,0 +1,234 @@
+---
+// STYLE 13 — Glass Atelier (V2 white-dominant collection)
+// Glass / Apple-Stripe vibe: soft cards, pill CTAs, navy text on white.
+import ProfileLayout from '../../layouts/ProfileLayout.astro';
+import { brand, profile, services, team, stages, impactCards, kicker } from '../../data/content';
+const base = import.meta.env.BASE_URL;
+---
+<ProfileLayout styleNum={13} styleName="Glass Atelier">
+  <div style="background:#FFFFFF;color:#1A2E4A;font-family:'Inter', sans-serif;">
+
+    <!-- Hero — centered, soft gradient backdrop -->
+    <section class="text-center" style="padding:9rem 1.5rem;background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%);">
+      <div class="container-x max-w-4xl">
+        <div class="text-xs uppercase tracking-[0.3em] mb-8" style="color:#3D8F8A;">
+          <span data-lang="en">Strategic Impact Consultancy · Est. 2026</span>
+          <span data-lang="id">Konsultan Dampak Strategis · Est. 2026</span>
+        </div>
+        <h1 class="text-[clamp(3rem,7vw,6rem)] leading-[1.05] font-semibold tracking-[-0.04em] mb-8">{brand.name}</h1>
+        <p class="text-xl md:text-2xl leading-snug max-w-2xl mx-auto" style="color:#64748B;">
+          <span data-lang="en">{brand.tagline.en}</span>
+          <span data-lang="id">{brand.tagline.id}</span>
+        </p>
+        <div class="mt-12 flex flex-wrap items-center justify-center gap-4">
+          <a href={`mailto:${brand.email}`} class="px-6 py-3 rounded-full text-sm font-semibold" style="background:#1A2E4A;color:#FFFFFF;box-shadow:0 8px 24px rgba(15,23,42,0.12);">
+            <span data-lang="en">Discuss Your Challenge</span>
+            <span data-lang="id">Diskusikan Tantangan Anda</span>
+          </a>
+          <a href="#services" class="px-6 py-3 rounded-full text-sm font-semibold border" style="border-color:#E2E8F0;color:#1A2E4A;">
+            <span data-lang="en">Explore Services</span>
+            <span data-lang="id">Lihat Layanan</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 Identity & 02 Clients (two cards side-by-side) -->
+    <section class="px-6" style="padding:5rem 0;">
+      <div class="container-x max-w-6xl grid md:grid-cols-2 gap-6">
+        <div class="rounded-2xl p-10" style="background:#F8FAFC;box-shadow:0 8px 32px rgba(15,23,42,0.06);">
+          <div class="text-xs uppercase tracking-[0.2em] mb-4" style="color:#3D8F8A;">01 · Identity</div>
+          <h2 class="text-3xl font-semibold mb-6 tracking-[-0.03em] leading-tight">
+            <span data-lang="en">{profile.whoWeAre.title.en}</span>
+            <span data-lang="id">{profile.whoWeAre.title.id}</span>
+          </h2>
+          <div class="space-y-4">
+            {profile.whoWeAre.body.en.map((p, i) => (
+              <p class="text-base leading-[1.7]" style={`color:#64748B;`}>
+                <span data-lang="en">{p}</span>
+                <span data-lang="id">{profile.whoWeAre.body.id[i]}</span>
+              </p>
+            ))}
+          </div>
+        </div>
+        <div class="rounded-2xl p-10" style="background:#F8FAFC;box-shadow:0 8px 32px rgba(15,23,42,0.06);">
+          <div class="text-xs uppercase tracking-[0.2em] mb-4" style="color:#3D8F8A;">02 · Clients</div>
+          <h2 class="text-3xl font-semibold mb-6 tracking-[-0.03em] leading-tight">
+            <span data-lang="en">{profile.whoWeServe.title.en}</span>
+            <span data-lang="id">{profile.whoWeServe.title.id}</span>
+          </h2>
+          <p class="text-base leading-[1.7]" style="color:#64748B;">
+            <span data-lang="en">{profile.whoWeServe.body.en}</span>
+            <span data-lang="id">{profile.whoWeServe.body.id}</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Thesis — full width subtle card -->
+    <section class="px-6" style="padding:5rem 0;">
+      <div class="container-x max-w-4xl text-center">
+        <div class="text-xs uppercase tracking-[0.3em] mb-4" style="color:#3D8F8A;">03 · Thesis</div>
+        <h2 class="text-4xl md:text-5xl font-semibold mb-10 tracking-[-0.03em] leading-tight">
+          <span data-lang="en">{profile.theGap.title.en}</span>
+          <span data-lang="id">{profile.theGap.title.id}</span>
+        </h2>
+        <div class="space-y-5">
+          {profile.theGap.body.en.map((p, i) => (
+            <p class="text-lg leading-[1.7]" style={`color:#64748B;`}>
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.theGap.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Methodology -->
+    <section class="px-6" style="padding:5rem 0;background:#F8FAFC;">
+      <div class="container-x max-w-6xl">
+        <div class="text-center mb-14">
+          <div class="text-xs uppercase tracking-[0.3em] mb-4" style="color:#3D8F8A;">04 · Methodology</div>
+          <h2 class="text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-tight max-w-3xl mx-auto">
+            <span data-lang="en" set:html={kicker.approachTitle.en}></span>
+            <span data-lang="id" set:html={kicker.approachTitle.id}></span>
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {stages.map(s => (
+            <div class="rounded-2xl p-8 bg-white" style={`box-shadow:0 8px 32px rgba(15,23,42,0.06);`}>
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-semibold mb-5 text-sm" style={`background:#1A2E4A;color:#FFFFFF;`}>{s.num}</div>
+              <h3 class="text-xl font-semibold mb-3 tracking-[-0.02em]">
+                <span data-lang="en">{s.title.en}</span>
+                <span data-lang="id">{s.title.id}</span>
+              </h3>
+              <p class="text-base leading-[1.7]" style={`color:#64748B;`}>
+                <span data-lang="en">{s.body.en}</span>
+                <span data-lang="id">{s.body.id}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 Services -->
+    <section id="services" class="px-6" style="padding:5rem 0;">
+      <div class="container-x max-w-6xl">
+        <div class="text-center mb-14">
+          <div class="text-xs uppercase tracking-[0.3em] mb-4" style="color:#3D8F8A;">05 · Services</div>
+          <h2 class="text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-tight">
+            <span data-lang="en">Three integrated services.</span>
+            <span data-lang="id">Tiga layanan terintegrasi.</span>
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {services.map(svc => (
+            <div class="rounded-2xl p-8 border" style={`border-color:#E2E8F0;background:#FFFFFF;`}>
+              <div class="text-xs uppercase tracking-[0.2em] mb-3" style={`color:#3D8F8A;`}>Service {svc.num}</div>
+              <h3 class="text-xl font-semibold mb-4 tracking-[-0.02em] leading-tight">
+                <span data-lang="en">{svc.title.en}</span>
+                <span data-lang="id">{svc.title.id}</span>
+              </h3>
+              <p class="text-sm leading-[1.7]" style={`color:#64748B;`}>
+                <span data-lang="en">{svc.detail.en[0]}</span>
+                <span data-lang="id">{svc.detail.id[0]}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Evidence -->
+    <section class="px-6" style="padding:5rem 0;background:#F8FAFC;">
+      <div class="container-x max-w-6xl">
+        <div class="text-center mb-14">
+          <div class="text-xs uppercase tracking-[0.3em] mb-4" style="color:#3D8F8A;">06 · Evidence</div>
+          <h2 class="text-4xl md:text-5xl font-semibold tracking-[-0.03em]">
+            <span data-lang="en">Proof of execution.</span>
+            <span data-lang="id">Bukti eksekusi.</span>
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          {impactCards.map(c => (
+            <div class="rounded-2xl p-7 bg-white" style={`box-shadow:0 8px 32px rgba(15,23,42,0.06);`}>
+              <div class="text-xs uppercase tracking-[0.2em] mb-3" style={`color:#3D8F8A;`}>
+                <span data-lang="en">{c.tag.en}</span>
+                <span data-lang="id">{c.tag.id}</span>
+              </div>
+              <h3 class="text-lg mb-3 font-semibold leading-snug tracking-[-0.02em]">
+                <span data-lang="en">{c.title.en}</span>
+                <span data-lang="id">{c.title.id}</span>
+              </h3>
+              <p class="text-sm leading-[1.6]" style={`color:#64748B;`}>
+                <span data-lang="en">{c.body.en}</span>
+                <span data-lang="id">{c.body.id}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 People -->
+    <section class="px-6" style="padding:5rem 0;">
+      <div class="container-x max-w-6xl">
+        <div class="text-center mb-14">
+          <div class="text-xs uppercase tracking-[0.3em] mb-4" style="color:#3D8F8A;">07 · People</div>
+          <h2 class="text-4xl md:text-5xl font-semibold tracking-[-0.03em]">
+            <span data-lang="en">Practitioners, not analysts.</span>
+            <span data-lang="id">Praktisi, bukan analis.</span>
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          {team.map(m => (
+            <div class="rounded-2xl p-8" style={`background:#F8FAFC;`}>
+              <div class="grid grid-cols-[auto_1fr] gap-5 items-start">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center text-lg font-semibold" style={`background:#1A2E4A;color:#FFFFFF;`}>{m.initials}</div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-1 leading-tight tracking-[-0.02em]">{m.name}</h3>
+                  <div class="text-xs uppercase tracking-[0.2em] mb-3" style={`color:#3D8F8A;`}>
+                    <span data-lang="en">{m.role.en}</span>
+                    <span data-lang="id">{m.role.id}</span>
+                  </div>
+                  <p class="text-sm leading-[1.7]" style={`color:#64748B;`}>
+                    <span data-lang="en">{m.bioFull.en}</span>
+                    <span data-lang="id">{m.bioFull.id}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 Closing CTA -->
+    <section class="px-6 text-center" style="padding:8rem 1.5rem;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);">
+      <div class="container-x max-w-3xl">
+        <div class="text-xs uppercase tracking-[0.3em] mb-6" style="color:#3D8F8A;">08 · Engagement</div>
+        <h2 class="text-4xl md:text-6xl font-semibold mb-8 tracking-[-0.04em] leading-[1.05]">
+          <span data-lang="en">{profile.whatComesNext.title.en}</span>
+          <span data-lang="id">{profile.whatComesNext.title.id}</span>
+        </h2>
+        <div class="space-y-5 mb-10">
+          {profile.whatComesNext.body.en.map((p, i) => (
+            <p class="text-lg leading-[1.7]" style={`color:#64748B;`}>
+              <span data-lang="en">{p}</span>
+              <span data-lang="id">{profile.whatComesNext.body.id[i]}</span>
+            </p>
+          ))}
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href={`mailto:${brand.email}`} class="px-6 py-3 rounded-full text-sm font-semibold" style="background:#1A2E4A;color:#FFFFFF;box-shadow:0 8px 24px rgba(15,23,42,0.12);">
+            {brand.email}
+          </a>
+          <a href={`tel:${brand.phone.replace(/\s/g,'')}`} class="px-6 py-3 rounded-full text-sm font-semibold border" style="border-color:#E2E8F0;color:#1A2E4A;">
+            {brand.phone}
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</ProfileLayout>

@@ -2,36 +2,98 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
   title: string;
   description?: string;
   lang?: 'en' | 'id';
+  ogImage?: string;
 }
 
 const {
   title,
-  description = 'Madani Strategies — Connecting Growth to Community Impact',
+  description = 'Madani Strategies — Strategic impact consultancy connecting business growth to community impact. ESG, social risk, and sustainability advisory based in Jakarta.',
   lang = 'en',
+  ogImage,
 } = Astro.props;
 
-const fullTitle = title === 'home' ? 'Madani Strategies — Connecting Growth to Community Impact' : `${title} · Madani Strategies`;
+const fullTitle = title === 'home'
+  ? 'Madani Strategies — Connecting Growth to Community Impact'
+  : `${title} · Madani Strategies`;
+
+const base = import.meta.env.BASE_URL;
+const SITE_URL = 'https://ronggothelast.github.io';
+const baseClean = base.replace(/\/$/, '');
+const canonicalPath = Astro.url.pathname;
+const canonicalURL = SITE_URL + canonicalPath;
+const defaultOgImage = `${SITE_URL}${baseClean}/assets/og-banner.png`;
+const ogImageURL = ogImage || defaultOgImage;
 ---
 <!doctype html>
 <html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO: Primary -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Madani Strategies" />
+    <meta name="keywords" content="ESG consulting, social impact, sustainability advisory, community engagement, Indonesia, Jakarta, EUDR, IBSAP, Yayasan Madani Berkelanjutan" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href={`${baseClean}/favicon.svg`} />
+
+    <!-- SEO: Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Madani Strategies" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Madani Strategies — Connecting Growth to Community Impact" />
+    <meta property="og:locale" content={lang === 'id' ? 'id_ID' : 'en_US'} />
+
+    <!-- SEO: Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- SEO: Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Madani Strategies',
+      url: SITE_URL + baseClean,
+      logo: `${SITE_URL}${baseClean}/favicon.svg`,
+      description: 'Strategic impact consultancy connecting business growth to community impact.',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Jl. Mesjid Al Hidayah No.14A',
+        addressLocality: 'Pasar Minggu, South Jakarta',
+        postalCode: '12520',
+        addressCountry: 'ID',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+62-813-1434-4485',
+        email: 'hello@madanistrategies.com',
+        contactType: 'customer service',
+      },
+      parentOrganization: {
+        '@type': 'Organization',
+        name: 'Yayasan Madani Berkelanjutan',
+      },
+    })} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
-
-    <title>{fullTitle}</title>
 
     <!-- Inline lang init script — set early to avoid flash -->
     <script is:inline>
@@ -40,6 +102,9 @@ const fullTitle = title === 'home' ? 'Madani Strategies — Connecting Growth to
         if (saved === 'id') document.documentElement.classList.add('lang-id');
       })();
     </script>
+
+    <!-- Astro View Transitions: smooth SPA-style page navigation -->
+    <ClientRouter />
   </head>
   <body class="bg-[#FDFCF8] text-[#1A2E4A] antialiased">
     <Nav />
@@ -52,6 +117,88 @@ const fullTitle = title === 'home' ? 'Madani Strategies — Connecting Growth to
       [data-lang="id"] { display: none; }
       html.lang-id [data-lang="en"] { display: none; }
       html.lang-id [data-lang="id"] { display: revert; }
+
+      /* Scroll-triggered fade-in animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Stagger variants */
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+
+      /* Respect user motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        html { scroll-behavior: auto; }
+      }
+
+      /* Astro view transitions: subtle fade + slight slide */
+      ::view-transition-old(root) {
+        animation: 0.25s ease-out both fadeOut;
+      }
+      ::view-transition-new(root) {
+        animation: 0.3s ease-out both fadeIn;
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
     </style>
+
+    <!-- Scroll reveal: IntersectionObserver auto-applies .is-visible to .reveal elements -->
+    <script>
+      // Auto-tag main page sections (excluding profile/styleguide which have own treatments)
+      const autoTagReveal = () => {
+        const path = window.location.pathname;
+        const isMainPage = !path.includes('/profile/') && !path.includes('/styleguide/');
+        if (!isMainPage) return;
+        document.querySelectorAll('main > section, main > div > section').forEach((el, i) => {
+          if (i === 0) return; // Skip first section — visible above fold
+          if (!el.classList.contains('reveal')) el.classList.add('reveal');
+        });
+      };
+
+      // Re-run on every page navigation (works with View Transitions)
+      const initReveal = () => {
+        autoTagReveal();
+        const elements = document.querySelectorAll('.reveal:not(.is-visible)');
+        if (!elements.length) return;
+        if (!('IntersectionObserver' in window)) {
+          elements.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
+        );
+        elements.forEach((el) => observer.observe(el));
+      };
+      // Initial run + re-run on Astro page navigation
+      initReveal();
+      document.addEventListener('astro:page-load', initReveal);
+    </script>
   </body>
 </html>

@@ -30,7 +30,7 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
       <div class="aspect-[4/5] rounded-3xl overflow-hidden">
-        <img src={base + '/assets/images/hero-community.png'} alt="Community" class="w-full h-full object-cover" />
+        <img fetchpriority="high" loading="eager" decoding="async" src={base + '/assets/images/hero-community.webp'} alt="Community" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>

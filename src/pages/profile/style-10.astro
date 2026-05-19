@@ -8,7 +8,7 @@ const base = import.meta.env.BASE_URL;
   <div style="background: #FAF6EC; color: #1A2E4A; font-family: 'Fraunces', Georgia, serif;">
     <!-- Cover - editorial style -->
     <header class="min-h-screen relative overflow-hidden">
-      <img src={base + '/assets/images/forest.png'} alt="" class="absolute inset-0 w-full h-full object-cover" />
+      <img fetchpriority="high" loading="eager" decoding="async" src={base + '/assets/images/forest.webp'} alt="" class="absolute inset-0 w-full h-full object-cover" />
       <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,46,74,0.65) 0%, rgba(26,46,74,0.95) 100%);"></div>
       
       <div class="relative h-screen flex flex-col justify-between py-20" style="color: #FAF6EC;">
@@ -63,7 +63,7 @@ const base = import.meta.env.BASE_URL;
         <div class="grid md:grid-cols-12 gap-12 items-center mb-16">
           <div class="md:col-span-5">
             <div class="aspect-[4/5] overflow-hidden">
-              <img src={base + '/assets/images/hero-community.png'} alt="" class="w-full h-full object-cover" />
+              <img loading="lazy" decoding="async" src={base + '/assets/images/hero-community.webp'} alt="" class="w-full h-full object-cover" />
             </div>
           </div>
           <div class="md:col-span-7">
@@ -162,7 +162,7 @@ const base = import.meta.env.BASE_URL;
             <article class={`grid md:grid-cols-12 gap-12 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
               <div class={`md:col-span-6 ${i % 2 === 1 ? 'md:order-2' : ''}`}>
                 <div class="aspect-[4/5] overflow-hidden">
-                  <img src={svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
                 </div>
               </div>
               <div class={`md:col-span-6 ${i % 2 === 1 ? 'md:order-1' : ''}`}>

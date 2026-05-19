@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A2E4A"/>
+      <stop offset="60%" stop-color="#22395C"/>
+      <stop offset="100%" stop-color="#0F1B2D"/>
+    </linearGradient>
+    <linearGradient id="goldFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C9A876" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#C9A876" stop-opacity="0.3"/>
+    </linearGradient>
+    <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#3D8F8A" opacity="0.15"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#goldFade)"/>
+
+  <!-- Decorative arcs (community/connection metaphor) -->
+  <g opacity="0.12">
+    <circle cx="950" cy="180" r="200" fill="none" stroke="#C9A876" stroke-width="1.5"/>
+    <circle cx="950" cy="180" r="280" fill="none" stroke="#3D8F8A" stroke-width="1"/>
+    <circle cx="950" cy="180" r="360" fill="none" stroke="#C9A876" stroke-width="0.5"/>
+  </g>
+
+  <!-- Logo orb (top-left) -->
+  <g transform="translate(80,80)">
+    <circle cx="22" cy="22" r="22" fill="#3D8F8A"/>
+    <path d="M 8 22 Q 22 8, 36 22 T 36 22" fill="none" stroke="#C9A876" stroke-width="2" opacity="0.7"/>
+    <text x="60" y="20" font-family="Georgia, serif" font-size="20" font-weight="600" fill="#FAF6EC">Madani Strategies</text>
+    <text x="60" y="40" font-family="system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#3D8F8A">CONNECTING GROWTH TO COMMUNITY IMPACT</text>
+  </g>
+
+  <!-- Main title -->
+  <text x="80" y="320" font-family="Georgia, 'Times New Roman', serif" font-size="68" font-weight="500" fill="#FAF6EC" letter-spacing="-1.5">Transforming Social Risk</text>
+  <text x="80" y="395" font-family="Georgia, 'Times New Roman', serif" font-size="68" font-style="italic" font-weight="500" fill="#C9A876" letter-spacing="-1.5">Into Strategic Advantage.</text>
+
+  <!-- Subtitle -->
+  <line x1="80" y1="440" x2="180" y2="440" stroke="#3D8F8A" stroke-width="2"/>
+  <text x="80" y="475" font-family="system-ui, sans-serif" font-size="20" fill="#9CB0CC">Strategic impact consultancy · Jakarta, Indonesia</text>
+  <text x="80" y="505" font-family="system-ui, sans-serif" font-size="20" fill="#9CB0CC">20+ years · 400+ farmers · 100K beneficiaries</text>
+
+  <!-- Footer accent -->
+  <g transform="translate(80,560)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="3" fill="#C9A876">MADANISTRATEGIES.COM</text>
+    <text x="0" y="22" font-family="system-ui, sans-serif" font-size="11" letter-spacing="1" fill="#5C6B7E">Affiliated with Yayasan Madani Berkelanjutan</text>
+  </g>
+
+  <!-- Right side accent stripe -->
+  <rect x="1185" y="0" width="15" height="630" fill="#C9A876"/>
+</svg>

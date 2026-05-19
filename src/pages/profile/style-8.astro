@@ -9,7 +9,7 @@ const base = import.meta.env.BASE_URL;
   <div style="background: #F4ECDB; color: #1A2E4A; font-family: 'Fraunces', Georgia, serif;">
     <!-- Hero with full image -->
     <header class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
-      <img src={base + '/assets/images/hero-community.png'} alt="" class="absolute inset-0 w-full h-full object-cover" />
+      <img fetchpriority="high" loading="eager" decoding="async" src={base + '/assets/images/hero-community.webp'} alt="" class="absolute inset-0 w-full h-full object-cover" />
       <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(244,236,219,0.2) 0%, rgba(26,46,74,0.85) 100%);"></div>
       <div class="container-x relative max-w-5xl">
         <div class="text-xs font-sans uppercase tracking-[0.4em] mb-8" style="color: #C9A876;">
@@ -56,7 +56,7 @@ const base = import.meta.env.BASE_URL;
         <div class="grid md:grid-cols-12 gap-12 items-center">
           <div class="md:col-span-6 order-2 md:order-1">
             <div class="aspect-[4/5] overflow-hidden rounded-lg">
-              <img src={base + '/assets/images/service-trade.png'} alt="" class="w-full h-full object-cover" />
+              <img loading="lazy" decoding="async" src={base + '/assets/images/service-trade.webp'} alt="" class="w-full h-full object-cover" />
             </div>
           </div>
           <div class="md:col-span-6 order-1 md:order-2">
@@ -147,7 +147,7 @@ const base = import.meta.env.BASE_URL;
             <article class={`grid md:grid-cols-12 gap-12 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
               <div class={`md:col-span-5 ${i % 2 === 1 ? 'md:order-2' : ''}`}>
                 <div class="aspect-[4/5] overflow-hidden rounded-lg">
-                  <img src={svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
                 </div>
               </div>
               <div class={`md:col-span-7 ${i % 2 === 1 ? 'md:order-1' : ''}`}>

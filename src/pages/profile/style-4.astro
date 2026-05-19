@@ -9,7 +9,7 @@ const base = import.meta.env.BASE_URL;
   <div style="background: #FFFFFF; color: #1A2E4A; font-family: 'Fraunces', Georgia, serif;">
     <!-- Cover with full image -->
     <header class="relative h-screen overflow-hidden">
-      <img src={base + '/assets/images/forest.png'} alt="" class="absolute inset-0 w-full h-full object-cover" />
+      <img fetchpriority="high" loading="eager" decoding="async" src={base + '/assets/images/forest.webp'} alt="" class="absolute inset-0 w-full h-full object-cover" />
       <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,46,74,0.3) 0%, rgba(26,46,74,0.85) 100%);"></div>
       <div class="relative h-full flex flex-col justify-end pb-20" style="color: #FAF6EC;">
         <div class="container-x">
@@ -61,7 +61,7 @@ const base = import.meta.env.BASE_URL;
 
     <!-- Photo break -->
     <div class="aspect-[16/7] overflow-hidden">
-      <img src={base + '/assets/images/hero-community.png'} alt="" class="w-full h-full object-cover" />
+      <img loading="lazy" decoding="async" src={base + '/assets/images/hero-community.webp'} alt="" class="w-full h-full object-cover" />
     </div>
 
     <!-- 2 + 3. Who We Serve & The Gap -->
@@ -135,7 +135,7 @@ const base = import.meta.env.BASE_URL;
             <article class="grid md:grid-cols-12 gap-8">
               <div class="md:col-span-4">
                 <div class="aspect-[4/5] overflow-hidden">
-                  <img src={svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={svc.image} alt={svc.title.en} class="w-full h-full object-cover" />
                 </div>
               </div>
               <div class="md:col-span-8">

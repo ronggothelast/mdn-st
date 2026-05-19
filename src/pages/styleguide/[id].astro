@@ -30,6 +30,17 @@ const colorTokens = [
   { name: 'Border', token: '--border', hex: style.border, role: 'dividers' },
 ];
 
+const darkColorTokens = [
+  { name: 'Background', token: '--dark-bg', hex: style.darkBg, role: 'page' },
+  { name: 'Surface', token: '--dark-surface', hex: style.darkSurface, role: 'card / panel' },
+  { name: 'Ink', token: '--dark-ink', hex: style.darkInk, role: 'primary text' },
+  { name: 'Muted', token: '--dark-muted', hex: style.darkMuted, role: 'secondary text' },
+  { name: 'Primary', token: '--dark-primary', hex: style.darkPrimary, role: 'brand / CTA' },
+  { name: 'Accent', token: '--dark-accent', hex: style.darkAccent, role: 'secondary accent' },
+  { name: 'Highlight', token: '--dark-highlight', hex: style.darkHighlight, role: 'tertiary / decor' },
+  { name: 'Border', token: '--dark-border', hex: style.darkBorder, role: 'dividers' },
+];
+
 const typeScale = [
   { label: 'Display', size: '4.5rem', weight: style.headingWeight, sample: 'Connecting Growth' },
   { label: 'H1', size: '3rem', weight: style.headingWeight, sample: 'Strategic Impact' },
@@ -53,8 +64,9 @@ const spacingScale = [
 
 const navLinks = styleguides.map((s) => s.num);
 
-// Pre-compute root inline style for the article (CSS variables wiring)
+// Pre-compute root inline style for the article (CSS variables wiring — light + dark sets)
 const rootStyle = [
+  // Light tokens (default)
   `--bg:${style.bg}`,
   `--surface:${style.surface}`,
   `--ink:${style.ink}`,
@@ -63,9 +75,20 @@ const rootStyle = [
   `--accent:${style.accent}`,
   `--highlight:${style.highlight}`,
   `--border:${style.border}`,
+  // Dark tokens (used when [data-theme="dark"])
+  `--dark-bg:${style.darkBg}`,
+  `--dark-surface:${style.darkSurface}`,
+  `--dark-ink:${style.darkInk}`,
+  `--dark-muted:${style.darkMuted}`,
+  `--dark-primary:${style.darkPrimary}`,
+  `--dark-accent:${style.darkAccent}`,
+  `--dark-highlight:${style.darkHighlight}`,
+  `--dark-border:${style.darkBorder}`,
+  // Typography
   `--font-heading:${style.fontHeading}`,
   `--font-body:${style.fontBody}`,
   `--font-mono:${style.fontMono}`,
+  // Component tokens
   `--radius:${style.radius}`,
   `--btn-radius:${style.buttonRadius}`,
   `--shadow:${style.shadow}`,
@@ -106,8 +129,20 @@ const fontBodyName = style.fontBody.split(',')[0].replace(/['"]/g, '');
 
   <article
     class="sg-root pb-32"
+    data-theme="light"
     style={rootStyle}
   >
+    <!-- Theme toggle (sticky top-right) -->
+    <div class="sg-theme-toggle">
+      <button class="sg-theme-btn sg-theme-active" data-theme-set="light" type="button" aria-label="Light mode">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <span>Light</span>
+      </button>
+      <button class="sg-theme-btn" data-theme-set="dark" type="button" aria-label="Dark mode">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span>Dark</span>
+      </button>
+    </div>
     <!-- ==================== HERO ==================== -->
     <header class="sg-section" style="border-bottom:var(--border-w) solid var(--border);">
       <div class="sg-container">
@@ -147,19 +182,45 @@ const fontBodyName = style.fontBody.split(',')[0].replace(/['"]/g, '');
         <div class="sg-section-head">
           <div class="sg-eyebrow" style="color:var(--accent);">01 · Color</div>
           <h2 class="sg-h2" style={headingStyle}>Color Palette</h2>
-          <p class="sg-body" style="color:var(--muted);">All colors used across this style. Click any swatch to copy hex.</p>
+          <p class="sg-body" style="color:var(--muted);">All colors used across this style. Click any swatch to copy the hex value.</p>
         </div>
-        <div class="sg-color-grid">
-          {colorTokens.map((c) => (
-            <button class="sg-color-card copy-btn" data-copy={c.hex} type="button">
-              <div class="sg-color-swatch" style={`background:${c.hex};`}></div>
-              <div class="sg-color-meta">
-                <div class="sg-color-name">{c.name}</div>
-                <div class="sg-color-hex">{c.hex}</div>
-                <div class="sg-color-role" style="color:var(--muted);">{c.role}</div>
-              </div>
-            </button>
-          ))}
+
+        <div class="sg-palette-block">
+          <div class="sg-palette-head">
+            <div class="sg-eyebrow" style="color:var(--accent);">Light Mode</div>
+            <p class="sg-body" style="color:var(--muted);font-size:0.9rem;">Default palette. Used on bright surfaces, reports, and print.</p>
+          </div>
+          <div class="sg-color-grid">
+            {colorTokens.map((c) => (
+              <button class="sg-color-card copy-btn" data-copy={c.hex} type="button">
+                <div class="sg-color-swatch" style={`background:${c.hex};`}></div>
+                <div class="sg-color-meta">
+                  <div class="sg-color-name">{c.name}</div>
+                  <div class="sg-color-hex">{c.hex}</div>
+                  <div class="sg-color-role" style="color:var(--muted);">{c.role}</div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="sg-palette-block sg-palette-dark">
+          <div class="sg-palette-head">
+            <div class="sg-eyebrow" style="color:var(--dark-accent);">Dark Mode</div>
+            <p class="sg-body" style="color:var(--dark-muted);font-size:0.9rem;">Paired palette. Used on dark surfaces, hero sections, and night mode.</p>
+          </div>
+          <div class="sg-color-grid">
+            {darkColorTokens.map((c) => (
+              <button class="sg-color-card sg-color-card-dark copy-btn" data-copy={c.hex} type="button">
+                <div class="sg-color-swatch" style={`background:${c.hex};`}></div>
+                <div class="sg-color-meta">
+                  <div class="sg-color-name">{c.name}</div>
+                  <div class="sg-color-hex">{c.hex}</div>
+                  <div class="sg-color-role" style="color:var(--dark-muted);">{c.role}</div>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -197,32 +258,72 @@ const fontBodyName = style.fontBody.split(',')[0].replace(/['"]/g, '');
         <div class="sg-section-head">
           <div class="sg-eyebrow" style="color:var(--accent);">03 · Buttons</div>
           <h2 class="sg-h2" style={headingStyle}>Buttons</h2>
-          <p class="sg-body" style="color:var(--muted);">All button variants used in this style.</p>
+          <p class="sg-body" style="color:var(--muted);">All button variants on both light and dark surfaces.</p>
         </div>
-        <div class="sg-component-grid">
-          <div class="sg-component-cell">
-            <div class="sg-cell-label" style="color:var(--muted);">Primary</div>
-            <button class="sg-btn sg-btn-primary">Discuss Your Challenge</button>
+
+        <!-- LIGHT MODE BUTTONS -->
+        <div class="sg-button-board sg-board-light">
+          <div class="sg-board-header">
+            <div class="sg-eyebrow" style="color:var(--accent);">On Light Surface</div>
           </div>
-          <div class="sg-component-cell">
-            <div class="sg-cell-label" style="color:var(--muted);">Secondary</div>
-            <button class="sg-btn sg-btn-secondary">Talk to Our Team</button>
+          <div class="sg-component-grid">
+            <div class="sg-component-cell">
+              <div class="sg-cell-label" style="color:var(--muted);">Primary</div>
+              <button class="sg-btn sg-btn-primary">Discuss Your Challenge</button>
+            </div>
+            <div class="sg-component-cell">
+              <div class="sg-cell-label" style="color:var(--muted);">Secondary</div>
+              <button class="sg-btn sg-btn-secondary">Talk to Our Team</button>
+            </div>
+            <div class="sg-component-cell">
+              <div class="sg-cell-label" style="color:var(--muted);">Outline</div>
+              <button class="sg-btn sg-btn-outline">Read More</button>
+            </div>
+            <div class="sg-component-cell">
+              <div class="sg-cell-label" style="color:var(--muted);">Ghost / Link</div>
+              <button class="sg-btn sg-btn-ghost">Learn more →</button>
+            </div>
+            <div class="sg-component-cell">
+              <div class="sg-cell-label" style="color:var(--muted);">Small</div>
+              <button class="sg-btn sg-btn-primary sg-btn-sm">View</button>
+            </div>
+            <div class="sg-component-cell">
+              <div class="sg-cell-label" style="color:var(--muted);">Disabled</div>
+              <button class="sg-btn sg-btn-primary" disabled>Disabled</button>
+            </div>
           </div>
-          <div class="sg-component-cell">
-            <div class="sg-cell-label" style="color:var(--muted);">Outline</div>
-            <button class="sg-btn sg-btn-outline">Read More</button>
+        </div>
+
+        <!-- DARK MODE BUTTONS -->
+        <div class="sg-button-board sg-board-dark">
+          <div class="sg-board-header">
+            <div class="sg-eyebrow" style="color:var(--dark-accent);">On Dark Surface</div>
           </div>
-          <div class="sg-component-cell">
-            <div class="sg-cell-label" style="color:var(--muted);">Ghost / Link</div>
-            <button class="sg-btn sg-btn-ghost">Learn more →</button>
-          </div>
-          <div class="sg-component-cell">
-            <div class="sg-cell-label" style="color:var(--muted);">Small</div>
-            <button class="sg-btn sg-btn-primary sg-btn-sm">View</button>
-          </div>
-          <div class="sg-component-cell">
-            <div class="sg-cell-label" style="color:var(--muted);">Disabled</div>
-            <button class="sg-btn sg-btn-primary" disabled>Disabled</button>
+          <div class="sg-component-grid">
+            <div class="sg-component-cell sg-component-cell-dark">
+              <div class="sg-cell-label" style="color:var(--dark-muted);">Primary</div>
+              <button class="sg-btn sg-btn-primary-dark">Discuss Your Challenge</button>
+            </div>
+            <div class="sg-component-cell sg-component-cell-dark">
+              <div class="sg-cell-label" style="color:var(--dark-muted);">Secondary</div>
+              <button class="sg-btn sg-btn-secondary-dark">Talk to Our Team</button>
+            </div>
+            <div class="sg-component-cell sg-component-cell-dark">
+              <div class="sg-cell-label" style="color:var(--dark-muted);">Outline</div>
+              <button class="sg-btn sg-btn-outline-dark">Read More</button>
+            </div>
+            <div class="sg-component-cell sg-component-cell-dark">
+              <div class="sg-cell-label" style="color:var(--dark-muted);">Ghost / Link</div>
+              <button class="sg-btn sg-btn-ghost-dark">Learn more →</button>
+            </div>
+            <div class="sg-component-cell sg-component-cell-dark">
+              <div class="sg-cell-label" style="color:var(--dark-muted);">Small</div>
+              <button class="sg-btn sg-btn-primary-dark sg-btn-sm">View</button>
+            </div>
+            <div class="sg-component-cell sg-component-cell-dark">
+              <div class="sg-cell-label" style="color:var(--dark-muted);">Disabled</div>
+              <button class="sg-btn sg-btn-primary-dark" disabled>Disabled</button>
+            </div>
           </div>
         </div>
       </div>
@@ -671,9 +772,160 @@ const fontBodyName = style.fontBody.split(',')[0].replace(/['"]/g, '');
       box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
     .sg-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* Theme toggle (top-right floating) */
+    .sg-theme-toggle {
+      position: fixed;
+      top: 88px;
+      right: 1.5rem;
+      z-index: 45;
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .sg-theme-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 0.95rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: transparent;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sg-theme-btn:hover { color: var(--ink); }
+    .sg-theme-btn.sg-theme-active {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* Dark theme — redefine the active variables under [data-theme="dark"]
+       (need !important because the light tokens are set inline on .sg-root, which beats stylesheets) */
+    .sg-root[data-theme="dark"] {
+      --bg: var(--dark-bg) !important;
+      --surface: var(--dark-surface) !important;
+      --ink: var(--dark-ink) !important;
+      --muted: var(--dark-muted) !important;
+      --primary: var(--dark-primary) !important;
+      --accent: var(--dark-accent) !important;
+      --highlight: var(--dark-highlight) !important;
+      --border: var(--dark-border) !important;
+    }
+    .sg-root[data-theme="dark"] .sg-theme-toggle {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    /* Always-dark color cards stay dark even in dark theme — re-pin their tokens */
+    .sg-color-card-dark { background: var(--dark-surface) !important; border-color: var(--dark-border) !important; color: var(--dark-ink); }
+    .sg-color-card-dark .sg-color-name,
+    .sg-color-card-dark .sg-color-hex { color: var(--dark-ink) !important; }
+    /* Always-dark button board — keep its dark surface no matter the theme */
+    .sg-board-dark { background: var(--dark-bg) !important; border-color: var(--dark-border) !important; }
+    .sg-component-cell-dark { background: var(--dark-surface) !important; border-color: var(--dark-border) !important; color: var(--dark-ink) !important; }
+    .sg-palette-dark { background: var(--dark-bg) !important; border-color: var(--dark-border) !important; color: var(--dark-ink); }
+
+    /* Always-dark preview surface (Buttons "On Dark Surface") */
+    .sg-button-board {
+      margin-top: 1.5rem;
+      padding: 2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .sg-board-light { background: var(--bg); }
+    .sg-board-dark {
+      background: var(--dark-bg);
+      border-color: var(--dark-border);
+    }
+    .sg-board-header { margin-bottom: 1.5rem; }
+    .sg-component-cell-dark {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      color: var(--dark-ink);
+    }
+
+    /* Always-dark color palette block */
+    .sg-palette-block { margin-bottom: 3rem; }
+    .sg-palette-head { margin-bottom: 1.25rem; }
+    .sg-palette-dark {
+      background: var(--dark-bg);
+      padding: 2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--dark-border);
+      color: var(--dark-ink);
+    }
+    .sg-color-card-dark {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      color: var(--dark-ink);
+    }
+    .sg-color-card-dark .sg-color-name,
+    .sg-color-card-dark .sg-color-hex {
+      color: var(--dark-ink);
+    }
+
+    /* Dark-flavored buttons (always render dark, regardless of theme) */
+    .sg-btn-primary-dark {
+      background: var(--dark-primary);
+      color: var(--dark-bg);
+      border-radius: var(--btn-radius);
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sg-btn-primary-dark:hover:not(:disabled) { opacity: 0.9; }
+    .sg-btn-primary-dark:disabled { opacity: 0.4; cursor: not-allowed; }
+    .sg-btn-secondary-dark {
+      background: var(--dark-accent);
+      color: var(--dark-bg);
+      border-radius: var(--btn-radius);
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .sg-btn-secondary-dark:hover { opacity: 0.9; }
+    .sg-btn-outline-dark {
+      background: transparent;
+      color: var(--dark-ink);
+      border: 1px solid var(--dark-ink);
+      border-radius: var(--btn-radius);
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .sg-btn-outline-dark:hover { background: var(--dark-ink); color: var(--dark-bg); }
+    .sg-btn-ghost-dark {
+      background: transparent;
+      color: var(--dark-primary);
+      border: 0;
+      padding: 0.75rem 0;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
   </style>
 
   <script is:inline>
+    // Copy-to-clipboard for color swatches
     const buttons = document.querySelectorAll('.copy-btn');
     const toast = document.getElementById('copy-toast');
     let toastTimer;
@@ -690,6 +942,23 @@ const fontBodyName = style.fontBody.split(',')[0].replace(/['"]/g, '');
           console.warn('clipboard failed', e);
         }
       });
+    });
+
+    // Theme toggle (light/dark)
+    const root = document.querySelector('.sg-root');
+    const themeBtns = document.querySelectorAll('[data-theme-set]');
+    const setTheme = (mode) => {
+      root.setAttribute('data-theme', mode);
+      themeBtns.forEach((b) => {
+        b.classList.toggle('sg-theme-active', b.getAttribute('data-theme-set') === mode);
+      });
+      try { localStorage.setItem('mdn-sg-theme', mode); } catch (e) {}
+    };
+    let saved = 'light';
+    try { saved = localStorage.getItem('mdn-sg-theme') || 'light'; } catch (e) {}
+    setTheme(saved);
+    themeBtns.forEach((b) => {
+      b.addEventListener('click', () => setTheme(b.getAttribute('data-theme-set')));
     });
   </script>
 </BaseLayout>

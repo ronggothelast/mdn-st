@@ -1,149 +1,84 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ServiceCard from '../components/ServiceCard.astro';
-import { hero, stats, services, valueProp, valueCards, heroQuote, finalCta, brand } from '../data/content';
+import { brand, profile } from '../data/content';
 const base = import.meta.env.BASE_URL;
+
+const styles = [
+  { id: 1,  name: 'Editorial Report',     desc: { en: 'Annual report formality with sectioned navy + cream layout.',  id: 'Format laporan tahunan, tata letak navy + krem yang berstruktur.' }, tag: { en: 'Formal', id: 'Formal' } },
+  { id: 2,  name: 'Boutique Consulting',  desc: { en: 'Crisp McKinsey/Bain rigor — generous whitespace, structured.', id: 'Ketegasan McKinsey/Bain — banyak ruang putih, terstruktur.' },          tag: { en: 'Corporate', id: 'Korporat' } },
+  { id: 3,  name: 'White Paper',          desc: { en: 'Research document with serif typography, justified text.',     id: 'Dokumen riset, tipografi serif, teks rata kanan-kiri.' },              tag: { en: 'Research', id: 'Riset' } },
+  { id: 4,  name: 'Magazine Feature',     desc: { en: 'Editorial photography with drop caps and dual columns.',       id: 'Fotografi editorial dengan drop cap dan dua kolom.' },                  tag: { en: 'Editorial', id: 'Editorial' } },
+  { id: 5,  name: 'Sustainability Brief', desc: { en: 'Foundation-style impact brief with stat cards & flow.',        id: 'Brief dampak gaya foundation, kartu statistik dan alur.' },             tag: { en: 'Impact', id: 'Dampak' } },
+  { id: 6,  name: 'Heritage Document',    desc: { en: 'Classical Indonesian elegance with ornamental separators.',    id: 'Keanggunan klasik Indonesia dengan pemisah ornamental.' },              tag: { en: 'Classical', id: 'Klasik' } },
+  { id: 7,  name: 'Modern Foundation',    desc: { en: 'Philanthropy-style with generous photography & navy.',         id: 'Gaya filantropi dengan fotografi besar dan navy.' },                    tag: { en: 'Modern', id: 'Modern' } },
+  { id: 8,  name: 'Community Story',      desc: { en: 'Photo-led narrative storytelling, warm earthy palette.',       id: 'Cerita berbasis foto, palet hangat dan natural.' },                     tag: { en: 'Narrative', id: 'Naratif' } },
+  { id: 9,  name: 'Strategic Brief',      desc: { en: 'Pitch-deck inspired with dense info on deep navy.',            id: 'Terinspirasi pitch deck, info padat pada navy gelap.' },                tag: { en: 'Executive', id: 'Eksekutif' } },
+  { id: 10, name: 'Premium Folio',        desc: { en: 'Coffee-table book elegance with large imagery & gold.',        id: 'Keanggunan buku coffee-table, gambar besar dan aksen emas.' },          tag: { en: 'Premium', id: 'Premium' } },
+];
 ---
-<BaseLayout title="Home">
-  <!-- HERO -->
-  <section class="pt-20 pb-16" style="background: #1A2E4A; color: #FAF6EC;">
-    <div class="container-x grid lg:grid-cols-[1.1fr_1fr] gap-12 items-center">
-      <div>
-        <span class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #C9A876;">
-          <span data-lang="en">{hero.eyebrow.en}</span><span data-lang="id">{hero.eyebrow.id}</span>
-        </span>
-        <h1 class="text-5xl md:text-6xl lg:text-7xl mt-5 leading-[1.05] tracking-tight" style="font-family: 'Fraunces', Georgia, serif;">
-          <span data-lang="en">{hero.headline.en}</span>
-          <span data-lang="id">{hero.headline.id}</span>
-        </h1>
-        <p class="text-lg leading-[1.7] mt-6 max-w-xl text-[#FAF6EC]/80">
-          <span data-lang="en">{hero.subheadline.en}</span>
-          <span data-lang="id">{hero.subheadline.id}</span>
-        </p>
-        <div class="mt-9 flex flex-wrap gap-4">
-          <a href={base + '/contact'} class="inline-block px-7 py-3 rounded-full font-medium text-sm" style="background: #C9A876; color: #1A2E4A;">
-            <span data-lang="en">{hero.ctaPrimary.en}</span><span data-lang="id">{hero.ctaPrimary.id}</span>
-          </a>
-          <a href={base + '/services'} class="inline-block px-7 py-3 rounded-full font-medium text-sm border border-[#FAF6EC]/30 hover:bg-[#FAF6EC]/10 transition">
-            <span data-lang="en">{hero.ctaSecondary.en} →</span><span data-lang="id">{hero.ctaSecondary.id} →</span>
-          </a>
-        </div>
-      </div>
-      <div class="aspect-[4/5] rounded-3xl overflow-hidden">
-        <img fetchpriority="high" loading="eager" decoding="async" src={base + '/assets/images/hero-community.webp'} alt="Community" class="w-full h-full object-cover" />
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS STRIP -->
-  <section class="py-12" style="background: #3D8F8A; color: #FAF6EC;">
-    <div class="container-x grid grid-cols-2 md:grid-cols-3 gap-8">
-      {stats.map(s => (
-        <div class="text-center">
-          <div class="text-5xl md:text-6xl font-medium" style="font-family: 'Fraunces', Georgia, serif;">{s.num}</div>
-          <div class="text-xs uppercase tracking-widest mt-2 text-[#FAF6EC]/85">
-            <span data-lang="en">{s.label.en}</span><span data-lang="id">{s.label.id}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- PULL QUOTE -->
-  <section class="py-20 border-b border-[#1A2E4A]/10">
-    <div class="container-x max-w-4xl text-center">
-      <p class="text-2xl md:text-3xl italic leading-snug" style="font-family: 'Fraunces', Georgia, serif; color: #1A2E4A;">
-        <span class="text-5xl align-top mr-2" style="color: #C9A876;">"</span>
-        <span data-lang="en">{heroQuote.en}</span>
-        <span data-lang="id">{heroQuote.id}</span>
+<BaseLayout title="Company Profile">
+  <section class="py-24 text-center" style="background: linear-gradient(180deg, #E8F2F1, #FDFCF8);">
+    <div class="container-x">
+      <span class="eyebrow"><span data-lang="en">Company Profile</span><span data-lang="id">Profil Perusahaan</span></span>
+      <h1 class="text-5xl md:text-6xl mb-4">{brand.name}</h1>
+      <p class="font-serif italic text-2xl mb-2" style="color: var(--color-teal);">
+        <span data-lang="en">{brand.tagline.en}</span>
+        <span data-lang="id">{brand.tagline.id}</span>
+      </p>
+      <p class="text-[#5C6B7E] mt-6 max-w-2xl mx-auto">
+        <span data-lang="en">Choose the design direction that feels right. Same content — ten distinct visual languages.</span>
+        <span data-lang="id">Pilih arah desain yang paling pas. Konten sama — sepuluh bahasa visual berbeda.</span>
       </p>
     </div>
   </section>
 
-  <!-- WHY MAGIES (VALUE PROP) -->
-  <section class="py-24" style="background: #FAF6EC;">
+  <!-- Style picker -->
+  <section class="py-12">
     <div class="container-x">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #3D8F8A;">
-          <span data-lang="en">{valueProp.tag.en}</span><span data-lang="id">{valueProp.tag.id}</span>
-        </span>
-        <h2 class="text-4xl md:text-5xl mt-4 mb-6 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
-          <span data-lang="en">{valueProp.headline.en}</span>
-          <span data-lang="id">{valueProp.headline.id}</span>
-        </h2>
-        <p class="text-lg leading-[1.7]" style="color: #4A5568;">
-          <span data-lang="en">{valueProp.body.en}</span>
-          <span data-lang="id">{valueProp.body.id}</span>
-        </p>
+      <div class="flex items-center justify-center gap-3 mb-12 flex-wrap">
+        <label for="style-picker" class="text-sm font-semibold text-[#5C6B7E]">
+          <span data-lang="en">Jump to style:</span><span data-lang="id">Lompat ke gaya:</span>
+        </label>
+        <select id="style-picker" class="px-4 py-2.5 border border-[#E2E6EC] rounded-full bg-white font-medium focus:outline-none focus:border-[#3D8F8A]">
+          <option value="">— pick a style —</option>
+          {styles.map(s => <option value={s.id}>{`Style ${String(s.id).padStart(2, '0')} · ${s.name}`}</option>)}
+        </select>
       </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        {valueCards.map((c, i) => (
-          <div class="bg-white p-8 rounded-2xl border border-[#1A2E4A]/10">
-            <div class="text-3xl font-medium mb-4" style="color: #C9A876; font-family: 'Fraunces', Georgia, serif;">0{i + 1}</div>
-            <h3 class="text-xl mb-4 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
-              <span data-lang="en">{c.title.en}</span>
-              <span data-lang="id">{c.title.id}</span>
-            </h3>
-            <p class="leading-[1.7]" style="color: #4A5568;">
-              <span data-lang="en">{c.body.en}</span>
-              <span data-lang="id">{c.body.id}</span>
-            </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {styles.map(s => (
+          <div class="group bg-white border border-[#E2E6EC] rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl hover:border-[#3D8F8A] transition-all flex flex-col">
+            <a href={`${base}/profile/style-${s.id}`} class="block">
+              <div class="aspect-[4/3] rounded-lg mb-5 overflow-hidden flex items-center justify-center font-serif text-3xl font-semibold text-white relative" style="background: linear-gradient(135deg, var(--color-navy), var(--color-teal));">
+                <span class="opacity-90">{String(s.id).padStart(2, '0')}</span>
+                <div class="absolute bottom-3 right-3 text-[0.62rem] font-sans uppercase tracking-wider opacity-70">Madani</div>
+              </div>
+              <div class="text-[0.7rem] font-semibold tracking-wider uppercase text-[#3D8F8A] mb-1.5">Style {String(s.id).padStart(2, '0')}</div>
+              <h3 class="font-semibold text-lg mb-2 group-hover:text-[#3D8F8A] transition-colors">{s.name}</h3>
+              <p class="text-sm text-[#5C6B7E] leading-relaxed">
+                <span data-lang="en">{s.desc.en}</span>
+                <span data-lang="id">{s.desc.id}</span>
+              </p>
+            </a>
+            <div class="mt-4 pt-4 border-t border-[#E2E6EC] flex items-center justify-between gap-3">
+              <a href={`${base}/profile/style-${s.id}`} class="text-sm font-semibold text-[#1A2E4A] flex items-center gap-1.5 hover:text-[#3D8F8A] transition-colors">
+                <span data-lang="en">View profile</span><span data-lang="id">Lihat profil</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a href={`${base}/styleguide/${s.id}`} class="text-xs font-semibold uppercase tracking-wider text-[#3D8F8A] hover:text-[#1A2E4A] transition-colors" title="View design system">
+                <span data-lang="en">System</span><span data-lang="id">Sistem</span>
+              </a>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- SERVICES PREVIEW -->
-  <section class="py-24">
-    <div class="container-x">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #3D8F8A;">
-          <span data-lang="en">What We Do</span><span data-lang="id">Layanan Kami</span>
-        </span>
-        <h2 class="text-4xl md:text-5xl mt-4 mb-6 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
-          <span data-lang="en">Three integrated services. One coherent strategy.</span>
-          <span data-lang="id">Tiga layanan terintegrasi. Satu strategi yang koheren.</span>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        {services.map(svc => (
-          <ServiceCard
-            num={svc.num}
-            image={base + svc.image}
-            titleEn={svc.title.en}
-            titleId={svc.title.id}
-            shortEn={svc.short.en}
-            shortId={svc.short.id}
-            href={base + '/services'}
-          />
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="py-24" style="background: #1A2E4A; color: #FAF6EC;">
-    <div class="container-x max-w-4xl text-center">
-      <span class="text-xs font-sans uppercase tracking-[0.3em]" style="color: #C9A876;">
-        <span data-lang="en">{finalCta.tag.en}</span><span data-lang="id">{finalCta.tag.id}</span>
-      </span>
-      <h2 class="text-4xl md:text-5xl mt-4 mb-6 leading-tight" style="font-family: 'Fraunces', Georgia, serif;">
-        <span data-lang="en">{finalCta.headline.en}</span>
-        <span data-lang="id">{finalCta.headline.id}</span>
-      </h2>
-      <p class="text-lg leading-[1.7] mb-10 text-[#FAF6EC]/85">
-        <span data-lang="en">{finalCta.body.en}</span>
-        <span data-lang="id">{finalCta.body.id}</span>
-      </p>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <a href={base + '/contact'} class="inline-block px-8 py-3 rounded-full font-medium text-sm" style="background: #C9A876; color: #1A2E4A;">
-          <span data-lang="en">{finalCta.ctaPrimary.en}</span><span data-lang="id">{finalCta.ctaPrimary.id}</span>
-        </a>
-        <a href={base + '/profile'} class="inline-block px-8 py-3 rounded-full font-medium text-sm border border-[#FAF6EC]/30 hover:bg-[#FAF6EC]/10 transition">
-          <span data-lang="en">{finalCta.ctaSecondary.en}</span><span data-lang="id">{finalCta.ctaSecondary.id}</span>
-        </a>
-      </div>
-    </div>
-  </section>
+  <script is:inline define:vars={{ base }}>
+    document.getElementById('style-picker').addEventListener('change', e => {
+      const v = e.target.value;
+      if (v) window.location.href = `${base}/profile/style-${v}`;
+    });
+  </script>
 </BaseLayout>

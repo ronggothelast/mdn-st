@@ -8,7 +8,7 @@
     </linearGradient>
     <linearGradient id="goldFade" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#C9A876" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#C9A876" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#C9A876" stop-opacity="0.25"/>
     </linearGradient>
     <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1" fill="#3D8F8A" opacity="0.15"/>
@@ -20,11 +20,22 @@
   <rect width="1200" height="630" fill="url(#dots)"/>
   <rect width="1200" height="630" fill="url(#goldFade)"/>
 
-  <!-- Decorative arcs (community/connection metaphor) -->
-  <g opacity="0.12">
-    <circle cx="950" cy="180" r="200" fill="none" stroke="#C9A876" stroke-width="1.5"/>
-    <circle cx="950" cy="180" r="280" fill="none" stroke="#3D8F8A" stroke-width="1"/>
-    <circle cx="950" cy="180" r="360" fill="none" stroke="#C9A876" stroke-width="0.5"/>
+  <!-- Decorative arcs (right side, fills empty space) -->
+  <g opacity="0.18">
+    <circle cx="1000" cy="200" r="180" fill="none" stroke="#C9A876" stroke-width="1.5"/>
+    <circle cx="1000" cy="200" r="260" fill="none" stroke="#3D8F8A" stroke-width="1"/>
+    <circle cx="1000" cy="200" r="340" fill="none" stroke="#C9A876" stroke-width="0.5"/>
+  </g>
+
+  <!-- Right-side stat callout (fills empty space, adds visual interest) -->
+  <g transform="translate(870,360)" opacity="0.95">
+    <rect x="0" y="0" width="240" height="180" fill="#0F1B2D" stroke="#C9A876" stroke-width="1" opacity="0.85" rx="2"/>
+    <text x="20" y="35" font-family="system-ui, sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="#C9A876">FIELD METRICS</text>
+    <line x1="20" y1="48" x2="60" y2="48" stroke="#3D8F8A" stroke-width="1.5"/>
+    <text x="20" y="80" font-family="Georgia, serif" font-size="32" font-weight="600" fill="#FAF6EC">20+</text>
+    <text x="20" y="98" font-family="system-ui, sans-serif" font-size="10" fill="#9CB0CC">Years experience</text>
+    <text x="20" y="135" font-family="Georgia, serif" font-size="32" font-weight="600" fill="#FAF6EC">100K</text>
+    <text x="20" y="153" font-family="system-ui, sans-serif" font-size="10" fill="#9CB0CC">Beneficiaries reached</text>
   </g>
 
   <!-- Logo orb (top-left) -->
@@ -36,18 +47,18 @@
   </g>
 
   <!-- Main title -->
-  <text x="80" y="320" font-family="Georgia, 'Times New Roman', serif" font-size="68" font-weight="500" fill="#FAF6EC" letter-spacing="-1.5">Transforming Social Risk</text>
-  <text x="80" y="395" font-family="Georgia, 'Times New Roman', serif" font-size="68" font-style="italic" font-weight="500" fill="#C9A876" letter-spacing="-1.5">Into Strategic Advantage.</text>
+  <text x="80" y="320" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-weight="500" fill="#FAF6EC" letter-spacing="-1.5">Transforming Social Risk</text>
+  <text x="80" y="395" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-style="italic" font-weight="500" fill="#C9A876" letter-spacing="-1.5">Into Strategic Advantage</text>
 
   <!-- Subtitle -->
   <line x1="80" y1="440" x2="180" y2="440" stroke="#3D8F8A" stroke-width="2"/>
-  <text x="80" y="475" font-family="system-ui, sans-serif" font-size="20" fill="#9CB0CC">Strategic impact consultancy · Jakarta, Indonesia</text>
-  <text x="80" y="505" font-family="system-ui, sans-serif" font-size="20" fill="#9CB0CC">20+ years · 400+ farmers · 100K beneficiaries</text>
+  <text x="80" y="475" font-family="system-ui, sans-serif" font-size="20" font-weight="500" fill="#FAF6EC">Strategic impact consultancy</text>
+  <text x="80" y="503" font-family="system-ui, sans-serif" font-size="17" fill="#9CB0CC">Jakarta · Indonesia · Bilingual EN/ID</text>
 
   <!-- Footer accent -->
   <g transform="translate(80,560)">
-    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="3" fill="#C9A876">MADANISTRATEGIES.COM</text>
-    <text x="0" y="22" font-family="system-ui, sans-serif" font-size="11" letter-spacing="1" fill="#5C6B7E">Affiliated with Yayasan Madani Berkelanjutan</text>
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="3" fill="#C9A876">MADANISTRATEGIES.COM</text>
+    <text x="0" y="22" font-family="system-ui, sans-serif" font-size="11" letter-spacing="1" fill="#7A8FA8">Affiliated with Yayasan Madani Berkelanjutan</text>
   </g>
 
   <!-- Right side accent stripe -->

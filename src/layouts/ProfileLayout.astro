@@ -17,8 +17,8 @@ const styleLinks = Array.from({ length: 10 }, (_, i) => i + 1);
   <div class="fixed bottom-6 inset-x-0 z-40 pointer-events-none">
     <div class="container-x flex justify-center">
       <div class="pointer-events-auto bg-white/95 backdrop-blur-md border border-[#E2E6EC] shadow-2xl rounded-full px-3 py-2 flex items-center gap-1 max-w-full overflow-x-auto">
-        <a href={base + '/profile'} class="text-xs font-semibold uppercase tracking-wider px-3 py-1.5 text-[#5C6B7E] hover:text-[#1A2E4A] whitespace-nowrap">
-          ← <span data-lang="en">Gallery</span><span data-lang="id">Galeri</span>
+        <a href={`${base}/`} class="text-xs font-semibold uppercase tracking-wider px-3 py-1.5 text-[#5C6B7E] hover:text-[#1A2E4A] whitespace-nowrap">
+          ← <span data-lang="en">Home</span><span data-lang="id">Beranda</span>
         </a>
         <div class="w-px h-5 bg-[#E2E6EC]"></div>
         {styleLinks.map(n => (

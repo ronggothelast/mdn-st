@@ -6,6 +6,9 @@ const base = import.meta.env.BASE_URL;
 <BaseLayout title="Style Guides">
   <section class="py-24 px-6">
     <div class="max-w-6xl mx-auto">
+      <a href={`${base}/`} class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#5C6B7E] hover:text-[#1A2E4A] mb-8 transition-colors">
+        ← Home
+      </a>
       <div class="mb-16 max-w-3xl">
         <div class="text-xs font-semibold uppercase tracking-[0.2em] text-[#3D8F8A] mb-4">Design Systems</div>
         <h1 class="font-serif text-5xl md:text-6xl text-[#1A2E4A] leading-[1.05] mb-6" style="letter-spacing:-0.02em;">
@@ -55,7 +58,7 @@ const base = import.meta.env.BASE_URL;
       <div class="mt-20 p-8 bg-[#FAF6EC] border border-[#C9A876]/30 rounded-lg">
         <div class="text-xs font-semibold uppercase tracking-[0.2em] text-[#3D8F8A] mb-3">Tip</div>
         <p class="text-[#1A2E4A] leading-relaxed">
-          Use these guides side by side with the matching <a href={base + 'profile'} class="underline hover:no-underline">Company Profile</a> to compare how each style renders the same content. The design tokens are the source of truth — change one in <code class="font-mono text-sm bg-white px-1.5 py-0.5 rounded border border-[#E2E6EC]">src/data/styleguides.ts</code> and the system updates everywhere.
+          Use these guides to compare how each style renders the same content. The design tokens are the source of truth — change one in <code class="font-mono text-sm bg-white px-1.5 py-0.5 rounded border border-[#E2E6EC]">src/data/styleguides.ts</code> and the system updates everywhere.
         </p>
       </div>
     </div>
